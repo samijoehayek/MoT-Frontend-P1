@@ -9,9 +9,9 @@ const Dashboard = () => {
 
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: "Test/Build/Build.loader.js",
-    dataUrl: "Test/Build/Build.data.br",
-    frameworkUrl: "Test/Build/Build.framework.js.br",
-    codeUrl: "Test/Build/Build.wasm.br",
+    dataUrl: "Test/Build/Build.data.gz",
+    frameworkUrl: "Test/Build/Build.framework.js.gz",
+    codeUrl: "Test/Build/Build.wasm.gz",
   });
 
   const router = useRouter();
