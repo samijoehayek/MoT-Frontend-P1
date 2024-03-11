@@ -27,6 +27,25 @@ export default function Home() {
   const [userEmail, setUserEmail] = useState("");
   const router = useRouter();
 
+  function getUserLocation() {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            resolve({ latitude, longitude });
+          },
+          (error) => {
+            reject(error);
+          },
+          { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+        );
+      } else {
+        reject(new Error("Geolocation is not supported by this browser"));
+      }
+    });
+  }
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -82,7 +101,7 @@ export default function Home() {
             const token = response.token;
             localStorage.setItem("token", token);
             document.cookie = `token=${token}`;
-            setUserEmail(values.email)
+            setUserEmail(values.email);
           })
           .then(() => {
             // router.push("/dashboard");
@@ -107,7 +126,13 @@ export default function Home() {
       <Head>
         {method === "login" ? <title>Login</title> : <title>Sign Up</title>}
       </Head>
-      <EmailConfirmationModal email={userEmail} open={emailConfirmationModal} onClose={() => {setEmailConfirmationModal(false)}} />
+      <EmailConfirmationModal
+        email={userEmail}
+        open={emailConfirmationModal}
+        onClose={() => {
+          setEmailConfirmationModal(false);
+        }}
+      />
 
       <Box
         sx={{
