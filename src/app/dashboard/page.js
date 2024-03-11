@@ -16,22 +16,22 @@ const Dashboard = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token")
-      ? urlParams.get("token")
-      : localStorage.getItem("token");
-    getUserByJWT(token)
-      .then(() => {
-        localStorage.setItem("token", token);
-        document.cookie = `token=${token}`;
-        setLoadWebGL(true);
-      })
-      .catch((error) => {
-        console.log("Login failed: ", error);
-        router.push("/");
-      });
-  }, []);
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const token = urlParams.get("token")
+  //     ? urlParams.get("token")
+  //     : localStorage.getItem("token");
+  //   getUserByJWT(token)
+  //     .then(() => {
+  //       localStorage.setItem("token", token);
+  //       document.cookie = `token=${token}`;
+  //       setLoadWebGL(true);
+  //     })
+  //     .catch((error) => {
+  //       console.log("Login failed: ", error);
+  //       router.push("/");
+  //     });
+  // }, []);
 
   return (
     loadWebGL && (
