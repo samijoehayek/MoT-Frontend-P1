@@ -155,7 +155,7 @@ export default function Home() {
             <Stack spacing={1} sx={{ mb: 3 }}>
               {method === "login" ? (
                 <Typography variant="h4" className="text-black">
-                  Login
+                  Login !
                 </Typography>
               ) : (
                 <Typography variant="h4" className="text-black">
