@@ -121,6 +121,17 @@ export default function Home() {
     },
   });
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const verificationString = urlParams.get("token");
+    if(verificationString){
+      localStorage.setItem("token", token);
+      document.cookie = `token=${token}`;
+      router.push("/dashboard");
+    }
+  }, [])
+  
+
   return (
     <>
       <Head>
