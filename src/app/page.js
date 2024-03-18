@@ -123,7 +123,7 @@ export default function Home() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const verificationString = urlParams.get("token");
+    const token = urlParams.get("token");
     if(verificationString){
       localStorage.setItem("token", token);
       document.cookie = `token=${token}`;
