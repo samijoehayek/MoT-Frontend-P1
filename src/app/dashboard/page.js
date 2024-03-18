@@ -8,10 +8,11 @@ const Dashboard = () => {
   const [loadWebGL, setLoadWebGL] = useState(false);
 
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "Test/Build/Build.loader.js",
-    dataUrl: "Test/Build/Build.data.unityweb",
-    frameworkUrl: "Test/Build/Build.framework.js.unityweb",
-    codeUrl: "Test/Build/Build.wasm.unityweb",
+    loaderUrl: "Build/Build/Build.loader.js",
+    dataUrl: "Build/Build/Build.data.unityweb",
+    frameworkUrl: "Build/Build/Build.framework.js.unityweb",
+    codeUrl: "Build/Build/Build.wasm.unityweb",
+    streamingAssetsUrl: "Build/StreamingAssets",
   });
 
   const router = useRouter();
@@ -38,7 +39,7 @@ const Dashboard = () => {
     loadWebGL && (
       <Fragment>
         {!isLoaded && (
-          <p>Loading Application ... {Math.round(loadingProgression * 100)}</p>
+          <p>Loading Application .... {Math.round(loadingProgression * 100)}</p>
         )}
         <Unity
           unityProvider={unityProvider}

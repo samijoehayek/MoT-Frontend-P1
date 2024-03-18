@@ -4,9 +4,9 @@ FROM node:18-alpine AS base
 FROM base AS deps
 
 # Set the environment variables
-ARG api_endpoint
+ARG api_endpoint jwt_secret
 
-ENV NEXT_PUBLIC_API_HOST=$api_endpoint
+ENV NEXT_PUBLIC_API_HOST=$api_endpoint JWT_SECRET_KEY=$jwt_secret
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
@@ -26,9 +26,9 @@ RUN \
 FROM base AS builder
 
 # Set the environment variables
-ARG api_endpoint
+ARG api_endpoint jwt_secret
 
-ENV NEXT_PUBLIC_API_HOST=$api_endpoint
+ENV NEXT_PUBLIC_API_HOST=$api_endpoint JWT_SECRET_KEY=$jwt_secret
 
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -50,9 +50,9 @@ RUN \
 FROM base AS runner
 
 # Set the environment variables
-ARG api_endpoint
+ARG api_endpoint jwt_secret
 
-ENV NEXT_PUBLIC_API_HOST=$api_endpoint
+ENV NEXT_PUBLIC_API_HOST=$api_endpoint JWT_SECRET_KEY=$jwt_secret
 
 WORKDIR /app
 

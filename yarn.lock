@@ -2035,6 +2035,11 @@ jiti@^1.19.1:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.0.tgz#7c97f8fe045724e136a397f7340475244156105d"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
+jose@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-5.2.3.tgz#071c87f9fe720cff741a403c8080b69bfe13164a"
+  integrity sha512-KUXdbctm1uHVL8BYhnyHkgp3zDX5KW8ZhAKVFEfUbU2P8Alpzjb+48hHvjOdQIyPshoblhzsuqOwEEAbtHVirA==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -2596,10 +2601,10 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-unity-webgl@^9.5.0:
-  version "9.5.0"
-  resolved "https://registry.yarnpkg.com/react-unity-webgl/-/react-unity-webgl-9.5.0.tgz#08277bf80d0678dbd26131d2c7ea4eb05233862e"
-  integrity sha512-zmTffL2S7QL1g2DQem0/HzxhJaEQ3L4aEV4VUlQOkZc4JzMjScrqGVvHc4AnyMz94vVQqlbHwNfq4YhJEEGzQg==
+react-unity-webgl@^9.5.1:
+  version "9.5.1"
+  resolved "https://registry.yarnpkg.com/react-unity-webgl/-/react-unity-webgl-9.5.1.tgz#8655b1c80a1c7ba83bb44c7d37856ce33006bb60"
+  integrity sha512-7zQmJR7gfzyAW/oXjMDMDozVmdEzktzm54vbftcbtS5bGXGUE8S9BYeXElQyugdUL1tY7EC7UpF+9nQPcwGhIQ==
 
 react@^18:
   version "18.2.0"

@@ -1,0 +1,21 @@
+import { NextResponse } from "next/server";
+import { verifyAuth } from "./lib/auth";
+
+export async function middleware(req) {
+
+    const token = req.cookies.get("token")?.value;
+    const verifiedToken = token && (await verifyAuth(token).catch((err) => console.log(err)));
+
+    if(req.nextUrl.pathname.startsWith('/dashboard') && verifiedToken){
+        return
+    }
+
+    if(!verifiedToken){
+        return NextResponse.redirect(new URL('/', req.url))
+    }
+
+}
+
+export const config = {
+    matcher: ['/dashboard'],
+}
