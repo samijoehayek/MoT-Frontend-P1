@@ -124,7 +124,7 @@ export default function Home() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
-    if(verificationString){
+    if(token){
       localStorage.setItem("token", token);
       document.cookie = `token=${token}`;
       router.push("/dashboard");
