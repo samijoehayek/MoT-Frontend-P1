@@ -1,6 +1,7 @@
 "use client";
 import { verifyEmail } from "@/axios";
 import { useRouter } from "next/navigation";
+import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
 const VerifyEmail = () => {
@@ -19,7 +20,7 @@ const VerifyEmail = () => {
   return (
     emailVerified && (
       <div>
-        <h1>Congratuliations! Your Email is Verified</h1>
+        <h1>Congratulations! Your Email is Verified</h1>
         <p>Please head to the login page to log in</p>
         <Button
           fullWidth
