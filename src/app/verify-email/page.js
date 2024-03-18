@@ -1,6 +1,7 @@
 "use client";
 import { verifyEmail } from "@/axios";
 import { useRouter } from "next/navigation";
+import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
 const VerifyEmail = () => {
