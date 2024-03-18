@@ -1,8 +1,8 @@
 "use client";
 import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import bg from "../../../public/images/webgl-loader.png";
-import localFont from "@next/font/local";
+import bg from "../../../public/images/webgl-loader.jpg";
+import localFont from "next/font/local";
 
 const albertFont = localFont({
   src: "../../../public/FSAlbertArabic-Bold.ttf",
@@ -21,7 +21,7 @@ const Dashboard = () => {
   const sentences = [
     "Explore the space and meet others",
     "Engage in conversations through chat",
-    "Interact with Ai powered assistants.",
+    "Interact with AI powered assistants",
     "View informational displays",
   ];
 
@@ -81,7 +81,7 @@ const Dashboard = () => {
                 <h1
                   className={`${albertFont.className} font-sans text-5xl font-bold text-white mb-16 text-center`}
                 >
-                  Saudi Tourism Metaverse Loading ...
+                  Saudi Tourism Metaverse Loading...
                 </h1>
                 <div className="relative w-4/5 rounded-full overflow-hidden mb-2">
                   <div
