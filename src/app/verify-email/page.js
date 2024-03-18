@@ -1,6 +1,6 @@
 "use client";
 import { verifyEmail } from "@/axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
 const VerifyEmail = () => {
