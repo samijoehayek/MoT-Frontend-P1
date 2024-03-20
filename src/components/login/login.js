@@ -336,6 +336,7 @@ const Login = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
+                    marginTop: "5px",
                   }}
                 >
                   <FormControlLabel
@@ -352,17 +353,19 @@ const Login = () => {
                       />
                     }
                     label={
-                      <Typography variant="body2" sx={{ color: "white" }}>
+                      <Typography variant="body2" sx={{ color: "white", fontSize: 14 }} className={`${albertFontNormal.className}`}>
                         Remember me
                       </Typography>
                     }
+                    labelPlacement="end"
+                    sx={{ alignItems: "flex-center", mt: "2px" }}
                   />
-                  <Typography
+                  {/* <Typography
                     variant="body2"
                     sx={{ color: "#785FDC", cursor: "pointer" }}
                   >
                     Change password?
-                  </Typography>
+                  </Typography> */}
                 </Box>
                 <Button
                   fullWidth

@@ -23,16 +23,18 @@ const albertFontNormal = localFont({
 });
 
 const VerifyEmail = () => {
-  const [emailVerified, setEmailVerified] = React.useState(true);
+  const [emailVerified, setEmailVerified] = React.useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
-    // const urlParams = new URLSearchParams(window.location.search);
-    // const verificationString = urlParams.get("verificationString");
-    // verifyEmail(verificationString).then(() => {
-    //   setEmailVerified(true);
-    // });
+    const urlParams = new URLSearchParams(window.location.search);
+    const verificationString = urlParams.get("verificationString");
+    verifyEmail(verificationString).then(() => {
+      setEmailVerified(true);
+    }).catch(() => {
+      setEmailVerified(false);
+    });
   }, []);
 
   return (
@@ -124,7 +126,7 @@ const VerifyEmail = () => {
           <div className="absolute inset-0">
             <div className="relative h-full">
               <Image
-                src="/images/login-bg4.png"
+                src="/images/email-success-bg.png"
                 alt="Background"
                 fill={true}
                 quality={100}

@@ -10,6 +10,10 @@ export async function middleware(req) {
         return
     }
 
+    if(req.nextUrl.pathname.startsWith('/new-login')){
+        return NextResponse.redirect(new URL('/', req.url))
+    }
+
     if(!verifiedToken){
         return NextResponse.redirect(new URL('/', req.url))
     }
@@ -17,5 +21,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-    matcher: ['/dashboard'],
+    matcher: ['/dashboard', '/new-login'],
 }
