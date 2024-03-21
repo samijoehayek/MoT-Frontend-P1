@@ -1,3 +1,4 @@
+com.soupday.cc3_unity_tools@1.6.2
 com.unity.ai.navigation@1.1.5
 com.unity.animation.rigging@1.2.1
 com.unity.cinemachine@2.9.7
