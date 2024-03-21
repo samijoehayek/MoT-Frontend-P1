@@ -7,20 +7,20 @@ import Image from "next/image";
 import BackgroundImage from "@/components/background-image/background-image";
 
 const VerifyEmail = () => {
-  const [emailVerified, setEmailVerified] = React.useState(true);
+  const [emailVerified, setEmailVerified] = React.useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
-    // const urlParams = new URLSearchParams(window.location.search);
-    // const verificationString = urlParams.get("verificationString");
-    // verifyEmail(verificationString)
-    //   .then(() => {
-    //     setEmailVerified(true);
-    //   })
-    //   .catch(() => {
-    //     setEmailVerified(false);
-    //   });
+    const urlParams = new URLSearchParams(window.location.search);
+    const verificationString = urlParams.get("verificationString");
+    verifyEmail(verificationString)
+      .then(() => {
+        setEmailVerified(true);
+      })
+      .catch(() => {
+        setEmailVerified(false);
+      });
   }, []);
 
   return (
