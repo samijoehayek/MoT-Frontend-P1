@@ -3,18 +3,6 @@ import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import localFont from "next/font/local";
-
-const albertFont = localFont({
-  src: "../../../public/FSAlbertArabic-Bold.ttf",
-  display: "swap",
-});
-
-const albertFontNormal = localFont({
-  src: "../../../public/FSAlbertArabic-Regular.ttf",
-  display: "swap",
-});
-
 
 const GoogleLogin = () => {
   const router = useRouter();
@@ -33,7 +21,10 @@ const GoogleLogin = () => {
         src="/images/googleicon.svg"
         className="mr-2"
       />
-      <p className="mb-0 font-normal text-base text-gray-500">
+      <p
+        className="mb-0 font-normal text-base text-gray-500"
+        style={{ fontFamily: "AlbertFontNormal" }}
+      >
         LOG IN WITH GOOGLE
       </p>
     </div>

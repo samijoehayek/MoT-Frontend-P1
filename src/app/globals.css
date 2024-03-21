@@ -16,6 +16,16 @@
   }
 }
 
+@font-face {
+  font-family: 'AlbertFont';
+  src: url('/FSAlbertArabic-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AlbertFontNormal';
+  src: url('/FSAlbertArabic-Regular.ttf') format('truetype');
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

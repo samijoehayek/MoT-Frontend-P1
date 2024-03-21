@@ -28,16 +28,6 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import EmailConfirmationModal from "@/components/email-confirmation-modal/email-confirmation-modal";
 import Link from "next/link";
 
-const albertFont = localFont({
-  src: "../../../public/FSAlbertArabic-Bold.ttf",
-  display: "swap",
-});
-
-const albertFontNormal = localFont({
-  src: "../../../public/FSAlbertArabic-Regular.ttf",
-  display: "swap",
-});
-
 const Login = () => {
   const [method, setMethod] = useState("login");
   const [loginError, setLoginError] = useState(false);
@@ -191,7 +181,8 @@ const Login = () => {
             <Stack spacing={1} sx={{ mb: 2 }}>
               <Typography
                 variant="h4"
-                className={`${albertFont.className} text-white text-4xl`}
+                className={`text-white text-4xl`}
+                style={{ fontFamily: "AlbertFont" }}
               >
                 Welcome Back!
               </Typography>
@@ -199,7 +190,8 @@ const Login = () => {
             <Stack spacing={1} sx={{ mb: 5 }}>
               <Typography
                 fontSize={13}
-                className={`${albertFontNormal.className} text-white`}
+                className={`text-white`}
+                style={{ fontFamily: "AlbertFontNormal" }}
               >
                 Join the Metaverse and be part of the future
               </Typography>
@@ -244,15 +236,18 @@ const Login = () => {
                       },
                       "& .MuiInputLabel-root": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal",
                         "&.Mui-focused": {
                           color: "white",
                         },
                       },
                       "& .MuiInputBase-input": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal"
                       },
                       "& .MuiFormHelperText-root": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal"
                       },
                     }}
                   />
@@ -288,15 +283,18 @@ const Login = () => {
                       },
                       "& .MuiInputLabel-root": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal",
                         "&.Mui-focused": {
                           color: "white",
                         },
                       },
                       "& .MuiInputBase-input": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal"
                       },
                       "& .MuiFormHelperText-root": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal"
                       },
                     }}
                     InputProps={{
@@ -325,7 +323,8 @@ const Login = () => {
                 {loginError ? (
                   <div>
                     <p
-                      className={`${albertFontNormal.className} text-red-500 text-sm mb-0`}
+                      className={`text-red-500 text-sm mb-0`}
+                      style={{ fontFamily: "AlbertFontNormal" }}
                     >
                       Wrong credentials
                     </p>
@@ -353,7 +352,11 @@ const Login = () => {
                       />
                     }
                     label={
-                      <Typography variant="body2" sx={{ color: "white", fontSize: 14 }} className={`${albertFontNormal.className}`}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "white", fontSize: 14 }}
+                        style={{ fontFamily: "AlbertFontNormal" }}
+                      >
                         Remember me
                       </Typography>
                     }
@@ -390,11 +393,11 @@ const Login = () => {
                       background: "#36373E",
                       color: "rgba(255, 255, 255, 0.5)",
                     },
-                    fontFamily: albertFontNormal.fontFamily,
                   }}
                   type="submit"
                   variant="contained"
                   disabled={!formik.values.username || !formik.values.password}
+                  style={{ fontFamily: "AlbertFontNormal" }}
                 >
                   {formik.values.username && formik.values.password
                     ? "JOIN THE METAVERSE"
@@ -404,11 +407,12 @@ const Login = () => {
                 <GoogleLogin />
 
                 <div
-                  className={`${albertFontNormal.className} flex items-center justify-center font-normal text-base text-white`}
+                  className={`flex items-center justify-center font-normal text-base text-white`}
+                  style={{ fontFamily: "AlbertFontNormal" }}
                   onClick={() => setMethod("signup")}
                 >
                   Don't have an account?
-                  <b className={`${albertFont.className}`}>
+                  <b style={{ fontFamily: "AlbertFont" }}>
                     &nbsp;<u>SIGN UP HERE</u>
                   </b>
                 </div>
@@ -457,15 +461,18 @@ const Login = () => {
                       },
                       "& .MuiInputLabel-root": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal",
                         "&.Mui-focused": {
                           color: "white",
                         },
                       },
                       "& .MuiInputBase-input": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal",
                       },
                       "& .MuiFormHelperText-root": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal",
                       },
                     }}
                   />
@@ -503,14 +510,17 @@ const Login = () => {
                       },
                       "& .MuiInputLabel-root": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal",
                         "&.Mui-focused": {
                           color: "white",
                         },
                       },
                       "& .MuiInputBase-input": {
+                        fontFamily: "AlbertFontNormal",
                         color: "white",
                       },
                       "& .MuiFormHelperText-root": {
+                        fontFamily: "AlbertFontNormal",
                         color: "white",
                       },
                     }}
@@ -551,14 +561,17 @@ const Login = () => {
                       },
                       "& .MuiInputLabel-root": {
                         color: "white",
+                        fontFamily: "AlbertFontNormal",
                         "&.Mui-focused": {
                           color: "white",
                         },
                       },
                       "& .MuiInputBase-input": {
+                        fontFamily: "AlbertFontNormal",
                         color: "white",
                       },
                       "& .MuiFormHelperText-root": {
+                        fontFamily: "AlbertFontNormal",
                         color: "white",
                       },
                     }}
@@ -624,7 +637,7 @@ const Login = () => {
                       <Typography variant="body2" sx={{ color: "white" }}>
                         I accept the{" "}
                         <Link href="/privacy-policy" target="_blank">
-                          <b className={`${albertFont.className}`}>
+                          <b style={{ fontFamily: "AlbertFont" }}>
                             &nbsp;<u>Privacy Policy</u>
                           </b>
                         </Link>
@@ -667,7 +680,6 @@ const Login = () => {
                       background: "#36373E",
                       color: "rgba(255, 255, 255, 0.5)",
                     },
-                    fontFamily: albertFontNormal.fontFamily,
                   }}
                   type="submit"
                   variant="contained"
@@ -678,6 +690,7 @@ const Login = () => {
                     formikSignup.errors.email ||
                     !privacyPolicy
                   }
+                  style={{ fontFamily: "AlbertFontNormal" }}
                 >
                   {formikSignup.values.username &&
                   formikSignup.values.password &&
@@ -688,11 +701,12 @@ const Login = () => {
                     : "SIGN UP"}
                 </Button>
                 <div
-                  className={`${albertFontNormal.className} flex items-center justify-center font-normal text-base text-white`}
+                  className={`flex items-center justify-center font-normal text-base text-white`}
+                  style={{ fontFamily: "AlbertFontNormal" }}
                   onClick={() => setMethod("login")}
                 >
                   Already have an account?
-                  <b className={`${albertFont.className}`}>
+                  <b style={{ fontFamily: "AlbertFont" }}>
                     &nbsp;<u>LOG IN HERE</u>
                   </b>
                 </div>

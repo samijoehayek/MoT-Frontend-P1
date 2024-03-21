@@ -1,16 +1,5 @@
 import React from "react";
-import localFont from "next/font/local";
 import Image from "next/image";
-
-const albertFont = localFont({
-  src: "../../../public/FSAlbertArabic-Bold.ttf",
-  display: "swap",
-});
-
-const albertFontNormal = localFont({
-  src: "../../../public/FSAlbertArabic-Regular.ttf",
-  display: "swap",
-});
 
 const PrivacyPolicy = () => {
   return (
@@ -26,19 +15,26 @@ const PrivacyPolicy = () => {
       <div className="flex flex-col max-w-4xl mx-auto">
         <div className="mb-8">
           <h1
-            className={`${albertFont.className} text-4xl font-bold text-white`}
+            className={`text-4xl font-bold text-white`}
+            style={{ fontFamily: "AlbertFont" }}
           >
             Privacy Policy
           </h1>
-          <p className={`${albertFontNormal.className} text-sm text-gray-400`}>
+          <p
+            className={`text-sm text-gray-400`}
+            style={{ fontFamily: "AlbertFontNormal" }}
+          >
             Last updated March 1
           </p>
         </div>
         <div className={`text-white`}>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             What does this policy cover?
           </h2>
-          <p className={`${albertFontNormal.className} mb-6`}>
+          <p className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             This policy describes how the Ministry of Tourism (referred to as
             “we”, “us”or “the Ministry”) will make use of your data when you
             interact with us through our websites and all of the webpages,
@@ -48,10 +44,13 @@ const PrivacyPolicy = () => {
             however, the consent to collect, process and share children’s
             personal data should be provided by a Guardian.
           </p>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             What information do we collect?
           </h2>
-          <p className={`${albertFontNormal.className} mb-6`}>
+          <p className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             The Ministry of Tourism collects and processes your personal data
             when you interact with our platform or if you interact with us
             personally , including but not limited to : Personal information in
@@ -61,10 +60,13 @@ const PrivacyPolicy = () => {
             it will be hard to recognize your identity, background, and
             preferences.
           </p>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             How do we collect your personal data?{" "}
           </h2>
-          <ul className={`${albertFontNormal.className} mb-6`}>
+          <ul className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             The Ministry of Tourism collects your personal data for use in:{" "}
             <li>• User verification.</li>{" "}
             <li>
@@ -85,20 +87,26 @@ const PrivacyPolicy = () => {
             entities, such as: Ministry of Tourism Partners, government and
             semi-government entities, third-party service providers.
           </ul>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             How do we process your personal data?
           </h2>
-          <p className={`${albertFontNormal.className} mb-6`}>
+          <p className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             The Ministry of Tourism will process the personal data collected and
             stored about you and others, automatically or manually using our
             systems to provide the best services for you. The Ministry will also
             use tools to process your personal data, including: data processing
             and decision-making tools.
           </p>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             On which legal basis do we process your personal data?
           </h2>
-          <p className={`${albertFontNormal.className} mb-6`}>
+          <p className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             The Ministry of Tourism processes your personal data in accordance
             with the policies applied within the Ministry of Tourism, including,
             but not limited to, the Personal Data Protection Policy of the
@@ -107,10 +115,13 @@ const PrivacyPolicy = () => {
             law, as well as the relevant national laws, regulations, and
             policies.
           </p>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             How do we store your personal data?
           </h2>
-          <p className={`${albertFontNormal.className} mb-6`}>
+          <p className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             The Ministry of Tourism stores your personal data securely in a
             database outside and inside the Kingdom of Saudi Arabia, security
             standards will be applied. For verification the personal data will
@@ -119,10 +130,13 @@ const PrivacyPolicy = () => {
             it, except in cases where we are legally obligated to store your
             data or in conflict with relevant laws and regulations.
           </p>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             What are your personal data protection rights?
           </h2>
-          <ul className={`${albertFontNormal.className} mb-6`}>
+          <ul className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             The Ministry is keen to protect your personal data in accordance
             with the personal data protection privacy policy applied in the
             Kingdom, that users are fully protected and confined to the full
@@ -188,10 +202,13 @@ const PrivacyPolicy = () => {
             Ministry within a month, please direct the request to the following
             email: Dataprivacy@mt.gov.sa.
           </ul>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             What are cookies?
           </h2>
-          <p className={`${albertFontNormal.className} mb-6`}>
+          <p className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             Our website uses cookies to identify you from other users so that we
             can provide you with an exceptional experience when visiting our
             website and enhance the portal’s features. Cookies are text files
@@ -202,10 +219,13 @@ const PrivacyPolicy = () => {
             cookies on your device to enhance your site experience and for
             analytical purposes.
           </p>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             How do we use cookies?
           </h2>
-          <p className={`${albertFontNormal.className} mb-6`}>
+          <p className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             The Ministry of Tourism uses cookies in a range of ways to improve
             your experience on our website, including keeping you signed in and
             understanding how you use our website by collecting data and
@@ -223,10 +243,13 @@ const PrivacyPolicy = () => {
             information when you visit other websites or use other services
             provided by the Ministry.
           </p>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             What types of cookies do we use?
           </h2>
-          <ul className={`${albertFontNormal.className} mb-6`}>
+          <ul className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             There are a number of different types of cookies, however, this
             website may use the following:{" "}
             <li>
@@ -254,18 +277,24 @@ const PrivacyPolicy = () => {
               patterns on our website.
             </li>
           </ul>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             Changes to our privacy policy
           </h2>
-          <p className={`${albertFontNormal.className} mb-6`}>
+          <p className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             The Ministry of Tourism keeps its privacy policy under regular
             review and places any updates on this web page. This privacy policy
             was last updated on: 01/03/2024.
           </p>
-          <h2 className={`${albertFont.className} text-2xl font-bold mb-4`}>
+          <h2
+            className={`text-2xl font-bold mb-4`}
+            style={{ fontFamily: "AlbertFont" }}
+          >
             Our contact details
           </h2>
-          <ul className={`${albertFontNormal.className} mb-6`}>
+          <ul className={`mb-6`} style={{ fontFamily: "AlbertFontNormal" }}>
             If you have any questions about the Ministry’s privacy policy, the
             data we hold on you, or you would like to exercise one of your data
             protection rights, please do not hesitate to contact us.{" "}

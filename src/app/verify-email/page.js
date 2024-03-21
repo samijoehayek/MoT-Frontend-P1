@@ -12,16 +12,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import localFont from "next/font/local";
 
-const albertFont = localFont({
-  src: "../../../public/FSAlbertArabic-Bold.ttf",
-  display: "swap",
-});
-
-const albertFontNormal = localFont({
-  src: "../../../public/FSAlbertArabic-Regular.ttf",
-  display: "swap",
-});
-
 const VerifyEmail = () => {
   const [emailVerified, setEmailVerified] = React.useState(false);
 
@@ -30,11 +20,13 @@ const VerifyEmail = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const verificationString = urlParams.get("verificationString");
-    verifyEmail(verificationString).then(() => {
-      setEmailVerified(true);
-    }).catch(() => {
-      setEmailVerified(false);
-    });
+    verifyEmail(verificationString)
+      .then(() => {
+        setEmailVerified(true);
+      })
+      .catch(() => {
+        setEmailVerified(false);
+      });
   }, []);
 
   return (
@@ -67,12 +59,12 @@ const VerifyEmail = () => {
                   marginTop: "16px",
                   fontSize: "1.8rem",
                 }}
-                className={`${albertFont.className}`}
+                style={{ fontFamily: "AlbertFont" }}
               >
                 Your account has been verified!
               </Typography>
               <DialogContentText
-                className={`${albertFontNormal.className}`}
+                style={{ fontFamily: "AlbertFontNormal" }}
                 sx={{ color: "#ffffff", fontSize: "1.1rem" }}
               >
                 Your email is successfully verified.
@@ -98,7 +90,8 @@ const VerifyEmail = () => {
                 type="submit"
                 variant="contained"
                 onClick={() => router.push("/dashboard")}
-                className={`${albertFont.className} glow`}
+                style={{ fontFamily: "AlbertFont" }}
+                className={`glow`}
               >
                 JOIN THE METAVERSE
               </Button>
@@ -116,7 +109,10 @@ const VerifyEmail = () => {
         {/* Image Section */}
         <div className="w-1/2 relative overflow-hidden">
           <div className="absolute inset-0 flex items-start justify-start p-20 mt-10 ml-10">
-            <div className={`${albertFont.className} text-white z-10`}>
+            <div
+              className={`text-white z-10`}
+              style={{ fontFamily: "AlbertFont" }}
+            >
               <h2 className="text-5xl font-bold mb-4">
                 Diriyah Digital Marketplace
               </h2>

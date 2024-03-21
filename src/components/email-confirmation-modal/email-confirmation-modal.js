@@ -12,16 +12,6 @@ import Image from "next/image";
 import { styled } from "@mui/system";
 import localFont from "next/font/local";
 
-const albertFont = localFont({
-  src: "../../../public/FSAlbertArabic-Bold.ttf",
-  display: "swap",
-});
-
-const albertFontNormal = localFont({
-  src: "../../../public/FSAlbertArabic-Regular.ttf",
-  display: "swap",
-});
-
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
     backgroundColor: "rgba(163, 163, 163, 0.4)",
@@ -81,11 +71,11 @@ const EmailConfirmationModal = ({ email, open, onClose }) => {
           variant="h5"
           component="div"
           sx={{ color: "#ffffff", marginBottom: "22px", marginTop: "16px", fontSize: '1.8rem'}}
-          className={`${albertFont.className}`}
+          style={{ fontFamily: "AlbertFont" }}
         >
           Email Confirmation Sent!
         </Typography>
-        <DialogContentText className={`${albertFontNormal.className}`} sx={{ color: "#ffffff", fontSize: '1.1rem'}}>
+        <DialogContentText sx={{ color: "#ffffff", fontSize: '1.1rem'}} style={{ fontFamily: 'AlbertFontNormal'}}>
           An email confirmation has been sent to
         </DialogContentText>
         <Typography
@@ -95,7 +85,7 @@ const EmailConfirmationModal = ({ email, open, onClose }) => {
             borderRadius: "4px",
             fontSize: '1.1rem'
           }}
-          className={`${albertFontNormal.className}`}
+          style={{ fontFamily: "AlbertFontNormal" }}
         >
           {email}
         </Typography>

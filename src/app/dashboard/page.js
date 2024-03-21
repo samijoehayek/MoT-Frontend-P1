@@ -2,17 +2,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import bg from "../../../public/images/webgl-loader.jpg";
-import localFont from "next/font/local";
-
-const albertFont = localFont({
-  src: "../../../public/FSAlbertArabic-Bold.ttf",
-  display: "swap",
-});
-
-const albertFontNormal = localFont({
-  src: "../../../public/FSAlbertArabic-Regular.ttf",
-  display: "swap",
-});
 
 const Dashboard = () => {
   const [loadWebGL, setLoadWebGL] = useState(false);
@@ -43,6 +32,7 @@ const Dashboard = () => {
   const sentenceStyling = {
     animation: "fadeInOut 4s linear infinite",
     fontSize: "1.5rem",
+    fontFamily: "AlbertFontNormal",
   };
 
   const animationStyles = `@keyframes fadeInOut {
@@ -79,7 +69,8 @@ const Dashboard = () => {
             >
               <div className="w-3/4 flex flex-col items-center mb-16">
                 <h1
-                  className={`${albertFont.className} font-sans text-5xl font-bold text-white mb-16 text-center`}
+                  className={`font-sans text-5xl font-bold text-white mb-16 text-center`}
+                  style={{ fontFamily: 'AlbertFont' }}
                 >
                   Saudi Tourism Metaverse Loading...
                 </h1>
@@ -95,7 +86,7 @@ const Dashboard = () => {
                   </span>
                 </div>
                 <div
-                  className={`${albertFontNormal.className} mt-4 text-white text-center`}
+                  className={`mt-4 text-white text-center`}
                   style={sentenceStyling}
                 >
                   {sentences.map((sentence, index) => (
