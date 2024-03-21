@@ -2,6 +2,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import bg from "../../../public/images/webgl-loader.jpg";
+import Image from "next/image";
 
 const Dashboard = () => {
   const [loadWebGL, setLoadWebGL] = useState(false);
@@ -68,9 +69,15 @@ const Dashboard = () => {
               style={styling}
             >
               <div className="w-3/4 flex flex-col items-center mb-16">
+                <Image
+                  src="/images/stc-logo.png"
+                  alt="STC Logo"
+                  width={240}
+                  height={80}
+                />
                 <h1
-                  className={`font-sans text-5xl font-bold text-white mb-16 text-center`}
-                  style={{ fontFamily: 'AlbertFont' }}
+                  className={`font-sans text-5xl font-bold text-white mb-16 mt-24 text-center`}
+                  style={{ fontFamily: "AlbertFont" }}
                 >
                   Saudi Tourism Metaverse Loading...
                 </h1>

@@ -13,41 +13,42 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { login } from "@/axios";
-import GoogleLogin from "@/components/google-login/google-login";
+import { signup } from "@/axios";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import Link from "next/link";
 
-const Login = ({ setMethod }) => {
-  const [loginError, setLoginError] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
-  const router = useRouter();
+const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [privacyPolicy, setPrivacyPolicy] = useState(false);
 
-  const formik = useFormik({
+  const formikSignup = useFormik({
     initialValues: {
-      username: "",
-      password: "",
-      submit: null,
+      username: "MTUser123",
+      email: "mt@gmail.com",
+      password: "Password123!",
+      tag: "MTUser123",
     },
     validationSchema: Yup.object({
       username: Yup.string().max(255).required("Username is required"),
+      email: Yup.string().email().max(255).required("Email is required"),
       password: Yup.string().max(255).required("Password is required"),
+      tag: Yup.string().max(255).required("Tag is required"),
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await login(values.username, values.password)
+        await signup(values.username, values.email, values.password, values.tag)
           .then((response) => {
             const token = response.token;
             localStorage.setItem("token", token);
             document.cookie = `token=${token}`;
+            setUserEmail(values.email);
           })
           .then(() => {
-            router.push("/dashboard");
+            // router.push("/dashboard");
+            setEmailConfirmationModal(true);
           })
           .catch((error) => {
-            setLoginError(true);
             console.log("Login failed: ", error);
           });
 
@@ -59,20 +60,25 @@ const Login = ({ setMethod }) => {
       }
     },
   });
+
   return (
-    <form noValidate onSubmit={formik.handleSubmit} autoComplete="off">
-      <Stack spacing={3}>
+    <form noValidate onSubmit={formikSignup.handleSubmit} autoComplete="off">
+      <Stack spacing={3} sx={{ mb: 2 }}>
         <TextField
-          error={!!(formik.touched.username && formik.errors.username)}
-          name="username"
+          error={
+            !!(formikSignup.touched.username && formikSignup.errors.username)
+          }
           fullWidth
-          helperText={formik.touched.username && formik.errors.username}
+          helperText={
+            formikSignup.touched.username && formikSignup.errors.username
+          }
           label="Username"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values.username}
-          autoComplete="new-username"
+          name="username"
+          onBlur={formikSignup.handleBlur}
+          onChange={formikSignup.handleChange}
           type="username"
+          autoComplete="new-username"
+          value={formikSignup.values.username}
           sx={{
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
@@ -106,16 +112,16 @@ const Login = ({ setMethod }) => {
           }}
         />
         <TextField
-          error={!!(formik.touched.password && formik.errors.password)}
+          error={!!(formikSignup.touched.email && formikSignup.errors.email)}
           fullWidth
-          helperText={formik.touched.password && formik.errors.password}
-          label="Password"
-          name="password"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          type={showPassword ? "text" : "password"}
-          value={formik.values.password}
-          autoComplete="new-password"
+          helperText={formikSignup.touched.email && formikSignup.errors.email}
+          label="Email"
+          name="email"
+          onBlur={formikSignup.handleBlur}
+          onChange={formikSignup.handleChange}
+          type="email"
+          value={formikSignup.values.email}
+          autoComplete="new-email"
           sx={{
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
@@ -139,12 +145,59 @@ const Login = ({ setMethod }) => {
               },
             },
             "& .MuiInputBase-input": {
-              color: "white",
               fontFamily: "AlbertFontNormal",
+              color: "white",
             },
             "& .MuiFormHelperText-root": {
+              fontFamily: "AlbertFontNormal",
+              color: "white",
+            },
+          }}
+        />
+        <TextField
+          error={
+            !!(formikSignup.touched.password && formikSignup.errors.password)
+          }
+          fullWidth
+          helperText={
+            formikSignup.touched.password && formikSignup.errors.password
+          }
+          label="Password"
+          name="password"
+          onBlur={formikSignup.handleBlur}
+          onChange={formikSignup.handleChange}
+          type={showPassword ? "text" : "password"}
+          autoComplete="new-password"
+          value={formikSignup.values.password}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "white",
+              },
+              "&:hover fieldset": {
+                borderColor: "white",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "white",
+              },
+              "&.Mui-error fieldset": {
+                borderColor: "red",
+              },
+            },
+            "& .MuiInputLabel-root": {
               color: "white",
               fontFamily: "AlbertFontNormal",
+              "&.Mui-focused": {
+                color: "white",
+              },
+            },
+            "& .MuiInputBase-input": {
+              fontFamily: "AlbertFontNormal",
+              color: "white",
+            },
+            "& .MuiFormHelperText-root": {
+              fontFamily: "AlbertFontNormal",
+              color: "white",
             },
           }}
           InputProps={{
@@ -164,35 +217,39 @@ const Login = ({ setMethod }) => {
             ),
           }}
         />
+        {/* <TextField
+                    error={
+                      !!(formikSignup.touched.tag && formikSignup.errors.tag)
+                    }
+                    fullWidth
+                    helperText={
+                      formikSignup.touched.tag && formikSignup.errors.tag
+                    }
+                    label="Tag"
+                    name="tag"
+                    onBlur={formikSignup.handleBlur}
+                    onChange={formikSignup.handleChange}
+                    type="tag"
+                    value={formikSignup.values.tag}
+                  /> */}
       </Stack>
-      {formik.errors.submit && (
+      {formikSignup.errors.submit && (
         <Typography color="error" sx={{ mt: 3 }} variant="body2">
-          {formik.errors.submit}
+          {formikSignup.errors.submit}
         </Typography>
       )}
-      {loginError ? (
-        <div>
-          <p
-            className={`text-red-500 text-sm mb-0`}
-            style={{ fontFamily: "AlbertFontNormal" }}
-          >
-            Wrong credentials
-          </p>
-        </div>
-      ) : null}
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: "5px",
         }}
       >
         <FormControlLabel
           control={
             <Checkbox
-              checked={rememberMe}
-              onClick={() => setRememberMe(!rememberMe)}
+              checked={privacyPolicy}
+              onClick={() => setPrivacyPolicy(!privacyPolicy)}
               sx={{
                 color: "white",
                 "&.Mui-checked": {
@@ -202,23 +259,16 @@ const Login = ({ setMethod }) => {
             />
           }
           label={
-            <Typography
-              variant="body2"
-              sx={{ color: "white", fontSize: 14 }}
-              style={{ fontFamily: "AlbertFontNormal" }}
-            >
-              Remember me
+            <Typography variant="body2" sx={{ color: "white" }}>
+              I accept the{" "}
+              <Link href="/privacy-policy" target="_blank">
+                <b style={{ fontFamily: "AlbertFont" }}>
+                  &nbsp;<u>Privacy Policy</u>
+                </b>
+              </Link>
             </Typography>
           }
-          labelPlacement="end"
-          sx={{ alignItems: "flex-center", mt: "2px" }}
         />
-        {/* <Typography
-          variant="body2"
-          sx={{ color: "#785FDC", cursor: "pointer" }}
-        >
-          Change password?
-        </Typography> */}
       </Box>
       <Button
         fullWidth
@@ -227,13 +277,25 @@ const Login = ({ setMethod }) => {
           mt: 3,
           mb: 3,
           borderRadius: "100px",
+          "&.glow": {
+            boxShadow:
+              "0 0 20px rgba(120, 95, 220, 0.8), 0 0 30px rgba(50, 210, 160, 0.6)",
+          },
           background:
-            formik.values.username && formik.values.password
+            formikSignup.values.username &&
+            formikSignup.values.password &&
+            formikSignup.values.email &&
+            !formikSignup.errors.email &&
+            privacyPolicy
               ? "linear-gradient(101.34deg, #785FDC 6.25%, #32D2A0 96.25%) !important"
               : "#36373E !important",
           "&:hover": {
             background:
-              formik.values.username && formik.values.password
+              formikSignup.values.username &&
+              formikSignup.values.password &&
+              formikSignup.values.email &&
+              !formikSignup.errors.email &&
+              privacyPolicy
                 ? "linear-gradient(101.34deg, #785FDC 6.25%, #32D2A0 96.25%)"
                 : "#36373E",
           },
@@ -246,28 +308,35 @@ const Login = ({ setMethod }) => {
         }}
         type="submit"
         variant="contained"
-        disabled={!formik.values.username || !formik.values.password}
+        disabled={
+          !formikSignup.values.username ||
+          !formikSignup.values.password ||
+          !formikSignup.values.email ||
+          formikSignup.errors.email ||
+          !privacyPolicy
+        }
         style={{ fontFamily: "AlbertFontNormal" }}
       >
-        {formik.values.username && formik.values.password
+        {formikSignup.values.username &&
+        formikSignup.values.password &&
+        formikSignup.values.email &&
+        !formikSignup.errors.email &&
+        privacyPolicy
           ? "JOIN THE METAVERSE"
-          : "LOG IN"}
+          : "SIGN UP"}
       </Button>
-
-      <GoogleLogin />
-
       <div
         className={`flex items-center justify-center font-normal text-base text-white`}
         style={{ fontFamily: "AlbertFontNormal" }}
-        onClick={() => setMethod("signup")}
+        onClick={() => setMethod("login")}
       >
-        Don't have an account?
+        Already have an account?
         <b style={{ fontFamily: "AlbertFont" }}>
-          &nbsp;<u>SIGN UP HERE</u>
+          &nbsp;<u>LOG IN HERE</u>
         </b>
       </div>
     </form>
   );
 };
 
-export default Login;
+export default Signup;

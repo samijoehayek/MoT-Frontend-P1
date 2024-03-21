@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Login from "@/components/login/login";
+import Login from "@/components/join-the-metaverse/join-the-metaverse";
 
 const LoginPage = () => {
   return (
