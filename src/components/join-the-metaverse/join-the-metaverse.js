@@ -94,11 +94,10 @@ const JoinTheMetaverse = () => {
             </Stack>
             <Stack spacing={1} sx={{ mb: 5 }}>
               <Typography
-                fontSize={13}
                 className={`text-white`}
-                style={{ fontFamily: "AlbertFontNormal" }}
+                style={{ fontFamily: "AlbertFontNormal", fontSize: "1rem"}}
               >
-                Join the Metaverse and be part of the future
+                Join the Metaverse and be part of the future.
               </Typography>
             </Stack>
 

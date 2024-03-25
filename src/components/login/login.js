@@ -85,7 +85,7 @@ const Login = ({ setMethod }) => {
                 borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "#FF5A5A",
+                borderColor: "#FF5A5A !important",
               },
             },
             "& .MuiInputLabel-root": {
@@ -102,7 +102,7 @@ const Login = ({ setMethod }) => {
               fontFamily: "AlbertFontNormal",
             },
             "& .MuiFormHelperText-root": {
-              color: "#FF5A5A",
+              color: "#FF5A5A !important",
               fontFamily: "AlbertFontNormal",
             },
           }}
@@ -130,7 +130,7 @@ const Login = ({ setMethod }) => {
                 borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "#FF5A5A",
+                borderColor: "#FF5A5A !important",
               },
             },
             "& .MuiInputLabel-root": {
@@ -147,7 +147,7 @@ const Login = ({ setMethod }) => {
               fontFamily: "AlbertFontNormal",
             },
             "& .MuiFormHelperText-root": {
-              color: "#FF5A5A",
+              color: "#FF5A5A !important",
               fontFamily: "AlbertFontNormal",
             },
           }}

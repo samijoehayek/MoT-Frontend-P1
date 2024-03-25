@@ -89,7 +89,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
                 borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "#FF5A5A",
+                borderColor: "#FF5A5A !important",
               },
             },
             "& .MuiInputLabel-root": {
@@ -106,7 +106,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
               fontFamily: "AlbertFontNormal",
             },
             "& .MuiFormHelperText-root": {
-              color: "#FF5A5A",
+              color: "#FF5A5A !important",
               fontFamily: "AlbertFontNormal",
             },
           }}
@@ -134,7 +134,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
                 borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "#FF5A5A",
+                borderColor: "#FF5A5A !important",
               },
             },
             "& .MuiInputLabel-root": {
@@ -152,7 +152,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
             },
             "& .MuiFormHelperText-root": {
               fontFamily: "AlbertFontNormal",
-              color: "#FF5A5A",
+              color: "#FF5A5A !important",
             },
           }}
         />
@@ -183,7 +183,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
                 borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "#FF5A5A",
+                borderColor: "#FF5A5A !important",
               },
             },
             "& .MuiInputLabel-root": {
@@ -201,7 +201,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
             },
             "& .MuiFormHelperText-root": {
               fontFamily: "AlbertFontNormal",
-              color: "#FF5A5A",
+              color: "#FF5A5A !important",
             },
           }}
           InputProps={{
