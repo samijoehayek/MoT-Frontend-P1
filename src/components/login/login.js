@@ -82,17 +82,19 @@ const Login = ({ setMethod }) => {
                 borderColor: "white",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "white",
+                borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "red",
+                borderColor: "#FF5A5A",
               },
             },
             "& .MuiInputLabel-root": {
               color: "white",
+              opacity: 0.5,
               fontFamily: "AlbertFontNormal",
               "&.Mui-focused": {
                 color: "white",
+                opacity: 1,
               },
             },
             "& .MuiInputBase-input": {
@@ -100,7 +102,7 @@ const Login = ({ setMethod }) => {
               fontFamily: "AlbertFontNormal",
             },
             "& .MuiFormHelperText-root": {
-              color: "white",
+              color: "#FF5A5A",
               fontFamily: "AlbertFontNormal",
             },
           }}
@@ -125,17 +127,19 @@ const Login = ({ setMethod }) => {
                 borderColor: "white",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "white",
+                borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "red",
+                borderColor: "#FF5A5A",
               },
             },
             "& .MuiInputLabel-root": {
               color: "white",
               fontFamily: "AlbertFontNormal",
+              opacity: 0.5,
               "&.Mui-focused": {
                 color: "white",
+                opacity: 1,
               },
             },
             "& .MuiInputBase-input": {
@@ -143,7 +147,7 @@ const Login = ({ setMethod }) => {
               fontFamily: "AlbertFontNormal",
             },
             "& .MuiFormHelperText-root": {
-              color: "white",
+              color: "#FF5A5A",
               fontFamily: "AlbertFontNormal",
             },
           }}
@@ -250,8 +254,8 @@ const Login = ({ setMethod }) => {
         style={{ fontFamily: "AlbertFontNormal" }}
       >
         {formik.values.username && formik.values.password
-          ? "JOIN THE METAVERSE"
-          : "LOG IN"}
+          ? <p className="mt-1">JOIN THE METAVERSE</p>
+          : <p className="mt-1">LOG IN</p>}
       </Button>
 
       <GoogleLogin />

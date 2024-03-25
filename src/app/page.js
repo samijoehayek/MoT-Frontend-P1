@@ -13,7 +13,7 @@ const Home = () => {
 
       {/* Image Section */}
       <div className="w-1/2 relative overflow-hidden md:block hidden">
-        <BackgroundImage imageName="login-bg4" />
+        <BackgroundImage imageName="login-bg5" />
       </div>
     </div>
   );

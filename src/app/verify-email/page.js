@@ -95,7 +95,7 @@ const VerifyEmail = () => {
 
         {/* Image Section */}
         <div className="w-1/2 relative overflow-hidden md:block hidden">
-          <BackgroundImage imageName={"email-success-bg"} />
+          <BackgroundImage imageName={"email-success-bg2"} />
         </div>
       </div>
     )

@@ -24,16 +24,14 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
 
   const formikSignup = useFormik({
     initialValues: {
-      username: "MTUser123",
-      email: "mt@gmail.com",
-      password: "Password123!",
-      tag: "MTUser123",
+      username: "",
+      email: "",
+      password: "",
     },
     validationSchema: Yup.object({
       username: Yup.string().max(255).required("Username is required"),
       email: Yup.string().email().max(255).required("Email is required"),
       password: Yup.string().max(255).required("Password is required"),
-      tag: Yup.string().max(255).required("Tag is required"),
     }),
     onSubmit: async (values, helpers) => {
       try {
@@ -88,16 +86,18 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
                 borderColor: "white",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "white",
+                borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "red",
+                borderColor: "#FF5A5A",
               },
             },
             "& .MuiInputLabel-root": {
               color: "white",
+              opacity: 0.5,
               fontFamily: "AlbertFontNormal",
               "&.Mui-focused": {
+                opacity: 1,
                 color: "white",
               },
             },
@@ -106,7 +106,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
               fontFamily: "AlbertFontNormal",
             },
             "& .MuiFormHelperText-root": {
-              color: "white",
+              color: "#FF5A5A",
               fontFamily: "AlbertFontNormal",
             },
           }}
@@ -131,16 +131,18 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
                 borderColor: "white",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "white",
+                borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "red",
+                borderColor: "#FF5A5A",
               },
             },
             "& .MuiInputLabel-root": {
               color: "white",
+              opacity: 0.5,
               fontFamily: "AlbertFontNormal",
               "&.Mui-focused": {
+                opacity: 1,
                 color: "white",
               },
             },
@@ -150,7 +152,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
             },
             "& .MuiFormHelperText-root": {
               fontFamily: "AlbertFontNormal",
-              color: "white",
+              color: "#FF5A5A",
             },
           }}
         />
@@ -178,16 +180,18 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
                 borderColor: "white",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "white",
+                borderColor: "#785FDC",
               },
               "&.Mui-error fieldset": {
-                borderColor: "red",
+                borderColor: "#FF5A5A",
               },
             },
             "& .MuiInputLabel-root": {
               color: "white",
+              opacity: 0.5,
               fontFamily: "AlbertFontNormal",
               "&.Mui-focused": {
+                opacity: 1,
                 color: "white",
               },
             },
@@ -197,7 +201,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
             },
             "& .MuiFormHelperText-root": {
               fontFamily: "AlbertFontNormal",
-              color: "white",
+              color: "#FF5A5A",
             },
           }}
           InputProps={{
@@ -259,7 +263,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
             />
           }
           label={
-            <Typography variant="body2" sx={{ color: "white" }}>
+            <Typography variant="body2" sx={{ color: "white" }} style={{ fontFamily: "AlbertFontNormal" }} className="mt-1">
               I accept the{" "}
               <Link href="/privacy-policy" target="_blank">
                 <b style={{ fontFamily: "AlbertFont" }}>
@@ -322,8 +326,8 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
         formikSignup.values.email &&
         !formikSignup.errors.email &&
         privacyPolicy
-          ? "JOIN THE METAVERSE"
-          : "SIGN UP"}
+          ? <p className="mt-1">JOIN THE METAVERSE</p>
+          : <p className="mt-1">SIGN UP</p>}
       </Button>
       <div
         className={`flex items-center justify-center font-normal text-base text-white`}

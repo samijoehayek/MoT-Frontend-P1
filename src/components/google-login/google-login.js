@@ -15,14 +15,14 @@ const GoogleLogin = () => {
       className="w-100 flex items-center justify-center p-2 bg-white rounded-3xl cursor-pointer border border-gray-300 mb-20"
     >
       <Image
-        width={26}
-        height={26}
+        width={20}
+        height={20}
         alt="google-icon"
         src="/images/googleicon.svg"
         className="mr-2"
       />
       <p
-        className="mb-0 font-normal text-base text-gray-500"
+        className="mb-0 font-normal text-base text-gray-500 mt-1"
         style={{ fontFamily: "AlbertFontNormal" }}
       >
         LOG IN WITH GOOGLE
