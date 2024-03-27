@@ -1,6 +1,6 @@
 "use client";
 import React, {useState} from "react";
-import bg from "../../../public/images/webgl-loader.jpg";
+import bg from "../../../public/images/forgot-password-bg1.png";
 import Image from "next/image";
 import { Button, Typography, Box, TextField } from "@mui/material";
 import EmailConfirmationModal from "@/components/email-confirmation-modal/email-confirmation-modal";
@@ -33,7 +33,6 @@ const ForgotPasswordEmail = () => {
       try {
         await sendEmailPasswordChange(values.email)
           .then((response) => {
-            console.log(response)
             setUserEmail(values.email);
             setEmailConfirmationModal(true);
           })

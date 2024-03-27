@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import bg from "../../../public/images/webgl-loader.jpg";
+import bg from "../../../public/images/forgot-password-bg1.png";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -16,6 +16,7 @@ import {
 import { forgotPassword } from "@/axios";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import PasswordUpdatedSnackbar from "@/components/password-updated-snackbar/password-updated-snackbar";
 
 const ForgotPassword = () => {
   const [changePasswordModal, setChangePasswordModal] = useState(false);
@@ -27,6 +28,10 @@ const ForgotPassword = () => {
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
+  };
+
+  const handleCloseChangePasswordModal = () => {
+    setChangePasswordModal(false);
   };
 
   const formik = useFormik({
@@ -41,11 +46,9 @@ const ForgotPassword = () => {
         .required("Confirm Password is required"),
     }),
     onSubmit: async (values, helpers) => {
-      console.log("values", values);
       try {
         await forgotPassword(values.newPassword, verificationString)
           .then((response) => {
-            console.log(response);
             setChangePasswordModal(true);
           })
           .catch((error) => {
@@ -290,11 +293,15 @@ const ForgotPassword = () => {
               }
               style={{ fontFamily: "AlbertFontNormal" }}
             >
-              Reset Password
+              <div style={{ marginTop: "3px" }}>Reset Password</div>
             </Button>
           </form>
         </Box>
       </div>
+      <PasswordUpdatedSnackbar
+        open={changePasswordModal}
+        onClose={handleCloseChangePasswordModal}
+      />
     </div>
   );
 };
