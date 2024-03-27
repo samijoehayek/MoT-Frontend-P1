@@ -18,7 +18,6 @@ const Dashboard = () => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 1025px)' });
 
-  console.log("isMobile", isMobile);
 
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: isMobile ? "BuildMobile/Build/Build.loader.js" : "Build/Build/Build.loader.js",
