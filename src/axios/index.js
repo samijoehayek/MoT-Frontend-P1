@@ -47,3 +47,25 @@ export const verifyEmail = async (verificationString) => {
 
   return response.data;
 }
+
+export const sendEmailPasswordChange = async (email) => {
+  const response = await axios.post(
+    `${process.env.NEXT_PUBLIC_API_HOST}/auth/forgotPasswordEmail`,
+    {
+      email: email,
+    }
+  );
+
+  return response.data;
+}
+
+export const forgotPassword = async (password, verificationString) => {
+  const response = await axios.put(
+    `${process.env.NEXT_PUBLIC_API_HOST}/auth/forgotPassword/${verificationString}`,
+    {
+      newPassword: password,
+    }
+  );
+
+  return response.data;
+}
