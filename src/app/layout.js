@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import GoogleCaptchaWrapper from "./googleCaptchaWrapper";
+import { AppProvider } from "./appContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
+        <AppProvider>
+          <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
+        </AppProvider>
       </body>
     </html>
   );
