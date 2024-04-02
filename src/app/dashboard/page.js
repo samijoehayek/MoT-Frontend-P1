@@ -1,6 +1,7 @@
 "use client";
 import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { useMediaQuery } from 'react-responsive';
 import bg from "../../../public/images/webgl-loader.jpg";
 import Image from "next/image";
 
@@ -15,12 +16,15 @@ const Dashboard = () => {
     "View informational displays",
   ];
 
+  const isMobile = useMediaQuery({ query: '(max-width: 1025px)' });
+
+
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "Build/Build/Build.loader.js",
-    dataUrl: "Build/Build/Build.data.unityweb",
-    frameworkUrl: "Build/Build/Build.framework.js.unityweb",
-    codeUrl: "Build/Build/Build.wasm.unityweb",
-    streamingAssetsUrl: "Build/StreamingAssets",
+    loaderUrl: isMobile ? "BuildMobile/Build/Build.loader.js" : "Build/Build/Build.loader.js",
+    dataUrl: isMobile ? "BuildMobile/Build/Build.data.unityweb" : "Build/Build/Build.data.unityweb",
+    frameworkUrl: isMobile ? "BuildMobile/Build/Build.framework.js.unityweb" : "Build/Build/Build.framework.js.unityweb",
+    codeUrl: isMobile ? "BuildMobile/Build/Build.wasm.unityweb" : "Build/Build/Build.wasm.unityweb",
+    streamingAssetsUrl: isMobile ? "BuildMobile/StreamingAssets" : "Build/StreamingAssets",
   });
 
   const styling = {
