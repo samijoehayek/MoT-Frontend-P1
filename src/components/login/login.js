@@ -59,6 +59,7 @@ const Login = ({ setMethod }) => {
       }
     },
   });
+
   return (
     <form noValidate onSubmit={formik.handleSubmit} autoComplete="off">
       <Stack spacing={3}>
@@ -177,7 +178,7 @@ const Login = ({ setMethod }) => {
       {loginError ? (
         <div>
           <p
-            className={`text-red-500 text-sm mb-0`}
+            className={`text-red-500 text-sm mb-0 mt-3`}
             style={{ fontFamily: "AlbertFontNormal" }}
           >
             Wrong credentials
@@ -208,7 +209,7 @@ const Login = ({ setMethod }) => {
           label={
             <Typography
               variant="body2"
-              sx={{ color: "white", fontSize: 14 }}
+              sx={{ color: "white", fontSize: 14, mt: "5px"}}
               style={{ fontFamily: "AlbertFontNormal" }}
             >
               Remember me
@@ -217,12 +218,14 @@ const Login = ({ setMethod }) => {
           labelPlacement="end"
           sx={{ alignItems: "flex-center", mt: "2px" }}
         />
-        {/* <Typography
+        <Typography
           variant="body2"
-          sx={{ color: "#785FDC", cursor: "pointer" }}
+          sx={{ color: "#785FDC", cursor: "pointer", mt: "5px" }}
+          style={{ fontFamily: "AlbertFontNormal" }}
+          onClick={() => router.push("/forgot-password-email")}
         >
-          Change password?
-        </Typography> */}
+          Forgot password?
+        </Typography>
       </Box>
       <Button
         fullWidth

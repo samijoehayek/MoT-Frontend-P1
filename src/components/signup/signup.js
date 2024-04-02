@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -17,10 +18,12 @@ import { signup } from "@/axios";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Link from "next/link";
+import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
 
 const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [recaptchaSuccess, setRecaptchaSuccess] = useState(false);
 
   const formikSignup = useFormik({
     initialValues: {
@@ -263,7 +266,12 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
             />
           }
           label={
-            <Typography variant="body2" sx={{ color: "white" }} style={{ fontFamily: "AlbertFontNormal" }} className="mt-1">
+            <Typography
+              variant="body2"
+              sx={{ color: "white" }}
+              style={{ fontFamily: "AlbertFontNormal" }}
+              className="mt-1"
+            >
               I accept the{" "}
               <Link href="/privacy-policy" target="_blank">
                 <b style={{ fontFamily: "AlbertFont" }}>
@@ -274,6 +282,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
           }
         />
       </Box>
+      <GoogleRecaptcha recaptchaSuccess={recaptchaSuccess} setRecaptchaSuccess={setRecaptchaSuccess}/>
       <Button
         fullWidth
         size="large"
@@ -290,7 +299,8 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
             formikSignup.values.password &&
             formikSignup.values.email &&
             !formikSignup.errors.email &&
-            privacyPolicy
+            privacyPolicy &&
+            recaptchaSuccess
               ? "linear-gradient(101.34deg, #785FDC 6.25%, #32D2A0 96.25%) !important"
               : "#36373E !important",
           "&:hover": {
@@ -299,7 +309,8 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
               formikSignup.values.password &&
               formikSignup.values.email &&
               !formikSignup.errors.email &&
-              privacyPolicy
+              privacyPolicy &&
+              recaptchaSuccess
                 ? "linear-gradient(101.34deg, #785FDC 6.25%, #32D2A0 96.25%)"
                 : "#36373E",
           },
@@ -317,7 +328,8 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
           !formikSignup.values.password ||
           !formikSignup.values.email ||
           formikSignup.errors.email ||
-          !privacyPolicy
+          !privacyPolicy ||
+          !recaptchaSuccess
         }
         style={{ fontFamily: "AlbertFontNormal" }}
       >
@@ -325,9 +337,11 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
         formikSignup.values.password &&
         formikSignup.values.email &&
         !formikSignup.errors.email &&
-        privacyPolicy
-          ? <p className="mt-1">JOIN THE METAVERSE</p>
-          : <p className="mt-1">SIGN UP</p>}
+        privacyPolicy && recaptchaSuccess ? (
+          <p className="mt-1">JOIN THE METAVERSE</p>
+        ) : (
+          <p className="mt-1">SIGN UP</p>
+        )}
       </Button>
       <div
         className={`flex items-center justify-center font-normal text-base text-white`}
