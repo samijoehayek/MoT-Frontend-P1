@@ -11,12 +11,15 @@ import { useRouter } from "next/navigation";
 import EmailConfirmationModal from "@/components/email-confirmation-modal/email-confirmation-modal";
 import Login from "@/components/login/login";
 import Signup from "@/components/signup/signup";
+import { AppContext } from '../../app/appContext';
 
 const JoinTheMetaverse = () => {
   const [method, setMethod] = useState("login");
   const [emailConfirmationModal, setEmailConfirmationModal] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const router = useRouter();
+
+  const { english } = useContext(AppContext);
 
   function getUserLocation() {
     return new Promise((resolve, reject) => {
