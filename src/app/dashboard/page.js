@@ -1,18 +1,9 @@
 "use client";
 import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { useMediaQuery } from 'react-responsive';
 import bg from "../../../public/images/webgl-loader.jpg";
-import localFont from "next/font/local";
-
-const albertFont = localFont({
-  src: "../../../public/FSAlbertArabic-Bold.ttf",
-  display: "swap",
-});
-
-const albertFontNormal = localFont({
-  src: "../../../public/FSAlbertArabic-Regular.ttf",
-  display: "swap",
-});
+import Image from "next/image";
 
 const Dashboard = () => {
   const [loadWebGL, setLoadWebGL] = useState(false);
@@ -25,12 +16,15 @@ const Dashboard = () => {
     "View informational displays",
   ];
 
+  const isMobile = useMediaQuery({ query: '(max-width: 1025px)' });
+
+
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "Build/Build/Build.loader.js",
-    dataUrl: "Build/Build/Build.data.unityweb",
-    frameworkUrl: "Build/Build/Build.framework.js.unityweb",
-    codeUrl: "Build/Build/Build.wasm.unityweb",
-    streamingAssetsUrl: "Build/StreamingAssets",
+    loaderUrl: isMobile ? "BuildMobile/Build/Build.loader.js" : "Build/Build/Build.loader.js",
+    dataUrl: isMobile ? "BuildMobile/Build/Build.data.unityweb" : "Build/Build/Build.data.unityweb",
+    frameworkUrl: isMobile ? "BuildMobile/Build/Build.framework.js.unityweb" : "Build/Build/Build.framework.js.unityweb",
+    codeUrl: isMobile ? "BuildMobile/Build/Build.wasm.unityweb" : "Build/Build/Build.wasm.unityweb",
+    streamingAssetsUrl: isMobile ? "BuildMobile/StreamingAssets" : "Build/StreamingAssets",
   });
 
   const styling = {
@@ -43,6 +37,7 @@ const Dashboard = () => {
   const sentenceStyling = {
     animation: "fadeInOut 4s linear infinite",
     fontSize: "1.5rem",
+    fontFamily: "AlbertFontNormal",
   };
 
   const animationStyles = `@keyframes fadeInOut {
@@ -78,8 +73,15 @@ const Dashboard = () => {
               style={styling}
             >
               <div className="w-3/4 flex flex-col items-center mb-16">
+                <Image
+                  src="/images/stc-logo.png"
+                  alt="STC Logo"
+                  width={240}
+                  height={80}
+                />
                 <h1
-                  className={`${albertFont.className} font-sans text-5xl font-bold text-white mb-16 text-center`}
+                  className={`font-sans text-5xl font-bold text-white mb-16 mt-24 text-center`}
+                  style={{ fontFamily: "AlbertFont" }}
                 >
                   Saudi Tourism Metaverse Loading...
                 </h1>
@@ -95,7 +97,7 @@ const Dashboard = () => {
                   </span>
                 </div>
                 <div
-                  className={`${albertFontNormal.className} mt-4 text-white text-center`}
+                  className={`mt-4 text-white text-center`}
                   style={sentenceStyling}
                 >
                   {sentences.map((sentence, index) => (

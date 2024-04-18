@@ -13,8 +13,8 @@ export const getJwtSecretKey = () => {
 export const verifyAuth = async (token) => {
     try {
         const verified = await jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()))   
-        return !(verified.payload.exp < Date.now()) ? verified.payload : null
+        return !(verified.payload.exp < Date.now()) ? verified.payload : new Error('Your token has expired');
     } catch (error) {
-        throw new Error('Your token has expired')
+        throw new Error('Your token is invalid')
     }
 }
