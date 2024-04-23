@@ -18,44 +18,46 @@ const Dashboard = () => {
 
   const isMobile = useMediaQuery({ query: "(max-width: 1025px)" });
 
+  function handleCaching(url) {
+    // Caching enabled for .data and .bundle files.
+    // Revalidate if file is up to date before loading from cache
+    if (
+      url.match(/\.data/) ||
+      url.match(/\.bundle/) ||
+      url.match(/\.wasm/) ||
+      url.match(/\.unityweb/)
+    ) {
+      return "must-revalidate";
+    }
+
+    // Caching enabled for .mp4 and .custom files
+    // Load file from cache without revalidation.
+    if (url.match(/\.mp4/) || url.match(/\.custom/)) {
+      return "immutable";
+    }
+
+    // Disable explicit caching for all other files.
+    // Note: the default browser cache may cache them anyway.
+    return "no-store";
+  }
+
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: isMobile
       ? "BuildMobile/Build/Build.loader.js"
       : "Build/Build/Build.loader.js",
     dataUrl: isMobile
       ? "BuildMobile/Build/Build.data.unityweb"
-      : "Build/Build/Build.data",
+      : "Build/Build/Build.data.unityweb",
     frameworkUrl: isMobile
       ? "BuildMobile/Build/Build.framework.js.unityweb"
-      : "Build/Build/Build.framework.js",
+      : "Build/Build/Build.framework.js.unityweb",
     codeUrl: isMobile
       ? "BuildMobile/Build/Build.wasm.unityweb"
-      : "Build/Build/Build.wasm",
+      : "Build/Build/Build.wasm.unityweb",
     streamingAssetsUrl: isMobile
       ? "BuildMobile/StreamingAssets"
       : "Build/StreamingAssets",
-    cacheControl: function (url) {
-      // Caching enabled for .data and .bundle files.
-      // Revalidate if file is up to date before loading from cache
-      if (
-        url.match(/\.data/) ||
-        url.match(/\.bundle/) ||
-        url.match(/\.wasm/) ||
-        url.match(/\.unityweb/)
-      ) {
-        return "must-revalidate";
-      }
-
-      // Caching enabled for .mp4 and .custom files
-      // Load file from cache without revalidation.
-      if (url.match(/\.mp4/) || url.match(/\.custom/)) {
-        return "immutable";
-      }
-
-      // Disable explicit caching for all other files.
-      // Note: the default browser cache may cache them anyway.
-      return "no-store";
-    },
+    cacheControl: handleCaching,
   });
 
   const styling = {
