@@ -59,9 +59,28 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/Build.loader.js";
       var config = {
-        dataUrl: buildUrl + "/Build.data",
-        frameworkUrl: buildUrl + "/Build.framework.js",
-        codeUrl: buildUrl + "/Build.wasm",
+        dataUrl: buildUrl + "/Build.data.unityweb",
+        frameworkUrl: buildUrl + "/Build.framework.js.unityweb",
+        codeUrl: buildUrl + "/Build.wasm.unityweb",
+
+   cacheControl: function (url) {
+     // Caching enabled for .data and .bundle files.
+     // Revalidate if file is up to date before loading from cache
+     if (url.match(/\.data/) || url.match(/\.bundle/) || url.match(/\.wasm/) || url.match(/\.unityweb/)) {
+         return "must-revalidate";
+     }
+
+     // Caching enabled for .mp4 and .custom files
+     // Load file from cache without revalidation.
+     if (url.match(/\.mp4/) || url.match(/\.custom/)) {
+         return "immutable";
+     }
+ 
+     // Disable explicit caching for all other files.
+     // Note: the default browser cache may cache them anyway.
+     return "no-store";
+   },
+
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Ministry of Tourism",
         productName: "MOT2.0_Project",
@@ -114,7 +133,7 @@
             };
 
       document.body.appendChild(script);
-	 
+	  
     </script>
   </body>
 </html>
