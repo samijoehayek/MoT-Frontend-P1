@@ -21,9 +21,9 @@ const Dashboard = () => {
 
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: isMobile ? "BuildMobile/Build/Build.loader.js" : "Build/Build/Build.loader.js",
-    dataUrl: isMobile ? "BuildMobile/Build/Build.data.unityweb" : "Build/Build/Build.data.unityweb",
-    frameworkUrl: isMobile ? "BuildMobile/Build/Build.framework.js.unityweb" : "Build/Build/Build.framework.js.unityweb",
-    codeUrl: isMobile ? "BuildMobile/Build/Build.wasm.unityweb" : "Build/Build/Build.wasm.unityweb",
+    dataUrl: isMobile ? "BuildMobile/Build/Build.data.unityweb" : "Build/Build/Build.data",
+    frameworkUrl: isMobile ? "BuildMobile/Build/Build.framework.js.unityweb" : "Build/Build/Build.framework.js",
+    codeUrl: isMobile ? "BuildMobile/Build/Build.wasm.unityweb" : "Build/Build/Build.wasm",
     streamingAssetsUrl: isMobile ? "BuildMobile/StreamingAssets" : "Build/StreamingAssets",
   });
 
