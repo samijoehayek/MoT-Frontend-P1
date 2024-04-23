@@ -1,7 +1,7 @@
 "use client";
 import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 import bg from "../../../public/images/webgl-loader.jpg";
 import Image from "next/image";
 
@@ -16,15 +16,46 @@ const Dashboard = () => {
     "View informational displays",
   ];
 
-  const isMobile = useMediaQuery({ query: '(max-width: 1025px)' });
-
+  const isMobile = useMediaQuery({ query: "(max-width: 1025px)" });
 
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: isMobile ? "BuildMobile/Build/Build.loader.js" : "Build/Build/Build.loader.js",
-    dataUrl: isMobile ? "BuildMobile/Build/Build.data.unityweb" : "Build/Build/Build.data",
-    frameworkUrl: isMobile ? "BuildMobile/Build/Build.framework.js.unityweb" : "Build/Build/Build.framework.js",
-    codeUrl: isMobile ? "BuildMobile/Build/Build.wasm.unityweb" : "Build/Build/Build.wasm",
-    streamingAssetsUrl: isMobile ? "BuildMobile/StreamingAssets" : "Build/StreamingAssets",
+    loaderUrl: isMobile
+      ? "BuildMobile/Build/Build.loader.js"
+      : "Build/Build/Build.loader.js",
+    dataUrl: isMobile
+      ? "BuildMobile/Build/Build.data.unityweb"
+      : "Build/Build/Build.data",
+    frameworkUrl: isMobile
+      ? "BuildMobile/Build/Build.framework.js.unityweb"
+      : "Build/Build/Build.framework.js",
+    codeUrl: isMobile
+      ? "BuildMobile/Build/Build.wasm.unityweb"
+      : "Build/Build/Build.wasm",
+    streamingAssetsUrl: isMobile
+      ? "BuildMobile/StreamingAssets"
+      : "Build/StreamingAssets",
+    cacheControl: function (url) {
+      // Caching enabled for .data and .bundle files.
+      // Revalidate if file is up to date before loading from cache
+      if (
+        url.match(/\.data/) ||
+        url.match(/\.bundle/) ||
+        url.match(/\.wasm/) ||
+        url.match(/\.unityweb/)
+      ) {
+        return "must-revalidate";
+      }
+
+      // Caching enabled for .mp4 and .custom files
+      // Load file from cache without revalidation.
+      if (url.match(/\.mp4/) || url.match(/\.custom/)) {
+        return "immutable";
+      }
+
+      // Disable explicit caching for all other files.
+      // Note: the default browser cache may cache them anyway.
+      return "no-store";
+    },
   });
 
   const styling = {
