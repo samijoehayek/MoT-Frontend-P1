@@ -59,9 +59,9 @@ const Dashboard = () => {
     streamingAssetsUrl: isMobile
       ? "BuildMobile/StreamingAssets"
       : "Build/StreamingAssets",
-    companyName: "Ministry of Tourism",
-    productName: "MOT2.0_Project",
-    productVersion: "1.0",
+    companyName: "CDS",
+    productName: "MIC",
+    productVersion: "0.1",
     cacheControl: handleCaching,
   });
 
