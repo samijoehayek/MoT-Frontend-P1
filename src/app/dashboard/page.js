@@ -28,7 +28,7 @@ const Dashboard = () => {
       url.match(/\.wasm/) ||
       url.match(/\.unityweb/)
     ) {
-      console.log("URL matched data or bundle: ", url)
+      console.log("URL matched data or bundle: ", url);
       return "must-revalidate";
     }
 
@@ -59,6 +59,9 @@ const Dashboard = () => {
     streamingAssetsUrl: isMobile
       ? "BuildMobile/StreamingAssets"
       : "Build/StreamingAssets",
+    companyName: "Ministry of Tourism",
+    productName: "MOT2.0_Project",
+    productVersion: "1.0",
     cacheControl: handleCaching,
   });
 
