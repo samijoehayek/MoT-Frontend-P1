@@ -168,15 +168,6 @@ const Dashboard = () => {
         </Fragment>
       </>
     )
-    // <div style={{ width: '100%', height: '800px' }}>
-    //   <iframe
-    //     title="Unity WebGL"
-    //     src="Build/index.html"
-    //     width="100%"
-    //     height="100%"
-    //     allowFullScreen
-    //   />
-    // </div>
   );
 };
 

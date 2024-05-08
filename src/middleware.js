@@ -19,7 +19,8 @@ export async function middleware(req) {
   }
 
   if(req.nextUrl.pathname.startsWith("/google-authenticator")) {
-    return NextResponse.redirect(new URL("/", req.url));
+    return 
+    // NextResponse.redirect(new URL("/", req.url));
   }
 
   if (!verifiedToken) {
