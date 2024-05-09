@@ -38,15 +38,12 @@ const ForgotPasswordForm = ({ verificationString, setFailedPasswordChange }) => 
       try {
         await forgotPassword(values.newPassword, verificationString)
           .then((response) => {
-            console.log(response);
             setPasswordChangedBC(true);
             router.push("/")
           })
           .catch((error) => {
-            console.log(1111)
             setFailedPasswordChange(true);
             setDisableButton(true);
-            console.log("Change Password failed: ", error);
           });
       } catch (err) {
         helpers.setStatus({ success: false });
