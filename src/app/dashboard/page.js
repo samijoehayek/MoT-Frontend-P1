@@ -19,7 +19,6 @@ const Dashboard = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 1025px)" });
 
   function handleCaching(url) {
-    console.log("Entered handleCaching with url: ", url);
     // Caching enabled for .data and .bundle files.
     // Revalidate if file is up to date before loading from cache
     if (
@@ -28,7 +27,6 @@ const Dashboard = () => {
       url.match(/\.wasm/) ||
       url.match(/\.unityweb/)
     ) {
-      console.log("URL matched data or bundle: ", url);
       return "must-revalidate";
     }
 

@@ -25,17 +25,20 @@ export const signup = async (username, email, password, tag) => {
   );
 
   return user.data;
-} 
+};
 
 export const getUserByJWT = async (token, filter) => {
-  const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/users/GetUserById`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    params: {
-      filter,
-    },
-  });
+  const user = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_HOST}/users/GetUserById`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        filter,
+      },
+    }
+  );
 
   return user.data;
 };
@@ -46,7 +49,7 @@ export const verifyEmail = async (verificationString) => {
   );
 
   return response.data;
-}
+};
 
 export const sendEmailPasswordChange = async (email) => {
   const response = await axios.post(
@@ -57,7 +60,7 @@ export const sendEmailPasswordChange = async (email) => {
   );
 
   return response.data;
-}
+};
 
 export const forgotPassword = async (password, verificationString) => {
   const response = await axios.put(
@@ -68,4 +71,4 @@ export const forgotPassword = async (password, verificationString) => {
   );
 
   return response.data;
-}
+};
