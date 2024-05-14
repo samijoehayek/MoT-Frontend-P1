@@ -3,11 +3,27 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { useMediaQuery } from "react-responsive";
 import bg from "../../../public/images/webgl-loader.jpg";
+import {
+  getUserSession,
+  createUserSession,
+  toggleActivityStatus,
+} from "@/axios";
 import Image from "next/image";
 
 const Dashboard = () => {
+  // States
   const [loadWebGL, setLoadWebGL] = useState(false);
   const [sentenceIndex, setSentenceIndex] = useState(0);
+  const [userSession, setUserSession] = useState({});
+
+  // Functions
+  const getUserSessions = () => {
+    return getUserSession(localStorage.getItem("token"));
+  };
+
+  const createUserSessions = () => {
+    return createUserSession(localStorage.getItem("token"));
+  };
 
   const sentences = [
     "Explore the space and meet others",
@@ -88,7 +104,31 @@ const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      setLoadWebGL(true);
+      // If the token exists check if the user has existing session
+      getUserSessions().then((res) => {
+        if (res && Object.keys(res).length > 0) {
+          if (res.isActive) {
+            console.log("User already has active session");
+            setUserSession(res);
+          } else {
+            console.log("User has inactive session");
+            toggleActivityStatus(token, true).then((res) => {
+              setUserSession(res);
+              setLoadWebGL(true);
+            });
+          }
+        } else {
+          // If the user does not have an existing session, create a new one
+          createUserSessions()
+            .then((res) => {
+              setUserSession(res);
+              setLoadWebGL(true);
+            })
+            .catch((err) => {
+              console.log("Could not create session");
+            });
+        }
+      });
     }
 
     const intervalId = setInterval(() => {

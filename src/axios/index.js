@@ -27,6 +27,45 @@ export const signup = async (username, email, password, tag) => {
   return user.data;
 };
 
+export const getUserSession = async (token) => {
+  const userSessions = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_HOST}/users/getUserSession`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return userSessions.data;
+};
+
+export const toggleActivityStatus = async (token, isActive) => {
+  const userSessions = await axios.put(
+    `${process.env.NEXT_PUBLIC_API_HOST}/users/toggleSessionActivity`,
+    {isActive: isActive},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return userSessions.data;
+};
+
+export const createUserSession = async (token) => {
+  const userSessions = await axios.post(
+    `${process.env.NEXT_PUBLIC_API_HOST}/users/createUserSession`,
+    null,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return userSessions.data;
+};
+
 export const getUserByJWT = async (token, filter) => {
   const user = await axios.get(
     `${process.env.NEXT_PUBLIC_API_HOST}/users/GetUserById`,
