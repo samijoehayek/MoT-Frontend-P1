@@ -16,6 +16,36 @@ const Dashboard = () => {
   const [sentenceIndex, setSentenceIndex] = useState(0);
   const [userSession, setUserSession] = useState({});
 
+  // Constants
+  const sentences = [
+    "Explore the space and meet others",
+    "Engage in conversations through chat",
+    "Interact with AI powered assistants",
+    "View informational displays",
+  ];
+
+  const styling = {
+    backgroundImage: `url(${bg.src})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  };
+
+  const sentenceStyling = {
+    animation: "fadeInOut 4s linear infinite",
+    fontSize: "1.5rem",
+    fontFamily: "AlbertFontNormal",
+  };
+
+  const animationStyles = `@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    25%, 75% {
+      opacity: 1;
+    }
+  }`;
+
   // Functions
   const getUserSessions = () => {
     return getUserSession(localStorage.getItem("token"));
@@ -25,14 +55,33 @@ const Dashboard = () => {
     return createUserSession(localStorage.getItem("token"));
   };
 
-  const sentences = [
-    "Explore the space and meet others",
-    "Engage in conversations through chat",
-    "Interact with AI powered assistants",
-    "View informational displays",
-  ];
-
-  const isMobile = useMediaQuery({ query: "(max-width: 1025px)" });
+  const handleWebGLLoad = (token) => {
+    // If the token exists check if the user has existing session
+    getUserSessions().then((res) => {
+      if (res && Object.keys(res).length > 0) {
+        if (res.isActive) {
+          console.log("User already has active session");
+          setUserSession(res);
+        } else {
+          console.log("User has inactive session");
+          toggleActivityStatus(token, true).then((res) => {
+            setUserSession(res);
+            setLoadWebGL(true);
+          });
+        }
+      } else {
+        // If the user does not have an existing session, create a new one
+        createUserSessions()
+          .then((res) => {
+            setUserSession(res);
+            setLoadWebGL(true);
+          })
+          .catch((err) => {
+            console.log("Could not create session");
+          });
+      }
+    });
+  }
 
   function handleCaching(url) {
     // Caching enabled for .data and .bundle files.
@@ -57,6 +106,9 @@ const Dashboard = () => {
     return "no-store";
   }
 
+  // Hooks
+  const isMobile = useMediaQuery({ query: "(max-width: 1025px)" });
+
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: isMobile
       ? "BuildMobile/Build/Build.loader.js"
@@ -79,56 +131,11 @@ const Dashboard = () => {
     cacheControl: handleCaching,
   });
 
-  const styling = {
-    backgroundImage: `url(${bg.src})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  };
-
-  const sentenceStyling = {
-    animation: "fadeInOut 4s linear infinite",
-    fontSize: "1.5rem",
-    fontFamily: "AlbertFontNormal",
-  };
-
-  const animationStyles = `@keyframes fadeInOut {
-    0%, 100% {
-        opacity: 0;
-    }
-    25%, 75% {
-      opacity: 1;
-    }
-  }`;
-
+  // UseEffects
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      // If the token exists check if the user has existing session
-      getUserSessions().then((res) => {
-        if (res && Object.keys(res).length > 0) {
-          if (res.isActive) {
-            console.log("User already has active session");
-            setUserSession(res);
-          } else {
-            console.log("User has inactive session");
-            toggleActivityStatus(token, true).then((res) => {
-              setUserSession(res);
-              setLoadWebGL(true);
-            });
-          }
-        } else {
-          // If the user does not have an existing session, create a new one
-          createUserSessions()
-            .then((res) => {
-              setUserSession(res);
-              setLoadWebGL(true);
-            })
-            .catch((err) => {
-              console.log("Could not create session");
-            });
-        }
-      });
+      handleWebGLLoad(token);
     }
 
     const intervalId = setInterval(() => {
@@ -190,6 +197,7 @@ const Dashboard = () => {
               </div>
             </div>
           )}
+          {/* This is the unity webgl renderrer */}
           <Unity
             unityProvider={unityProvider}
             style={{
