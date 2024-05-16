@@ -19,7 +19,7 @@ import GoogleLogin from "@/components/google-login/google-login";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const Login = ({ setMethod }) => {
+const Login = ({ setMethod, setDuplicateEmailModal }) => {
   const [loginError, setLoginError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -48,6 +48,9 @@ const Login = ({ setMethod }) => {
           })
           .catch((error) => {
             setLoginError(true);
+            if (error.response.status === 409) {
+              setDuplicateEmailModal(true);
+            }
             console.log("Login failed: ", error);
           });
 
@@ -209,7 +212,7 @@ const Login = ({ setMethod }) => {
           label={
             <Typography
               variant="body2"
-              sx={{ color: "white", fontSize: 14, mt: "5px"}}
+              sx={{ color: "white", fontSize: 14, mt: "5px" }}
               style={{ fontFamily: "AlbertFontNormal" }}
             >
               Remember me
@@ -256,9 +259,11 @@ const Login = ({ setMethod }) => {
         disabled={!formik.values.username || !formik.values.password}
         style={{ fontFamily: "AlbertFontNormal" }}
       >
-        {formik.values.username && formik.values.password
-          ? <p className="mt-1">JOIN THE METAVERSE</p>
-          : <p className="mt-1">LOG IN</p>}
+        {formik.values.username && formik.values.password ? (
+          <p className="mt-1">JOIN THE METAVERSE</p>
+        ) : (
+          <p className="mt-1">LOG IN</p>
+        )}
       </Button>
 
       <GoogleLogin />

@@ -40,19 +40,6 @@ export const getUserSession = async (token) => {
   return userSessions.data;
 };
 
-export const toggleActivityStatus = async (token, isActive) => {
-  const userSessions = await axios.put(
-    `${process.env.NEXT_PUBLIC_API_HOST}/users/toggleSessionActivity`,
-    {isActive: isActive},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  return userSessions.data;
-};
-
 export const createUserSession = async (token) => {
   const userSessions = await axios.post(
     `${process.env.NEXT_PUBLIC_API_HOST}/users/createUserSession`,

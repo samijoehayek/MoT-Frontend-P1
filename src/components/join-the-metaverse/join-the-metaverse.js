@@ -2,20 +2,18 @@
 import Image from "next/image";
 import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
-import {
-  Box,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import EmailConfirmationModal from "@/components/email-confirmation-modal/email-confirmation-modal";
 import Login from "@/components/login/login";
 import Signup from "@/components/signup/signup";
-import { AppContext } from '../../app/appContext';
+import { AppContext } from "../../app/appContext";
+import DuplicateEmailModal from "../duplicate-email-modal/duplicate-email-modal";
 
 const JoinTheMetaverse = () => {
   const [method, setMethod] = useState("login");
   const [emailConfirmationModal, setEmailConfirmationModal] = useState(false);
+  const [duplicateEmailModal, setDuplicateEmailModal] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const router = useRouter();
 
@@ -60,6 +58,13 @@ const JoinTheMetaverse = () => {
         }}
       />
 
+      <DuplicateEmailModal
+        open={duplicateEmailModal}
+        onClose={() => {
+          setDuplicateEmailModal(false);
+        }}
+      />
+
       <Box
         sx={{
           flex: "1 1 auto",
@@ -98,14 +103,26 @@ const JoinTheMetaverse = () => {
             <Stack spacing={1} sx={{ mb: 5 }}>
               <Typography
                 className={`text-white`}
-                style={{ fontFamily: "AlbertFontNormal", fontSize: "1rem"}}
+                style={{ fontFamily: "AlbertFontNormal", fontSize: "1rem" }}
               >
                 Join the Metaverse and be part of the future.
               </Typography>
             </Stack>
 
-            {method === "login" && <Login setMethod={setMethod} />}
-            {method === "signup" && <Signup setMethod={setMethod} setEmailConfirmationModal={setEmailConfirmationModal} setUserEmail={setUserEmail}/>}
+            {method === "login" && (
+              <Login
+                setMethod={setMethod}
+                setDuplicateEmailModal={setDuplicateEmailModal}
+              />
+            )}
+            {method === "signup" && (
+              <Signup
+                setMethod={setMethod}
+                setEmailConfirmationModal={setEmailConfirmationModal}
+                setUserEmail={setUserEmail}
+                setDuplicateEmailModal={setDuplicateEmailModal}
+              />
+            )}
           </div>
         </Box>
       </Box>

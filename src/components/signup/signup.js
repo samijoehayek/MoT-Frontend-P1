@@ -20,7 +20,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import Link from "next/link";
 import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
 
-const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
+const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplicateEmailModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [recaptchaSuccess, setRecaptchaSuccess] = useState(false);
@@ -50,6 +50,9 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail }) => {
             setEmailConfirmationModal(true);
           })
           .catch((error) => {
+            if(error.response.status === 409) {
+              setDuplicateEmailModal(true);
+            }
             console.log("Login failed: ", error);
           });
 

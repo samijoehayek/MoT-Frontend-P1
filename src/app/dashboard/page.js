@@ -6,15 +6,17 @@ import bg from "../../../public/images/webgl-loader.jpg";
 import {
   getUserSession,
   createUserSession,
-  toggleActivityStatus,
 } from "@/axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   // States
   const [loadWebGL, setLoadWebGL] = useState(false);
   const [sentenceIndex, setSentenceIndex] = useState(0);
   const [userSession, setUserSession] = useState({});
+
+  const router = useRouter();
 
   // Constants
   const sentences = [
@@ -55,24 +57,33 @@ const Dashboard = () => {
     return createUserSession(localStorage.getItem("token"));
   };
 
-  const handleWebGLLoad = (token) => {
+  const handleUnload = async () => {
+    localStorage.setItem("isActive", false);
+    // await activityStatusFalse(localStorage.getItem("token"));
+  };
+
+  const handleBeforeUnload = (event) => {
+    event.preventDefault();
+    event.returnValue = "";
+  };
+
+  const handleWebGLLoad = (token, isActive) => {
     // If the token exists check if the user has existing session
     getUserSessions().then((res) => {
       if (res && Object.keys(res).length > 0) {
-        if (res.isActive) {
-          console.log("User already has active session");
+        if (isActive == "true") {
+          router.push("/");
           setUserSession(res);
         } else {
-          console.log("User has inactive session");
-          toggleActivityStatus(token, true).then((res) => {
-            setUserSession(res);
-            setLoadWebGL(true);
-          });
+          localStorage.setItem("isActive", true);
+          setUserSession(res);
+          setLoadWebGL(true);
         }
       } else {
         // If the user does not have an existing session, create a new one
         createUserSessions()
           .then((res) => {
+            localStorage.setItem("isActive", true);
             setUserSession(res);
             setLoadWebGL(true);
           })
@@ -81,7 +92,7 @@ const Dashboard = () => {
           });
       }
     });
-  }
+  };
 
   function handleCaching(url) {
     // Caching enabled for .data and .bundle files.
@@ -133,16 +144,23 @@ const Dashboard = () => {
 
   // UseEffects
   useEffect(() => {
+    window.addEventListener("unload", handleUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
     const token = localStorage.getItem("token");
+    const isActive = localStorage.getItem("isActive");
     if (token) {
-      handleWebGLLoad(token);
+      handleWebGLLoad(token, isActive);
     }
 
     const intervalId = setInterval(() => {
       setSentenceIndex((prevIndex) => (prevIndex + 1) % sentences.length);
     }, 4000);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearInterval(intervalId);
+      window.removeEventListener("unload", handleUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   return (
