@@ -10,17 +10,20 @@ import * as Yup from "yup";
 import { sendEmailPasswordChange } from "@/axios";
 
 const ForgotPasswordEmail = () => {
+  // States
   const [emailConfirmationModal, setEmailConfirmationModal] = useState(false);
   const [userEmail, setUserEmail] = useState("");
 
-  const router = useRouter();
-
+  // Constants
   const bgStyling = {
     backgroundImage: `url(${bg.src})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
   };
+
+  // Hooks
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {

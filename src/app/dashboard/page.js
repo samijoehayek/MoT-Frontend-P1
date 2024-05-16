@@ -3,12 +3,22 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { useMediaQuery } from "react-responsive";
 import bg from "../../../public/images/webgl-loader.jpg";
+import {
+  getUserSession,
+  createUserSession,
+} from "@/axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
+  // States
   const [loadWebGL, setLoadWebGL] = useState(false);
   const [sentenceIndex, setSentenceIndex] = useState(0);
+  const [userSession, setUserSession] = useState({});
 
+  const router = useRouter();
+
+  // Constants
   const sentences = [
     "Explore the space and meet others",
     "Engage in conversations through chat",
@@ -16,7 +26,73 @@ const Dashboard = () => {
     "View informational displays",
   ];
 
-  const isMobile = useMediaQuery({ query: "(max-width: 1025px)" });
+  const styling = {
+    backgroundImage: `url(${bg.src})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  };
+
+  const sentenceStyling = {
+    animation: "fadeInOut 4s linear infinite",
+    fontSize: "1.5rem",
+    fontFamily: "AlbertFontNormal",
+  };
+
+  const animationStyles = `@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    25%, 75% {
+      opacity: 1;
+    }
+  }`;
+
+  // Functions
+  const getUserSessions = () => {
+    return getUserSession(localStorage.getItem("token"));
+  };
+
+  const createUserSessions = () => {
+    return createUserSession(localStorage.getItem("token"));
+  };
+
+  const handleUnload = async () => {
+    localStorage.setItem("isActive", false);
+    // await activityStatusFalse(localStorage.getItem("token"));
+  };
+
+  const handleBeforeUnload = (event) => {
+    event.preventDefault();
+    event.returnValue = "";
+  };
+
+  const handleWebGLLoad = (token, isActive) => {
+    // If the token exists check if the user has existing session
+    getUserSessions().then((res) => {
+      if (res && Object.keys(res).length > 0) {
+        if (isActive == "true") {
+          router.push("/");
+          setUserSession(res);
+        } else {
+          localStorage.setItem("isActive", true);
+          setUserSession(res);
+          setLoadWebGL(true);
+        }
+      } else {
+        // If the user does not have an existing session, create a new one
+        createUserSessions()
+          .then((res) => {
+            localStorage.setItem("isActive", true);
+            setUserSession(res);
+            setLoadWebGL(true);
+          })
+          .catch((err) => {
+            console.log("Could not create session");
+          });
+      }
+    });
+  };
 
   function handleCaching(url) {
     // Caching enabled for .data and .bundle files.
@@ -41,6 +117,9 @@ const Dashboard = () => {
     return "no-store";
   }
 
+  // Hooks
+  const isMobile = useMediaQuery({ query: "(max-width: 1025px)" });
+
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
     loaderUrl: isMobile
       ? "BuildMobile/Build/Build.loader.js"
@@ -63,39 +142,25 @@ const Dashboard = () => {
     cacheControl: handleCaching,
   });
 
-  const styling = {
-    backgroundImage: `url(${bg.src})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  };
-
-  const sentenceStyling = {
-    animation: "fadeInOut 4s linear infinite",
-    fontSize: "1.5rem",
-    fontFamily: "AlbertFontNormal",
-  };
-
-  const animationStyles = `@keyframes fadeInOut {
-    0%, 100% {
-        opacity: 0;
-    }
-    25%, 75% {
-      opacity: 1;
-    }
-  }`;
-
+  // UseEffects
   useEffect(() => {
+    window.addEventListener("unload", handleUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
     const token = localStorage.getItem("token");
+    const isActive = localStorage.getItem("isActive");
     if (token) {
-      setLoadWebGL(true);
+      handleWebGLLoad(token, isActive);
     }
 
     const intervalId = setInterval(() => {
       setSentenceIndex((prevIndex) => (prevIndex + 1) % sentences.length);
     }, 4000);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearInterval(intervalId);
+      window.removeEventListener("unload", handleUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   return (
@@ -150,6 +215,7 @@ const Dashboard = () => {
               </div>
             </div>
           )}
+          {/* This is the unity webgl renderrer */}
           <Unity
             unityProvider={unityProvider}
             style={{

@@ -10,7 +10,6 @@ export async function middleware(req) {
     return;
   }
   if (req.nextUrl.pathname.startsWith("/dashboard") && !verifiedToken) {
-    console.log("Redirecting to /")
     return NextResponse.redirect(new URL("/", req.url));
   }
 
@@ -19,8 +18,7 @@ export async function middleware(req) {
   }
 
   if(req.nextUrl.pathname.startsWith("/google-authenticator")) {
-    return 
-    // NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   if (!verifiedToken) {

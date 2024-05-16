@@ -5,9 +5,11 @@ import ForgotPasswordForm from "@/components/forgot-password-form/forgot-passwor
 import PasswordFailedSnackbar from "@/components/password-failed-snackbar/password-failed-snackbar";
 
 const ForgotPassword = () => {
+  // States
   const [verificationString, setVerificationString] = useState("");
   const [failedPasswordChange, setFailedPasswordChange] = useState(false);
 
+  // Constants 
   const bgStyling = {
     backgroundImage: `url(${bg.src})`,
     backgroundRepeat: "no-repeat",
@@ -15,6 +17,7 @@ const ForgotPassword = () => {
     backgroundSize: "cover",
   };
 
+  // UseEffects
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const verificationString = urlParams.get("verificationString");
