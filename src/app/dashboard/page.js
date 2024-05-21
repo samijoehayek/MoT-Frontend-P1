@@ -101,7 +101,8 @@ const Dashboard = () => {
       url.match(/\.data/) ||
       url.match(/\.bundle/) ||
       url.match(/\.wasm/) ||
-      url.match(/\.unityweb/)
+      url.match(/\.unityweb/) ||
+      url.match(/\.gz/)
     ) {
       return "must-revalidate";
     }
@@ -126,13 +127,13 @@ const Dashboard = () => {
       : "Build/Build/Build.loader.js",
     dataUrl: isMobile
       ? "BuildMobile/Build/Build.data.unityweb"
-      : "Build/Build/Build.data.unityweb",
+      : "Build/Build/Build.data.gz",
     frameworkUrl: isMobile
       ? "BuildMobile/Build/Build.framework.js.unityweb"
-      : "Build/Build/Build.framework.js.unityweb",
+      : "Build/Build/Build.framework.js.gz",
     codeUrl: isMobile
       ? "BuildMobile/Build/Build.wasm.unityweb"
-      : "Build/Build/Build.wasm.unityweb",
+      : "Build/Build/Build.wasm.gz",
     streamingAssetsUrl: isMobile
       ? "BuildMobile/StreamingAssets"
       : "Build/StreamingAssets",
