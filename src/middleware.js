@@ -13,6 +13,10 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
+  if (req.nextUrl.pathname.startsWith("/Build")) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
   if (req.nextUrl.pathname.startsWith("/new-login")) {
     return NextResponse.redirect(new URL("/", req.url));
   }
@@ -27,5 +31,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/new-login", "/google-authenticator"],
+  matcher: ["/dashboard", "/new-login", "/google-authenticator", "/Build", "/Build/index.html"],
 };
