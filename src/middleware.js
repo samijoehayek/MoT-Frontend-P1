@@ -17,10 +17,6 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  if (req.nextUrl.pathname.startsWith("/new-login")) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
-
   if(req.nextUrl.pathname.startsWith("/google-authenticator")) {
     return NextResponse.redirect(new URL("/", req.url));
   }
@@ -31,5 +27,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/new-login", "/google-authenticator", "/Build", "/Build/index.html"],
+  matcher: ["/dashboard", "/google-authenticator", "/Build", "/Build/index.html", "/Build/Build/Build.data.unityweb", "/Build/Build/Build.framework.js.unityweb", "/Build/Build/Build.loader.js", "/Build/Build/Build.wasm.unityweb"],
 };
