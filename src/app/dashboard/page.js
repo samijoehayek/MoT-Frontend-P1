@@ -127,13 +127,13 @@ const Dashboard = () => {
       : "Build/Build/Build.loader.js",
     dataUrl: isMobile
       ? "BuildMobile/Build/Build.data.unityweb"
-      : "Build/Build/Build.data.gz",
+      : "Build/Build/Build.data.unityweb",
     frameworkUrl: isMobile
       ? "BuildMobile/Build/Build.framework.js.unityweb"
-      : "Build/Build/Build.framework.js.gz",
+      : "Build/Build/Build.framework.js.unityweb",
     codeUrl: isMobile
       ? "BuildMobile/Build/Build.wasm.unityweb"
-      : "Build/Build/Build.wasm.gz",
+      : "Build/Build/Build.wasm.unityweb",
     streamingAssetsUrl: isMobile
       ? "BuildMobile/StreamingAssets"
       : "Build/StreamingAssets",
