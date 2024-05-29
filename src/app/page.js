@@ -6,6 +6,8 @@ import PartOne from "@/components/part-one/part-one";
 import PartThree from "@/components/part-three/part-three";
 import Image from "next/image";
 import PartTwo from "@/components/part-two/part-two";
+import PartFour from "@/components/part-four/part-four";
+import PartFive from "@/components/part-five/part-five";
 
 const Home = () => {
   return (
@@ -51,6 +53,39 @@ const Home = () => {
         </div>
         <div className="flex-[4] flex flex-col px-8 text-white justify-center items-center">
           <PartThree />
+        </div>
+      </div>
+      <div className="flex md:flex-row px-12">
+        <div className="flex-[5] flex flex-col px-8 text-white justify-center items-center">
+          <PartFour />
+        </div>
+        <div className="flex-[5] flex flex-col items-center">
+          <Image
+            src="/images/avatar-visuals.png"
+            alt="Background"
+            width={450}
+            height={400}
+            quality={100}
+          />
+        </div>
+      </div>
+      <div className="flex md:flex-row px-12 pt-20">
+        <div className="flex-[5] flex flex-col px-8 text-white justify-center items-center">
+          <PartFive />
+        </div>
+        <div className="flex-[5] flex flex-col items-center pb-40">
+          <Image
+            src="/images/sofas-v.png"
+            alt="Background"
+            width={600}
+            height={500}
+            quality={100}
+          />
+        </div>
+      </div>
+      <div className="flex md:flex-row px-12">
+        <div className="w-full flex flex-col text-white">
+          <PartTwo />
         </div>
       </div>
     </div>
