@@ -102,7 +102,8 @@ const Dashboard = () => {
       url.match(/\.bundle/) ||
       url.match(/\.wasm/) ||
       url.match(/\.unityweb/) ||
-      url.match(/\.gz/)
+      url.match(/\.gz/) ||
+      url.match(/\.local/)
     ) {
       return "must-revalidate";
     }
