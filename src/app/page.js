@@ -5,7 +5,6 @@ import BackgroundImage from "@/components/background-image/background-image";
 import PasswordUpdatedSnackbar from "@/components/password-updated-snackbar/password-updated-snackbar";
 import { AppContext } from './appContext';
 
-
 const Home = () => {
   const { passwordChangedBC, setPasswordChangedBC } = useContext(AppContext);
 
