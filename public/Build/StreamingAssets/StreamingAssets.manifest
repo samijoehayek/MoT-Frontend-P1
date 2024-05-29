@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 412995441
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: lobby
+      Dependencies: {}
