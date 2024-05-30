@@ -1,35 +1,38 @@
-import React from "react";
-import Image from "next/image";
+"use client";
+import React, { useState } from "react";
+import { Typography, Box } from "@mui/material";
 
 const Restaurants = () => {
   return (
-    <div className="relative w-full">
-      <div className="absolute inset-0">
-        <Image
-          src="/images/circles.png"
-          alt="Background"
-          layout="fill"
-          quality={100}
-        />
-      </div>
-      <div
-        className="relative py-16 sm:py-24 lg:py-32 text-white text-center"
-        style={{
-          fontFamily: "AlbertFont",
-          fontSize: "3rem",
-          lineHeight: "1.3",
-        }}
+    <Box
+      sx={{
+        background: "#FFFFFF",
+        borderRadius: "48px",
+        padding: "32px",
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+        minHeight: "570px",
+        opacity: "0.04",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Typography
+        variant="h4"
+        sx={{ fontWeight: "bold", color: "white", mb: 1 }}
+        style={{ fontFamily: "AlbertFont" }}
       >
-        <h1 style={{
-            paddingTop: "6rem",
-        }}>
-          Begin a remarkable virtual trip to <br /> Saudi Arabia's enchanting
-          tourist
-          <br />
-          spots, alone or with friends!
-        </h1>
-      </div>
-    </div>
+        Reset Password
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{ color: "rgba(255, 255, 255, 0.7)", mb: 3 }}
+        style={{ fontFamily: "AlbertFontNormal" }}
+      >
+        Enter your email to change your password.
+      </Typography>
+    </Box>
   );
 };
 

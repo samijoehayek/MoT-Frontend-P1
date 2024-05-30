@@ -8,6 +8,7 @@ import Image from "next/image";
 import PartTwo from "@/components/part-two/part-two";
 import PartFour from "@/components/part-four/part-four";
 import PartFive from "@/components/part-five/part-five";
+import Restaurants from "@/components/restaurants/restaurants";
 
 const Home = () => {
   return (
@@ -83,9 +84,9 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="flex md:flex-row px-12">
+      <div className="flex md:flex-row px-12 py-20">
         <div className="w-full flex flex-col text-white">
-          <PartTwo />
+          <Restaurants />
         </div>
       </div>
     </div>
