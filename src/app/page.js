@@ -9,10 +9,14 @@ import PartTwo from "@/components/part-two/part-two";
 import PartFour from "@/components/part-four/part-four";
 import PartFive from "@/components/part-five/part-five";
 import Restaurants from "@/components/restaurants/restaurants";
+import VideoRecorder from "@/components/video-recorder/video-recorder";
+import FooterHero from "@/components/footer-hero/footer-hero";
+import Footer from "@/components/footer/footer";
 
 const Home = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#101010]">
+      <VideoRecorder />
       <Navbar />
       <div className="flex md:flex-row py-16 px-8">
         <div className="w-full md:w-1/2 flex flex-col px-8 text-white">
@@ -85,8 +89,18 @@ const Home = () => {
         </div>
       </div>
       <div className="flex md:flex-row px-12 py-20">
-        <div className="w-full flex flex-col text-white">
+        <div className="w-full flex flex-col justify-center items-center text-white">
           <Restaurants />
+        </div>
+      </div>
+      <div className="flex md:flex-row ">
+        <div className="w-full flex flex-col justify-center items-center text-white">
+          <FooterHero />
+        </div>
+      </div>
+      <div className="flex md:flex-row ">
+        <div className="w-full flex flex-col justify-center items-center text-white">
+          <Footer />
         </div>
       </div>
     </div>
