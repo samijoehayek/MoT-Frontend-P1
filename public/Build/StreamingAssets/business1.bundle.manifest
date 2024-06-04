@@ -1,0 +1,96 @@
+ManifestFileVersion: 0
+CRC: 4279096847
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3b91f284d012db63bca38f2d7ca994a1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: cb864b1d7778dceb63b89627753c1709
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 3b91f284d012db63bca38f2d7ca994a1
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 84
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 603cfe08c8447c047b250d9cf9ef4df1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 925d4a10513ded341b558c3eff6c7b83, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fbce7c653bda8374ebe781fce8968352, type: 3}
+- Class: 114
+  Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4ee75caf7c41a2b4193151013594eb95, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 00254fb8daf4cdf43b54798d93af1cc8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 117
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 154
+  Script: {instanceID: 0}
+- Class: 156
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
+- Class: 208
+  Script: {instanceID: 0}
+- Class: 218
+  Script: {instanceID: 0}
+- Class: 220
+  Script: {instanceID: 0}
+- Class: 328
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp
+  ClassName: CustomGameEvent
+- AssemblyName: Assembly-CSharp
+  ClassName: SittingLocation
+- AssemblyName: Fusion.Runtime
+  ClassName: Fusion.SerializableDictionary`2[System.Int32,Fusion.NetworkBool]
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.ArgumentCache
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentListenerMode
+Assets:
+- Assets/Prefabs/AssetBundles/Enviroment.prefab
+Dependencies: []

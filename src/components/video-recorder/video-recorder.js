@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const VideoRecorder = () => {
   return (
-    <div className="absolute z-10" style={{ top: "423%", left: "2%" }}>
+    <div className="absolute z-10" style={{ top: "415%", left: "1%" }}>
       <Image
         src="/images/video-portal-full.png"
         alt="Background"

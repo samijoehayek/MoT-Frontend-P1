@@ -8,7 +8,9 @@ const Restaurants = () => {
       sx={{
         background: "#1A1A1A",
         borderRadius: "48px",
-        padding: "32px",
+        paddingTop: "32px",
+        paddingRight: "32px",
+        paddingLeft: "32px",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
         minHeight: "500px",
         width: "90%",
@@ -19,7 +21,7 @@ const Restaurants = () => {
     >
       <div className="flex flex-row w-full">
         <div className="w-1/2"></div>
-        <div className="w-1/2 flex flex-col items-start px-20">
+        <div className="w-1/2 flex flex-col items-start pl-36">
           <h2
             style={{
               fontFamily: "AlbertFont",

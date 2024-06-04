@@ -88,7 +88,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="flex md:flex-row px-12 py-20">
+      <div className="flex md:flex-row px-12">
         <div className="w-full flex flex-col justify-center items-center text-white">
           <Restaurants />
         </div>
@@ -98,7 +98,7 @@ const Home = () => {
           <FooterHero />
         </div>
       </div>
-      <div className="flex md:flex-row ">
+      <div className="flex md:flex-row bg-[#18191C]">
         <div className="w-full flex flex-col justify-center items-center text-white">
           <Footer />
         </div>
