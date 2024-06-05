@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3120107344
+CRC: 691030071
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a119212c96bc19729b1bc56a7190a81d
+    Hash: 68abd83ec64fa1b0fec5d29afe37ac50
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 0eba6f7d4895d9ea870420f2215033cc
+    Hash: f79c59942d775e8badf1735ed43a21d4
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: a119212c96bc19729b1bc56a7190a81d
+    Hash: 68abd83ec64fa1b0fec5d29afe37ac50
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -324,11 +324,9 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 225
   Script: {instanceID: 0}
-- Class: 258
-  Script: {instanceID: 0}
 - Class: 850595691
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Scenes/Business_Network 1.unity
+- Assets/Scenes/BusinessScene.unity
 Dependencies: []

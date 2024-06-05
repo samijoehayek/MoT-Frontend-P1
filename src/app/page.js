@@ -12,13 +12,13 @@ import Restaurants from "@/components/restaurants/restaurants";
 import VideoRecorder from "@/components/video-recorder/video-recorder";
 import FooterHero from "@/components/footer-hero/footer-hero";
 import Footer from "@/components/footer/footer";
+import LobbyDisplay from "@/components/lobby-display/lobby-display";
 
 const Home = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#101010]">
-      <VideoRecorder />
       <Navbar />
-      <div className="flex md:flex-row py-16 px-8">
+      <div className="flex md:flex-row pt-24 pb-36 px-8">
         <div className="w-full md:w-1/2 flex flex-col px-8 text-white">
           <HeroSection />
         </div>
@@ -26,13 +26,13 @@ const Home = () => {
           Part 2
         </div>
       </div>
-      <div className="flex md:flex-row py-16 px-12">
-        <div className="flex-[3] flex flex-col px-8 text-white">
+      <div className="flex md:flex-row py-20 px-12">
+        <div className="flex-[3] flex flex-col px-8 py-20 text-white">
           <PartOne />
         </div>
-        <div className="flex-[5] flex flex-col justify-center items-center text-white">
+        <div className="flex-[5] flex flex-col">
           <Image
-            src="/images/map.png"
+            src="/images/new-map.png"
             alt="Background"
             width={1000}
             height={500}
@@ -41,9 +41,14 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="flex md:flex-row px-12">
+      <div className="flex md:flex-row px-12 pt-20 pb-40">
         <div className="w-full flex flex-col text-white">
           <PartTwo />
+        </div>
+      </div>
+      <div className="flex md:flex-row">
+        <div className="w-full flex flex-col text-white">
+          <LobbyDisplay />
         </div>
       </div>
       <div className="flex md:flex-row px-12">
@@ -60,7 +65,7 @@ const Home = () => {
           <PartThree />
         </div>
       </div>
-      <div className="flex md:flex-row px-12">
+      <div className="flex md:flex-row px-12 pb-40">
         <div className="flex-[5] flex flex-col px-8 text-white justify-center items-center">
           <PartFour />
         </div>
@@ -74,22 +79,23 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="flex md:flex-row px-12 pt-20">
-        <div className="flex-[5] flex flex-col px-8 text-white justify-center items-center">
+      <div className="flex md:flex-row px-12 py-20">
+        <div className="flex-[4] flex flex-col px-8 text-white justify-center items-center">
           <PartFive />
         </div>
-        <div className="flex-[5] flex flex-col items-center pb-40">
+        <div className="flex-[5] flex flex-col items-center pb-48">
           <Image
-            src="/images/sofas-v.png"
+            src="/images/villa.png"
             alt="Background"
-            width={600}
+            width={700}
             height={500}
             quality={100}
           />
         </div>
       </div>
       <div className="flex md:flex-row px-12">
-        <div className="w-full flex flex-col justify-center items-center text-white">
+        <div className="w-full flex flex-col justify-center items-center text-white relative">
+          <VideoRecorder />
           <Restaurants />
         </div>
       </div>

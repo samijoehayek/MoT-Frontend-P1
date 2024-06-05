@@ -9,7 +9,7 @@ const PartOne = () => {
         style={{
           fontFamily: "AlbertFontNormal",
           fontSize: "1.15rem",
-          paddingBottom: "1rem",
+          padding: "1rem",
         }}
       >
         Lobby
