@@ -27,5 +27,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/google-authenticator", "/Build", "/Build/index.html", "/Build/Build/Build.data.unityweb", "/Build/Build/Build.framework.js.unityweb", "/Build/Build/Build.loader.js", "/Build/Build/Build.wasm.unityweb"],
+  matcher: ["/dashboard", "/google-authenticator", "/Build", "/Build/index.html"],
 };
