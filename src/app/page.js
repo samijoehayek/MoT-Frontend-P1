@@ -2,10 +2,8 @@
 import React from "react";
 import Navbar from "@/components/navbar/navbar";
 import HeroSection from "@/components/hero-section/hero-section";
-import PartOne from "@/components/part-one/part-one";
-import PartThree from "@/components/part-three/part-three";
 import Image from "next/image";
-import PartTwo from "@/components/part-two/part-two";
+import Circles from "@/components/circles/circles";
 import PartFour from "@/components/part-four/part-four";
 import PartFive from "@/components/part-five/part-five";
 import Restaurants from "@/components/restaurants/restaurants";
@@ -13,58 +11,31 @@ import VideoRecorder from "@/components/video-recorder/video-recorder";
 import FooterHero from "@/components/footer-hero/footer-hero";
 import Footer from "@/components/footer/footer";
 import LobbyDisplay from "@/components/lobby-display/lobby-display";
+import RadialGradientPurple from "@/components/radial-gradient-purple/radial-gradient-purple";
+import RadialGradientGreen from "@/components/radial-gradient-green/radial-gradient-green";
+import HeroBackground from "@/components/hero-background/hero-background";
+import Attractions from "@/components/attractions/attractions";
+import BusinessTourism from "@/components/business-tourism/business-tourism";
 
 const Home = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#101010]">
+    <div className="flex flex-col min-h-screen bg-[#101010] relative">
+      <HeroBackground />
       <Navbar />
-      <div className="flex md:flex-row pt-24 pb-36 px-8">
-        <div className="w-full md:w-1/2 flex flex-col px-8 text-white">
-          <HeroSection />
-        </div>
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-center px-8 text-white">
-          Part 2
-        </div>
+      <HeroSection />
+      <Attractions />
+      <Circles />
+      <LobbyDisplay />
+      {/* This component is showing the besiness network */}
+      <BusinessTourism />
+      {/* Enter a radial gradient purple here */}
+      <div className="absolute right-0 opacity-80" style={{ top: "47%" }}>
+        <RadialGradientPurple />
       </div>
-      <div className="flex md:flex-row py-20 px-12">
-        <div className="flex-[3] flex flex-col px-8 py-20 text-white">
-          <PartOne />
-        </div>
-        <div className="flex-[5] flex flex-col">
-          <Image
-            src="/images/new-map.png"
-            alt="Background"
-            width={1000}
-            height={500}
-            quality={100}
-            className="w-full h-auto"
-          />
-        </div>
+      <div className="absolute left-0 opacity-80" style={{ top: "59%" }}>
+        <RadialGradientGreen />
       </div>
-      <div className="flex md:flex-row px-12 pt-20 pb-40">
-        <div className="w-full flex flex-col text-white">
-          <PartTwo />
-        </div>
-      </div>
-      <div className="flex md:flex-row">
-        <div className="w-full flex flex-col text-white">
-          <LobbyDisplay />
-        </div>
-      </div>
-      <div className="flex md:flex-row px-12">
-        <div className="flex-[5] flex flex-col items-center pb-40">
-          <Image
-            src="/images/sofas-vis.png"
-            alt="Background"
-            width={600}
-            height={500}
-            quality={100}
-          />
-        </div>
-        <div className="flex-[4] flex flex-col px-8 text-white justify-center items-center">
-          <PartThree />
-        </div>
-      </div>
+      {/* This component is showing the second part of the business network */}
       <div className="flex md:flex-row px-12 pb-40">
         <div className="flex-[5] flex flex-col px-8 text-white justify-center items-center">
           <PartFour />

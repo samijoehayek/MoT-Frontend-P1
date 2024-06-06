@@ -10,7 +10,7 @@ const Navbar = () => {
     setLanguage(lang);
   };
   return (
-    <nav className="w-full flex flex-row justify-between text-white py-4 px-12">
+    <nav className="w-full flex flex-row justify-between text-white py-4 px-12 z-10">
       <div className="flex flex-col justify-center items-center">
         <Image
           src="/images/stc-logo.png"
