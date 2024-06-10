@@ -1,11 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 const FooterHero = () => {
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
   return (
-    <div className="flex md:flex-row ">
-      <div className="w-full flex flex-col justify-center items-center text-white">
+    <div className="flex md:flex-row">
+      <div className="w-full flex flex-col text-white">
         <div className="relative w-full h-screen">
           <Image
             src="/images/footer-bg.png"
@@ -14,11 +17,11 @@ const FooterHero = () => {
             objectFit="cover"
             quality={100}
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center mt-12">
+          <div className={`${isMobile?"justify-end pb-12":"justify-center"} absolute inset-0 flex flex-col items-center text-center mt-12`}>
             <h2
               style={{
                 fontFamily: "AlbertFont",
-                fontSize: "4rem",
+                fontSize: isMobile?"2.1rem":"4rem",
                 lineHeight: "1.1",
                 paddingBottom: "1rem",
               }}
@@ -28,7 +31,7 @@ const FooterHero = () => {
             <p
               style={{
                 fontFamily: "AlbertFontNormal",
-                fontSize: "1.15rem",
+                fontSize: isMobile?"1rem":"1.15rem",
                 lineHeight: "1.2",
                 paddingTop: "1.5rem",
               }}
@@ -42,7 +45,7 @@ const FooterHero = () => {
                 mt: 6,
                 mb: 3,
                 borderRadius: "100px",
-                width: "17%",
+                width: isMobile?"65%":"17%",
                 height: "3rem",
                 paddingTop: "0.7rem",
                 fontSize: "1rem",

@@ -1,36 +1,57 @@
 import React from "react";
 import { Button } from "@mui/material";
 import Image from "next/image";
+import { useMediaQuery } from "@mui/material";
 
 const HeroSection = () => {
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
   return (
-    <div className="flex md:flex-row pt-24 pb-36 px-8 z-10">
-      <div className="w-full md:w-1/2 flex flex-col px-8 text-white">
+    <div className={isMobile?"flex md:flex-row pb-36 px-8 z-10":"flex md:flex-row pt-24 pb-36 px-8 z-10"}>
+      <div
+        className={
+          isMobile
+            ? "w-full md:w-1/2 flex flex-col text-white"
+            : "w-full md:w-1/2 flex flex-col px-8 text-white"
+        }
+      >
         <h1
           style={{
             fontFamily: "AlbertFont",
-            fontSize: "4.7rem",
+            fontSize: isMobile ? "2.7rem" : "4.7rem",
             lineHeight: "1.2",
             paddingBottom: "1rem",
           }}
         >
           Saudi Tourism Metaverse
         </h1>
-        <p
-          style={{
-            fontFamily: "AlbertFontNormal",
-            fontSize: "1.15rem",
-          }}
-        >
-          Begin a remarkable metaverse trip, exploring Saudi <br /> Arabia's
-          beauty, landscapes, cuisine, and debating with <br /> top investors!
-        </p>
+        {isMobile ? (
+          <p
+            style={{
+              fontFamily: "AlbertFontNormal",
+              fontSize: "1rem",
+            }}
+          >
+            Begin a remarkable metaverse trip, <br /> exploring Saudi Arabia's
+            beauty, landscapes, <br /> cuisine, and debating with top investors!
+          </p>
+        ) : (
+          <p
+            style={{
+              fontFamily: "AlbertFontNormal",
+              fontSize: "1.15rem",
+            }}
+          >
+            Begin a remarkable metaverse trip, exploring Saudi <br /> Arabia's
+            beauty, landscapes, cuisine, and debating with <br /> top investors!
+          </p>
+        )}
         <Button
           sx={{
             mt: 6,
             mb: 3,
             borderRadius: "100px",
-            width: "45%",
+            width: isMobile?"70%":"45%",
             height: "3rem",
             paddingTop: "0.7rem",
             fontSize: "1rem",
@@ -54,11 +75,11 @@ const HeroSection = () => {
         >
           JOIN THE METAVERSE
         </Button>
-        <div style={{ paddingTop: "10rem" }}>
+        <div style={{ paddingTop: isMobile?"18rem":"10rem" }}>
           <Image
             src={`/images/scroll-element.png`}
             alt="Background"
-            width={50}
+            width={37}
             height={50}
             quality={100}
           />

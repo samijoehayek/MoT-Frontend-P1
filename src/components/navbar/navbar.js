@@ -10,8 +10,8 @@ const Navbar = () => {
     setLanguage(lang);
   };
   return (
-    <nav className="w-full flex flex-row justify-between text-white py-4 px-12 z-10">
-      <div className="flex flex-col justify-center items-center">
+    <nav className="w-full flex justify-between text-white py-4 px-8 z-10">
+      <div className="flex flex-col justify-center items-center mb-4">
         <Image
           src="/images/stc-logo.png"
           alt="STC Logo"
@@ -34,9 +34,10 @@ const Navbar = () => {
                 handleChangeLanguage("en");
               }}
             >
-              English
+              <span className="sm:hidden">En</span>
+              <span className="hidden sm:inline">English</span>
             </li>
-            <li>|</li>
+            <li className="hidden sm:inline">|</li>
             <li
               className={`cursor-pointer ${
                 language === "ar" ? "underline" : ""
@@ -45,7 +46,8 @@ const Navbar = () => {
                 handleChangeLanguage("ar");
               }}
             >
-              العربية
+              <span className="sm:hidden">ع</span>
+              <span className="hidden sm:inline">العربية</span>
             </li>
           </ul>
         </div>
@@ -75,7 +77,10 @@ const Navbar = () => {
             variant="contained"
             style={{ fontFamily: "AlbertFontNormal" }}
           >
-            <p className="mt-1">JOIN THE METAVERSE</p>
+            <p className="mt-1">
+              <span className="sm:hidden">Join</span>
+              <span className="hidden sm:inline">JOIN THE METAVERSE</span>
+            </p>
           </Button>
         </div>
       </div>

@@ -14,12 +14,15 @@ import Attractions from "@/components/attractions/attractions";
 import BusinessTourism from "@/components/business-tourism/business-tourism";
 import TourismFuture from "@/components/tourism-future/tourism-future";
 import Marketplace from "@/components/marketplace/marketplace";
+import { useMediaQuery } from "@mui/material";
 
 const Home = () => {
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
   return (
     <div className="flex flex-col min-h-screen bg-[#101010] relative">
-      <HeroBackground />
       <Navbar />
+      <HeroBackground />
       <HeroSection />
       <Attractions />
       <Circles />
@@ -27,19 +30,16 @@ const Home = () => {
       {/* This component is showing the besiness network */}
       <BusinessTourism />
       {/* Enter a radial gradient purple here */}
-      <RadialGradientPurple />
+      {isMobile ? <></> : <RadialGradientPurple />}
       {/* Enter a radial gradient green here */}
-      <RadialGradientGreen />
+      {isMobile ? <></> : <RadialGradientGreen />}
       {/* This component is showing the second part of the business network */}
       <TourismFuture />
       <Marketplace />
       <Restaurants />
       <FooterHero />
-      <div className="flex md:flex-row bg-[#18191C]">
-        <div className="w-full flex flex-col justify-center items-center text-white">
-          <Footer />
-        </div>
-      </div>
+
+      <Footer />
     </div>
   );
 };
