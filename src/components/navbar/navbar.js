@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import { Button } from "@mui/material";
+import StcLogo from "../stc-logo/stc-logo";
 
 const Navbar = () => {
   const [language, setLanguage] = useState("en");
@@ -10,19 +10,12 @@ const Navbar = () => {
     setLanguage(lang);
   };
   return (
-    <nav className="w-full flex justify-between text-white py-4 px-8 z-10">
-      <div className="flex flex-col justify-center items-center mb-4">
-        <Image
-          src="/images/stc-logo.png"
-          alt="STC Logo"
-          width={180}
-          height={60}
-        />
-      </div>
-      <div className="flex flex-row justify-center items-center">
+    <nav className="flex flex-row w-full justify-between z-10 py-4 px-8 md:py-12 md:px-16 ">
+      <StcLogo />
+      <div className="flex items-center">
         {/* Add your navbar content here */}
         <div
-          className="flex flex-col px-6"
+          className="flex flex-col text-white px-6"
           style={{ fontFamily: "AlbertFontNormal" }}
         >
           <ul className="flex space-x-4">
@@ -54,10 +47,7 @@ const Navbar = () => {
         <div className="flex flex-col">
           <Button
             fullWidth
-            size="medium"
             sx={{
-              mt: 3,
-              mb: 3,
               borderRadius: "100px",
               color: "white",
               border: "1px solid white",

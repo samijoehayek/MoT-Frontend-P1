@@ -20,6 +20,8 @@ const Home = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
+    // The following components are the main components of the page
+    // The relative class is used to make the the flow components relative to the parent container
     <div className="flex flex-col min-h-screen bg-[#101010] relative">
       <Navbar />
       <HeroBackground />

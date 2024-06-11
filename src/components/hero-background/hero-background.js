@@ -5,27 +5,17 @@ import { useMediaQuery } from "@mui/material";
 const HeroBackground = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
-  return isMobile ? (
+  return (
     <div className={`absolute z-0`}>
       <Image
-        src={"/images/hero-mobile.png"}
+        src={isMobile?"/images/hero-mobile.png":"/images/hero-background.jpg"}
         alt="Background"
         height={1080}
         width={1920}
         quality={100}
       />
     </div>
-  ) : (
-    <div className={`absolute z-0`}>
-      <Image
-        src={"/images/hero-background.jpg"}
-        alt="Background"
-        height={1080}
-        width={1920}
-        quality={100}
-      />
-    </div>
-  );
+  ) 
 };
 
 export default HeroBackground;
