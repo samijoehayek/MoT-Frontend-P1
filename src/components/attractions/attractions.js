@@ -7,8 +7,8 @@ const Attractions = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className={`flex ${isMobile ? "flex-col" : "md:flex-row py-20 px-12"}`}>
-      <div className={`${isMobile ? "" : "flex-[3]"} flex flex-col px-8 py-20 text-white`}>
+    <div className={`flex flex-col pt-28 md:flex-row md:py-20 md:px-12`}>
+      <div className={`flex flex-col px-8 py-20 md:flex-[3]`}>
         <PartOne />
       </div>
       <div className={`${isMobile ? "mb-24" : "flex-[5]"} flex flex-col`}>
