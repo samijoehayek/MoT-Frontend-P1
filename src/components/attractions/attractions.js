@@ -7,18 +7,24 @@ const Attractions = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className={`flex flex-col pt-28 md:flex-row md:py-20 md:px-12`}>
-      <div className={`flex flex-col px-8 py-20 md:flex-[3]`}>
-        <PartOne />
+    <div className="relative w-full flex flex-col pt-28 md:flex-row md:justify-end md:py-0">
+      <div className={"absolute opacity-60 z-0 inset-0 top-8 left-64 md:top-8 md:left-56"}>
+        <Image
+          src="/images/number-1.png"
+          alt="Background"
+          width={isMobile ? 140 : 180}
+          height={180}
+          quality={100}
+        />
       </div>
-      <div className={`${isMobile ? "mb-24" : "flex-[5]"} flex flex-col`}>
+      <PartOne />
+      <div className="flex flex-row md:flex-col py-20 md:py-0">
         <Image
           src="/images/new-map.png"
           alt="Background"
-          width={isMobile?390:1000}
+          width={isMobile ? 500 : 1100}
           height={500}
           quality={100}
-          className="w-full h-auto"
         />
       </div>
     </div>
