@@ -40,7 +40,6 @@ const Home = () => {
       <Marketplace />
       <Restaurants />
       <FooterHero />
-
       <Footer />
     </div>
   );

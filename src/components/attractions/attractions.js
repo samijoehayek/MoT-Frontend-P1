@@ -18,7 +18,7 @@ const Attractions = () => {
         />
       </div>
       <PartOne />
-      <div className="flex flex-row md:flex-col py-20 md:py-0">
+      <div className="flex flex-row md:flex-col py-16 md:py-0">
         <Image
           src="/images/new-map.png"
           alt="Background"
