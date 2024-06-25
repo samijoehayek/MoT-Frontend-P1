@@ -7,8 +7,8 @@ const Attractions = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className="relative w-full flex flex-col pt-28 md:flex-row md:justify-end md:py-0">
-      <div className={"absolute opacity-60 z-0 inset-0 top-12 left-64 md:top-8 md:left-56"}>
+    <div className="relative w-full flex flex-col pt-28 md:flex-row md:justify-between md:pb-20 md:pt-40 md:px-20">
+      <div className={"absolute opacity-60 z-0 inset-0 top-12 left-64 md:top-48 md:left-40"}>
         <Image
           src="/images/number-1.png"
           alt="Background"
