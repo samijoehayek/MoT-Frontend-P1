@@ -16,7 +16,7 @@ const Circles = () => {
           quality={100}
         />
       </div>
-      <div className="flex relative z-10 items-center justify-center pt-24  pb-20 md:pt-72 md:pb-40">
+      <div className="flex relative z-10 items-center justify-center pt-24 pb-20 md:pt-72 md:pb-40">
         <div
           className="text-white text-center max-w-4xl px-4"
           style={{

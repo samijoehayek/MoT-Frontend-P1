@@ -7,7 +7,7 @@ const BusinessTourism = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className={`flex ${isMobile ? "flex-col" : "md:flex-row px-12"}`}>
+    <div className={"flex flex-col md:flex-row md:px-12"}>
       {isMobile ? (
         <>
           <PartThree />

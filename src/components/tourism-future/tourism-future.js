@@ -7,13 +7,11 @@ const TourismFuture = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className={`flex ${isMobile ? "flex-col" : "md:flex-row px-12 pb-40"}`}>
-      <div className={`${isMobile?"mb-8 py-12":"flex-[5] px-8"} flex flex-col  text-white justify-center items-center`}>
+    <div className={`flex flex-col md:flex-row md:px-12 md:pb-40`}>
+      <div className={"flex flex-col text-white justify-center items-center mb-8 py-12 md:flex-[5] md:px-8"}>
         <PartFour />
       </div>
-      <div className={`${
-          isMobile ? "" : "flex-[5]"
-        } flex flex-col items-center`}>
+      <div className={`flex flex-col items-center md:flex-[5]`}>
         <Image
           src="/images/avatar-visuals.png"
           alt="Background"

@@ -32,9 +32,9 @@ const Home = () => {
       {/* This component is showing the besiness network */}
       <BusinessTourism />
       {/* Enter a radial gradient purple here */}
-      {isMobile ? <></> : <RadialGradientPurple />}
+      <RadialGradientPurple />
       {/* Enter a radial gradient green here */}
-      {isMobile ? <></> : <RadialGradientGreen />}
+      <RadialGradientGreen />
       {/* This component is showing the second part of the business network */}
       <TourismFuture />
       <Marketplace />
