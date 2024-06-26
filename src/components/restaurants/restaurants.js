@@ -8,7 +8,7 @@ const Restaurants = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className={isMobile ? "flex md:flex-row" : "flex md:flex-row px-12"}>
+    <div className={"flex md:flex-row md:px-12"}>
       <div className="w-full flex flex-col justify-center items-center text-white relative">
         <div
           className="absolute z-10"
@@ -43,7 +43,7 @@ const Restaurants = () => {
         >
           <div
             className={
-              isMobile ? "flex flex-col w-full" : "flex flex-row w-full"
+              "flex flex-col w-full md:flex-row"
             }
           >
             <div className="w-full md:w-1/2"></div>

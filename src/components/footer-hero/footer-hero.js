@@ -19,7 +19,7 @@ const FooterHero = () => {
             objectFit="cover"
             quality={100}
           />
-          <div className={`${isMobile?"justify-end pb-12":"justify-center"} absolute inset-0 flex flex-col items-center text-center mt-12`}>
+          <div className={"justify-end pb-12 absolute inset-0 flex flex-col items-center text-center mt-12 md:justify-center"}>
             <h2
               style={{
                 fontFamily: "AlbertFont",
