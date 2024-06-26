@@ -6,7 +6,7 @@ const PartThree = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className="flex-[4] flex flex-col pl-8 mt-56 relative text-white md:justify-center md:px-8 md:mt-0">
+    <div className="flex flex-col flex-[4] pl-8 mt-56 relative text-white md:justify-center md:px-8 md:mt-0">
       <div
         className={
           "absolute transform z-0 opacity-80 bottom-24 left-52 md:top-44 md:left-32"

@@ -2,9 +2,11 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const FooterHero = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
+  const router = useRouter();
 
   return (
     <div className="flex md:flex-row">
@@ -66,6 +68,7 @@ const FooterHero = () => {
               type="submit"
               variant="contained"
               style={{ fontFamily: "AlbertFontNormal" }}
+              onClick={() => {router.push('/dashboard')}}
             >
               JOIN THE METAVERSE
             </Button>

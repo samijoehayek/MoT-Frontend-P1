@@ -2,9 +2,11 @@ import React from "react";
 import { Button } from "@mui/material";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
+  const router = useRouter();
 
   return (
     <div
@@ -61,6 +63,7 @@ const HeroSection = () => {
           type="submit"
           variant="contained"
           style={{ fontFamily: "AlbertFontNormal" }}
+          onClick={() => {router.push('/dashboard')}}
         >
           JOIN THE METAVERSE
         </Button>

@@ -2,8 +2,10 @@ import React from "react";
 import Image from "next/image";
 import SocialMedia from "../social-media/social-media";
 import { useMediaQuery } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
@@ -43,9 +45,9 @@ const Footer = () => {
                 isMobile ? "flex-col space-y-4" : "space-x-4"
               }`}
             >
-              <li className="px-2">Join The Metaverse</li>
-              <li className="px-2">Terms of Use</li>
-              <li className="px-2">Privacy Policy</li>
+              <li className="px-2 cursor-pointer" onClick={() => {router.push('/dashboard')}}>Join The Metaverse</li>
+              <li className="px-2 cursor-pointer" onClick={() => {router.push('/terms-and-conditions')}}>Terms of Use</li>
+              <li className="px-2 cursor-pointer" onClick={() => {router.push('/privacy-policy')}}>Privacy Policy</li>
             </ul>
           </div>
           <div

@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import StcLogo from "../stc-logo/stc-logo";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
   const [language, setLanguage] = useState("en");
 
   const handleChangeLanguage = (lang) => {
@@ -67,7 +69,7 @@ const Navbar = () => {
             variant="contained"
             style={{ fontFamily: "AlbertFontNormal" }}
           >
-            <p className="mt-1">
+            <p className="mt-1" onClick={() => {router.push('/dashboard')}}>
               <span className="sm:hidden">Join</span>
               <span className="hidden sm:inline">JOIN THE METAVERSE</span>
             </p>

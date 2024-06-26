@@ -1,10 +1,14 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const PrivacyPolicy = () => {
+  const router = useRouter();
+
   return (
     <div className="flex flex-col min-h-screen bg-[#1A1B22] px-8 py-10">
-      <div className="self-start mb-10">
+      <div className="self-start mb-10" onClick={() => {router.push('/')}}>
         <Image
           src="/images/stc-logo.png"
           alt="STC Logo"
