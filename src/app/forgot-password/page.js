@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import bg from "../../../public/images/forgot-password-bg1.png";
+import bg from "../../../public/images/login-bg6.jpg";
 import ForgotPasswordForm from "@/components/forgot-password-form/forgot-password-form";
 import PasswordFailedSnackbar from "@/components/password-failed-snackbar/password-failed-snackbar";
 
@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const [verificationString, setVerificationString] = useState("");
   const [failedPasswordChange, setFailedPasswordChange] = useState(false);
 
-  // Constants 
+  // Constants
   const bgStyling = {
     backgroundImage: `url(${bg.src})`,
     backgroundRepeat: "no-repeat",
@@ -30,20 +30,25 @@ const ForgotPassword = () => {
       style={bgStyling}
     >
       {/* Text Section */}
-      <div className="relative md:block hidden flex justify-center items-center px-8 mb-20">
+      <div className="relative md:block hidden">
         <div className={`text-white`} style={{ fontFamily: "AlbertFont" }}>
-          <h2 className="text-5xl mb-4">Discover Diriyah:</h2>
-          <p className="text-5xl font-bold mb-4">
-            Virtual Tour of Saudi Arabia's
-          </p>
-          <p className="text-5xl font-bold">Vibrant Marketplace!</p>
+          <h2 className="text-8xl">
+            Saudi Tourism
+            <br /> Metaverse
+          </h2>
         </div>
       </div>
 
       <div className="w-full md:w-1/2 flex justify-center items-center px-8 min-h-screen md:min-h-0">
-        <ForgotPasswordForm verificationString={verificationString} setFailedPasswordChange={setFailedPasswordChange}/>
+        <ForgotPasswordForm
+          verificationString={verificationString}
+          setFailedPasswordChange={setFailedPasswordChange}
+        />
       </div>
-      <PasswordFailedSnackbar open={failedPasswordChange} onClose={() => setFailedPasswordChange(false)} />
+      <PasswordFailedSnackbar
+        open={failedPasswordChange}
+        onClose={() => setFailedPasswordChange(false)}
+      />
     </div>
   );
 };
