@@ -13,7 +13,7 @@ const SocialMedia = () => {
         <Image
           src="/images/facebook-footer.png"
           alt="STC Logo"
-          width={isMobile?34:24}
+          width={isMobile?34:30}
           height={10}
         />
       </div>
@@ -21,7 +21,7 @@ const SocialMedia = () => {
         <Image
           src="/images/instagram-footer.png"
           alt="STC Logo"
-          width={isMobile?34:24}
+          width={isMobile?34:30}
           height={10}
         />
       </div>
@@ -29,7 +29,7 @@ const SocialMedia = () => {
         <Image
           src="/images/twitter-footer.png"
           alt="STC Logo"
-          width={isMobile?34:24}
+          width={isMobile?34:30}
           height={10}
         />
       </div>
@@ -37,7 +37,7 @@ const SocialMedia = () => {
         <Image
           src="/images/linkedin-footer.png"
           alt="STC Logo"
-          width={isMobile?34:24}
+          width={isMobile?34:30}
           height={10}
         />
       </div>
