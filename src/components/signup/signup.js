@@ -23,7 +23,7 @@ import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
 const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplicateEmailModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
-  const [recaptchaSuccess, setRecaptchaSuccess] = useState(false);
+  const [recaptchaSuccess, setRecaptchaSuccess] = useState();
 
   const formikSignup = useFormik({
     initialValues: {
@@ -285,7 +285,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
           }
         />
       </Box>
-      <GoogleRecaptcha recaptchaSuccess={recaptchaSuccess} setRecaptchaSuccess={setRecaptchaSuccess}/>
+      <GoogleRecaptcha recaptchaSuccess={recaptchaSuccess} setRecaptchaSuccess={setRecaptchaSuccess} />
       <Button
         fullWidth
         size="large"

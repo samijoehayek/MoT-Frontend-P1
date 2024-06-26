@@ -18,10 +18,13 @@ import { login } from "@/axios";
 import GoogleLogin from "@/components/google-login/google-login";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
 
 const Login = ({ setMethod, setDuplicateEmailModal }) => {
   const [loginError, setLoginError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [recaptchaSuccess, setRecaptchaSuccess] = useState();
+  const [verificationFailed, setVerificationFailed] = useState();
   const [rememberMe, setRememberMe] = useState(false);
   const router = useRouter();
 
@@ -188,6 +191,16 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
           </p>
         </div>
       ) : null}
+
+      <div className="mt-4">
+        <GoogleRecaptcha
+          recaptchaSuccess={recaptchaSuccess}
+          setRecaptchaSuccess={setRecaptchaSuccess}
+          verificationFailed={verificationFailed}
+          setVerificationFailed={setVerificationFailed}
+        />
+      </div>
+
       <Box
         sx={{
           display: "flex",

@@ -4,7 +4,7 @@ import Image from "next/image";
 const BackgroundImage = ({ imageName }) => {
   return (
     <>
-      <div className="absolute inset-0 flex items-start justify-start p-20 mt-10 ml-10">
+      {/* <div className="absolute inset-0 flex items-start justify-start p-20 mt-10 ml-10">
         <div className={`text-white z-10`} style={{ fontFamily: "AlbertFont" }}>
           <h2 className="text-5xl font-bold mb-4">
             Diriyah Digital Marketplace
@@ -21,6 +21,15 @@ const BackgroundImage = ({ imageName }) => {
             quality={100}
           />
         </div>
+      </div> */}
+      {/* Background Image Section */}
+      <div className="absolute right-0 w-[77%] h-full hidden md:block">
+        <Image
+          src={`/images/${imageName}.png`}
+          alt="Background"
+          fill={true}
+          quality={100}
+        />
       </div>
     </>
   );
