@@ -10,7 +10,7 @@ const HeroSection = () => {
 
   return (
     <div
-      className={"w-full md:w-1/2 py-16 px-8 z-10 md:pt-24 md:pb-36 md:px-16"}
+      className={"w-full xl:w-1/2 py-16 px-8 z-10 sm:pt-24 sm:pb-36 sm:px-16"}
     >
       <div className="flex flex-row">
         <h1
