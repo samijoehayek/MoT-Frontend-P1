@@ -1,3 +1,4 @@
+"use client"; 
 import React from "react";
 import PartOne from "@/components/part-one/part-one";
 import Image from "next/image";

@@ -11,8 +11,9 @@ const Navbar = () => {
   const handleChangeLanguage = (lang) => {
     setLanguage(lang);
   };
+  
   return (
-    <nav className="flex flex-row w-full justify-between z-10 py-4 px-8 md:py-12 md:px-16 ">
+    <nav className="flex flex-row w-full justify-between z-10 py-4 px-8 sm:p-8">
       <StcLogo />
       <div className="flex items-center">
         {/* Add your navbar content here */}

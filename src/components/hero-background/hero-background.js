@@ -1,24 +1,17 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 
 const HeroBackground = () => {
-  const isMobile = useMediaQuery("(max-width: 450px)");
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
-  return isMobile ? (
+  return (
     <div className={`absolute z-0 w-full min-h-screen`}>
       <Image
-        src="/images/hero-mobile.png"
-        alt="Background"
-        fill
-        style={{ objectFit: "cover" }}
-        quality={100}
-      />
-    </div>
-  ) : (
-    <div className={`absolute z-0 w-full min-h-screen`}>
-      <Image
-        src="/images/hero-background.jpg"
+        src={
+          isMobile ? "/images/hero-mobile.png" : "/images/hero-background.jpg"
+        }
         alt="Background"
         fill
         style={{ objectFit: "cover" }}
