@@ -9,6 +9,7 @@ const StcLogo = () => {
         alt="STC Logo"
         width={180}
         height={60}
+        priority
       />
     </div>
   );

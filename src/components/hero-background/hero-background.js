@@ -3,19 +3,29 @@ import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 
 const HeroBackground = () => {
-  const isMobile = useMediaQuery("(max-width: 600px)");
+  const isMobile = useMediaQuery("(max-width: 450px)");
 
-  return (
-    <div className={`absolute z-0 w-full min-h-screen`}>
+  return isMobile ? (
+    <div className={`absolute z-0 `}>
       <Image
-        src={isMobile?"/images/hero-mobile.png":"/images/hero-background.jpg"}
+        src="/images/hero-mobile.png"
         alt="Background"
-        layout="fill"
-        objectFit="cover"
+        width={1920}
+        height={1080}
         quality={100}
       />
     </div>
-  ) 
+  ) : (
+    <div className={`absolute z-0 w-full min-h-screen`}>
+      <Image
+        src="/images/hero-background.jpg"
+        alt="Background"
+        fill
+        style={{ objectFit: "cover" }}
+        quality={100}
+      />
+    </div>
+  );
 };
 
 export default HeroBackground;

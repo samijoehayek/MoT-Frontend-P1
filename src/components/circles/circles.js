@@ -21,7 +21,7 @@ const Circles = () => {
           className="text-white text-center max-w-4xl px-4"
           style={{
             fontFamily: "AlbertFont",
-            fontSize: isMobile ? "1.2rem" : "3rem",
+            fontSize: isMobile ? "1.2rem" : "3.5rem",
             lineHeight: "1.3",
           }}
         >

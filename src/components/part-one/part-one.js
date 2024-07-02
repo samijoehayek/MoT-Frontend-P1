@@ -6,7 +6,16 @@ const PartOne = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className="flex flex-col px-8 py-8 md:px-0 md:justify-center">
+    <div className="flex flex-col px-8 md:px-0">
+      <div className={"absolute opacity-80 z-0 bottom-60 left-40"}>
+        <Image
+          src="/images/number-1.png"
+          alt="Background"
+          width={isMobile ? 140 : 180}
+          height={180}
+          quality={100}
+        />
+      </div>
       <p
         className="flex flex-row text-based text-white md:py-4 md:text-xl"
         style={{
@@ -17,7 +26,7 @@ const PartOne = () => {
       </p>
 
       <h1
-        className="flex flex-row leading-tight text-white text-4xl pt-4 md:text-7xl"
+        className="flex flex-row leading-tight text-white text-4xl pt-4 md:text-6xl 2xl:text-7xl "
         style={{
           fontFamily: "AlbertFont",
         }}
@@ -25,9 +34,10 @@ const PartOne = () => {
         Unveiling Key <br /> Attractions and <br /> Visitor Facilities
       </h1>
       <p
-        className="flex flex-row leading-tight text-white text-small pt-4"
+        className="flex flex-row leading-tight text-white pt-4"
         style={{
           fontFamily: "AlbertFontNormal",
+          fontSize: isMobile ? "1rem" : "1.3rem",
         }}
       >
         Embark on a journey to discover Saudi {isMobile && <br />}Arabia's{" "}
