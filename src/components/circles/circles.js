@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 
 const Circles = () => {
-  const isMobile = useMediaQuery("(max-width: 600px)");
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
   return (
     <div className={"relative w-full"}>
@@ -12,17 +12,16 @@ const Circles = () => {
         <Image
           src={isMobile ? "/images/circles-mobile.png" : "/images/circles.png"}
           alt="Background"
-          width={isMobile ? 450 : 1920}
+          width={isMobile ? 650 : 1920}
           height={isMobile ? 600 : 851}
           quality={100}
         />
       </div>
-      <div className="flex relative z-10 items-center justify-center pt-24 pb-20 md:pt-72 md:pb-40">
+      <div className="flex relative z-10 items-center justify-center pt-24 pb-20 md:pt-40 md:pt-20 lg:pt-72 lg:pb-40">
         <div
-          className="text-white text-center max-w-4xl px-4"
+          className="text-white text-center md:text-4xl lg:text-6xl"
           style={{
             fontFamily: "AlbertFont",
-            fontSize: isMobile ? "1.2rem" : "3.5rem",
             lineHeight: "1.3",
           }}
         >

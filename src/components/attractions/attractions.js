@@ -8,7 +8,7 @@ const Attractions = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className="relative w-full flex flex-col pt-28 xl:flex-row md:justify-center md:pb-20 md:pt-24 md:px-12">
+    <div className="relative w-full flex flex-col pt-28 md:justify-center md:pb-20 md:pt-24 md:px-12 xl:flex-row">
       <PartOne />
       <div className="flex flex-row md:flex-col py-16 md:py-0">
         <Image

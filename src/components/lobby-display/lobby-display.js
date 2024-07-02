@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 
 const LobbyDisplay = () => {
-  const isMobile = useMediaQuery("(max-width: 600px)");
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
   return (
-    <div className="w-full relative flex md:flex-row h-screen">
+    <div className="w-full relative flex h-screen md:flex-row">
       <div className="absolute inset-0">
         <Image
           src={
@@ -23,7 +23,7 @@ const LobbyDisplay = () => {
 
       <div
         className={
-          "absolute inset-0 flex flex-col justify-end text-white text-left z-10 ml-4 mb-16 md:mt-24 md:ml-24 md:mb-24 md:justify-start"
+          "flex flex-col justify-end text-white text-left z-10 ml-4 mb-16 md:my-24 md:ml-24 md:justify-start"
         }
       >
         <h2
@@ -39,7 +39,7 @@ const LobbyDisplay = () => {
         <p
           style={{
             fontFamily: "AlbertFontNormal",
-            fontSize: isMobile?"1.1rem":"1.5rem",
+            fontSize: isMobile ? "1.1rem" : "1.5rem",
             lineHeight: "1.3",
             paddingTop: "1rem",
           }}
@@ -48,9 +48,7 @@ const LobbyDisplay = () => {
           learn more <br /> about your destination.
         </p>
       </div>
-      {isMobile ? (
-        <></>
-      ) : (
+      {!isMobile && (
         <>
           <div className="absolute inset-0">
             <Image
