@@ -6,14 +6,14 @@ const RadialGradientPurple = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className="absolute right-0 opacity-80" style={{ top: "47%" }}>
+    <div className="absolute right-0 opacity-80" style={{ top: isMobile?"39%":"44%" }}>
       <Image
         src="/images/purple-glow.png"
         alt="Background"
-        width={700}
+        width={isMobile?1900:900}
         height={800}
-        objectFit="cover"
         quality={100}
+        style={{ objectFit: "cover" }}
       />
     </div>
   );

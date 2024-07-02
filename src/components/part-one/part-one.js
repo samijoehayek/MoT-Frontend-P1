@@ -7,11 +7,11 @@ const PartOne = () => {
 
   return (
     <div className="flex flex-col px-8 md:px-0">
-      <div className={"absolute opacity-80 z-0 bottom-60 left-40"}>
+      <div className={"absolute opacity-80 z-0 top-8 right-4 md:bottom-60 md:left-40"}>
         <Image
           src="/images/number-1.png"
           alt="Background"
-          width={isMobile ? 140 : 180}
+          width={isMobile ? 120 : 180}
           height={180}
           quality={100}
         />

@@ -9,13 +9,13 @@ const PartThree = () => {
     <div className="flex flex-col flex-[4] pl-8 mt-56 relative text-white md:justify-center md:px-8 md:mt-0">
       <div
         className={
-          "absolute transform z-0 opacity-80 bottom-24 left-52 md:top-44 md:left-32"
+          "absolute transform z-0 opacity-80 bottom-24 left-52 md:top-32 md:left-32"
         }
       >
         <Image
           src="/images/number-2.png"
           alt="Background"
-          width={isMobile ? 200 : 240}
+          width={isMobile ? 200 : 300}
           height={240}
           quality={100}
         />

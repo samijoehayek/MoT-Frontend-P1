@@ -15,15 +15,19 @@ const FooterHero = () => {
           <Image
             src="/images/footer-bg.png"
             alt="Background"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             quality={100}
           />
-          <div className={"justify-end pb-12 absolute inset-0 flex flex-col items-center text-center mt-12 md:justify-center"}>
+          <div
+            className={
+              "justify-end pb-12 absolute inset-0 flex flex-col items-center text-center mt-12 md:justify-center"
+            }
+          >
             <h2
               style={{
                 fontFamily: "AlbertFont",
-                fontSize: isMobile?"2.1rem":"4rem",
+                fontSize: isMobile ? "2.1rem" : "4rem",
                 lineHeight: "1.1",
                 paddingBottom: "1rem",
               }}
@@ -33,7 +37,7 @@ const FooterHero = () => {
             <p
               style={{
                 fontFamily: "AlbertFontNormal",
-                fontSize: isMobile?"1rem":"1.15rem",
+                fontSize: isMobile ? "1rem" : "1.15rem",
                 lineHeight: "1.2",
                 paddingTop: "1.5rem",
               }}
@@ -47,7 +51,7 @@ const FooterHero = () => {
                 mt: 6,
                 mb: 3,
                 borderRadius: "100px",
-                width: isMobile?"65%":"17%",
+                width: isMobile ? "65%" : "17%",
                 height: "3rem",
                 paddingTop: "0.7rem",
                 fontSize: "1rem",
@@ -68,7 +72,9 @@ const FooterHero = () => {
               type="submit"
               variant="contained"
               style={{ fontFamily: "AlbertFontNormal" }}
-              onClick={() => {router.push('/dashboard')}}
+              onClick={() => {
+                router.push("/dashboard");
+              }}
             >
               JOIN THE METAVERSE
             </Button>

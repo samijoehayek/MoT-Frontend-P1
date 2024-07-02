@@ -16,11 +16,11 @@ const PartFive = () => {
       >
         Marketplace
       </p>
-      <div className={"absolute transform z-0 opacity-80 bottom-0 left-40 md:bottom-12 md:left-12"}>
+      <div className={"absolute transform z-0 opacity-80 bottom-0 left-40 md:bottom-4 md:left-12"}>
         <Image
           src="/images/number-3.png"
           alt="Background"
-          width={isMobile ? 240 : 260}
+          width={isMobile ? 240 : 300}
           height={isMobile ? 200 : 240}
           quality={100}
         />

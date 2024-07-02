@@ -38,7 +38,7 @@ const LobbyDisplay = () => {
         <p
           style={{
             fontFamily: "AlbertFontNormal",
-            fontSize: "1.1rem",
+            fontSize: isMobile?"1.1rem":"1.5rem",
             lineHeight: "1.3",
             paddingTop: "1rem",
           }}

@@ -6,12 +6,12 @@ const HeroBackground = () => {
   const isMobile = useMediaQuery("(max-width: 450px)");
 
   return isMobile ? (
-    <div className={`absolute z-0 `}>
+    <div className={`absolute z-0 w-full min-h-screen`}>
       <Image
         src="/images/hero-mobile.png"
         alt="Background"
-        width={1920}
-        height={1080}
+        fill
+        style={{ objectFit: "cover" }}
         quality={100}
       />
     </div>

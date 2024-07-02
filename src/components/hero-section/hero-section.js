@@ -11,10 +11,10 @@ const HeroSection = () => {
   return (
     <div
       className={
-        "w-full flex flex-col justify-between z-10 px-8 py-16 xl:w-1/2  sm:pt-24 sm:pb-36 sm:px-16"
+        "w-full flex flex-col justify-between z-10 px-8 py-8 sm:pt-24 sm:pb-36 sm:px-16 xl:w-1/2"
       }
-      style={{ 
-        minHeight: '90vh',
+      style={{
+        minHeight: "90vh",
       }}
     >
       <div>
@@ -82,7 +82,7 @@ const HeroSection = () => {
           src={`/images/scroll-element.png`}
           alt="Background"
           width={isMobile ? 37 : 50}
-          height={50}
+          height={isMobile ? 50 : 55}
           quality={100}
         />
       </div>
