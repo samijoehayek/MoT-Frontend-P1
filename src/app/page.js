@@ -12,11 +12,8 @@ import Attractions from "@/components/attractions/attractions";
 import BusinessTourism from "@/components/business-tourism/business-tourism";
 import TourismFuture from "@/components/tourism-future/tourism-future";
 import Marketplace from "@/components/marketplace/marketplace";
-import { useMediaQuery } from "@mui/material";
 
 const Home = () => {
-  const isMobile = useMediaQuery("(max-width: 600px)");
-
   return (
     // The following components are the main components of the page
     // The relative class is used to make the the flow components relative to the parent container
