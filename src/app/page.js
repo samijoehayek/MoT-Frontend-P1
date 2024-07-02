@@ -22,19 +22,15 @@ const Home = () => {
   return (
     // The following components are the main components of the page
     // The relative class is used to make the the flow components relative to the parent container
-    <div className="flex flex-col min-h-screen bg-[#101010] relative">
+    <div className="flex flex-col min-h-screen bg-[#101010]">
       <Navbar />
       <HeroBackground />
       <HeroSection />
       <Attractions />
       <Circles />
       <LobbyDisplay />
-      {/* This component is showing the besiness network */}
+      {/* This component is showing the business network */}
       <BusinessTourism />
-      {/* Enter a radial gradient purple here */}
-      <RadialGradientPurple />
-      {/* Enter a radial gradient green here */}
-      <RadialGradientGreen />
       {/* This component is showing the second part of the business network */}
       <TourismFuture />
       <Marketplace />

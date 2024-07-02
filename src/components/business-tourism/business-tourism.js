@@ -2,12 +2,14 @@ import React from "react";
 import PartThree from "@/components/part-three/part-three";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
+import RadialGradientPurple from "../radial-gradient-purple/radial-gradient-purple";
 
 const BusinessTourism = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className={"flex flex-col md:flex-row md:px-12"}>
+    <div className={"flex flex-col md:flex-row md:px-12 relative"}>
+      <RadialGradientPurple />
       {isMobile ? (
         <>
           <PartThree />

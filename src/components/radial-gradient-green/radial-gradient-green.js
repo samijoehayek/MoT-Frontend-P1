@@ -6,7 +6,7 @@ const RadialGradientGreen = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className="absolute left-0 opacity-80" style={{ top: isMobile?"62%":"55%" }}>
+    <div className="absolute left-0 opacity-80" style={{ top: isMobile&&"87%"}}>
       <Image
         src="/images/green-glow.png"
         alt="Background"
