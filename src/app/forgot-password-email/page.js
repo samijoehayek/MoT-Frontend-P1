@@ -1,6 +1,6 @@
 "use client";
-import React, {useState} from "react";
-import bg from "../../../public/images/forgot-password-bg1.png";
+import React, { useState } from "react";
+import bg from "../../../public/images/login-bg6.jpg";
 import Image from "next/image";
 import { Button, Typography, Box, TextField } from "@mui/material";
 import EmailConfirmationModal from "@/components/email-confirmation-modal/email-confirmation-modal";
@@ -42,7 +42,6 @@ const ForgotPasswordEmail = () => {
           .catch((error) => {
             console.log("Email is not Sent: ", error);
           });
-
       } catch (err) {
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
@@ -62,15 +61,13 @@ const ForgotPasswordEmail = () => {
         onClose={() => {
           setEmailConfirmationModal(false);
         }}
-      /> 
+      />
       {/* Text Section */}
-      <div className="relative md:block hidden flex justify-center items-center px-8 mb-20">
+      <div className="relative md:block hidden px-8">
         <div className={`text-white`} style={{ fontFamily: "AlbertFont" }}>
-          <h2 className="text-5xl mb-4">Discover Diriyah:</h2>
-          <p className="text-5xl font-bold mb-4">
-            Virtual Tour of Saudi Arabia's
-          </p>
-          <p className="text-5xl font-bold">Vibrant Marketplace!</p>
+          <h2 className="text-8xl">
+            Saudi Tourism <br /> Metaverse
+          </h2>
         </div>
       </div>
 
@@ -119,13 +116,9 @@ const ForgotPasswordEmail = () => {
                 Email
               </Typography>
               <TextField
-                error={
-                  !!(formik.touched.email && formik.errors.email)
-                }
+                error={!!(formik.touched.email && formik.errors.email)}
                 fullWidth
-                helperText={
-                  formik.touched.email && formik.errors.email
-                }
+                helperText={formik.touched.email && formik.errors.email}
                 label="Email"
                 name="email"
                 onBlur={formik.handleBlur}
@@ -181,8 +174,7 @@ const ForgotPasswordEmail = () => {
                     "0 0 20px rgba(120, 95, 220, 0.8), 0 0 30px rgba(50, 210, 160, 0.6)",
                 },
                 background:
-                  formik.values.email &&
-                  !formik.errors.email
+                  formik.values.email && !formik.errors.email
                     ? "linear-gradient(101.34deg, #785FDC 6.25%, #32D2A0 96.25%) !important"
                     : "#36373E !important",
                 "&:hover": {

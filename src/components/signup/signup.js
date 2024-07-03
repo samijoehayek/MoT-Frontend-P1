@@ -20,10 +20,15 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import Link from "next/link";
 import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
 
-const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplicateEmailModal }) => {
+const Signup = ({
+  setMethod,
+  setEmailConfirmationModal,
+  setUserEmail,
+  setDuplicateEmailModal,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
-  const [recaptchaSuccess, setRecaptchaSuccess] = useState(false);
+  const [recaptchaSuccess, setRecaptchaSuccess] = useState();
 
   const formikSignup = useFormik({
     initialValues: {
@@ -50,7 +55,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
             setEmailConfirmationModal(true);
           })
           .catch((error) => {
-            if(error.response.status === 409) {
+            if (error.response.status === 409) {
               setDuplicateEmailModal(true);
             }
             console.log("Login failed: ", error);
@@ -285,7 +290,10 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
           }
         />
       </Box>
-      <GoogleRecaptcha recaptchaSuccess={recaptchaSuccess} setRecaptchaSuccess={setRecaptchaSuccess}/>
+      <GoogleRecaptcha
+        recaptchaSuccess={recaptchaSuccess}
+        setRecaptchaSuccess={setRecaptchaSuccess}
+      />
       <Button
         fullWidth
         size="large"
@@ -340,7 +348,8 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
         formikSignup.values.password &&
         formikSignup.values.email &&
         !formikSignup.errors.email &&
-        privacyPolicy && recaptchaSuccess ? (
+        privacyPolicy &&
+        recaptchaSuccess ? (
           <p className="mt-1">JOIN THE METAVERSE</p>
         ) : (
           <p className="mt-1">SIGN UP</p>
