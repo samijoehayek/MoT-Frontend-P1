@@ -72,7 +72,7 @@ const Dashboard = () => {
           router.push("/");
           setUserSession(res);
         } else {
-          localStorage.setItem("isActive", true);
+          localStorage.setItem("isActive", false);
           setUserSession(res);
           setLoadWebGL(true);
         }
@@ -80,7 +80,7 @@ const Dashboard = () => {
         // If the user does not have an existing session, create a new one
         createUserSessions()
           .then((res) => {
-            localStorage.setItem("isActive", true);
+            localStorage.setItem("isActive", false);
             setUserSession(res);
             setLoadWebGL(true);
           })
