@@ -86,8 +86,8 @@ const GoogleRecaptcha = ({
         "&:hover": getButtonColor(),
         width: "100%",
         height: "3.2rem",
+        justifyContent: "start",
       }}
-      className="justify-start"
       startIcon={
         loading ? (
           <CircularProgress size={20} style={{ color: "#C8C8C8" }} />
