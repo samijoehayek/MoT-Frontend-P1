@@ -41,3 +41,10 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer base {
+  img {
+      width: auto;
+      height: auto;
+  }
+}
