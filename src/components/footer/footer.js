@@ -5,7 +5,6 @@ import StcLogo from "../stc-logo/stc-logo";
 import FooterCopyright from "../footer-copyright/footer-copyright";
 
 const Footer = () => {
-
   return (
     // Footer Component
     <div className="w-full flex flex-col bg-[#18191C]">

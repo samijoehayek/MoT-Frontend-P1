@@ -21,7 +21,7 @@ const Restaurants = () => {
                 : "/images/video-portal-full.png"
             }
             alt="Background"
-            width={isMobile ? 650 : 1150}
+            width={isMobile ? 650 : 1950}
             height={600}
             quality={100}
           />
@@ -46,7 +46,7 @@ const Restaurants = () => {
               "flex flex-col w-full md:flex-row"
             }
           >
-            <div className="w-full md:w-1/2"></div>
+            <div className="w-full h-full md:w-1/2"></div>
             <div
               className="w-full md:w-1/2 md:pl-36"
               style={{
