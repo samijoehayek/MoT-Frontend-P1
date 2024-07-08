@@ -29,7 +29,7 @@ const socialMediaLinks = [
 
 const SocialMedia = () => {
   const router = useRouter();
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   return (
     <div className="flex flex-row justify-center">
