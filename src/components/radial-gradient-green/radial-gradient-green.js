@@ -3,7 +3,7 @@ import React from "react";
 
 const RadialGradientGreen = () => {
   return (
-    <div className="absolute left-0 opacity-80 w-[100%] h-[180%]">
+    <div className="absolute left-0 opacity-80 w-[100%] h-[180%] lg:h-[100%] lg:w-[40%] lg:mt-40">
       <Image
         src="/images/green-glow.png"
         alt="Background"

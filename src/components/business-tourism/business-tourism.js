@@ -6,7 +6,7 @@ import { useMediaQuery } from "@mui/material";
 import RadialGradientPurple from "../radial-gradient-purple/radial-gradient-purple";
 
 const BusinessTourism = () => {
-  const isMobile = useMediaQuery("(max-width: 600px)");
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   return (
     <div className={"flex flex-col md:flex-row md:px-12 relative"}>
