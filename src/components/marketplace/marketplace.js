@@ -1,22 +1,13 @@
-"use client";
 import React from "react";
-import Image from "next/image";
 import VirtualMarketplace from "../virtual-marketplace/virtual-marketplace";
+import VillaImage from "../villa-image/villa-image";
 
 const Marketplace = () => {
 
   return (
-    <div className="flex flex-col py-20 md:flex-row md:px-12">
+    <div className="flex flex-col py-20 md:flex-row md:px-20 xl:pl-40 xl:pr-30">
       <VirtualMarketplace />
-      <div className="flex flex-col items-center md:flex-[5] md:pb-48">
-        <Image
-          src="/images/villa.png"
-          alt="Background"
-          width={700}
-          height={500}
-          quality={100}
-        />
-      </div>
+      <VillaImage />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const CirclesImage = () => {
     const isMobile = useMediaQuery("(max-width: 767px)");
 
   return (
-    <div className="absolute z-10 w-[100%] h-[125%] top-[10%] md:w-[65%] md:h-[195%] md:top-[-45%] lg:w-[65%] lg:h-[190%] lg:top-[-45%] xl:w-[60%] xl:h-[205%] xl:top-[-50%] 2xl:w-[58%] 2xl:h-[235%] 2xl:top-[-70%]">
+    <div className="absolute z-10 w-[100%] h-[125%] top-[10%] md:w-[65%] md:h-[195%] md:top-[-45%] lg:w-[70%] lg:h-[190%] lg:top-[-45%] xl:w-[65%] xl:h-[205%] xl:top-[-50%] 2xl:w-[63%] 2xl:h-[235%] 2xl:top-[-70%]">
       <Image
         src={
           isMobile
