@@ -9,10 +9,10 @@ const RestaurantBox = () => {
           <div className="w-full h-full lg:w-[55%]" />
 
           <div className="w-full lg:w-[45%] order-1 lg:order-2 text-white mt-8 lg:mt-0">
-            <h2 className="font-[AlbertFont] text-[2.3rem] lg:text-[3rem] xl:text-[4rem] leading-[1.1] pb-4 pt-4 lg:pt-0 text-center lg:text-left">
+            <h2 className="font-[AlbertFont] text-[2.3rem] lg:text-[2.8rem] xl:text-[3.5rem] leading-[1.1] pb-4 pt-4 lg:pt-0 text-center md:text-left">
               Lively mix of world <br /> class eateries
             </h2>
-            <p className="font-[AlbertFontNormal] text-base lg:text-[1.2rem] xl:text-[1.4rem] leading-[1.2] pt-4 text-center lg:text-left">
+            <p className="font-[AlbertFontNormal] text-base lg:text-[1.2rem] xl:text-[1.4rem] leading-[1.2] pt-4 text-center md:text-left">
               Virtual wonderland delivering a unique <br /> online destination
               for delightful culinary <br /> and cultural experiences.
             </p>

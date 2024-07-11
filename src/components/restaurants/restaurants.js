@@ -4,7 +4,7 @@ import CirclesImage from "../circles-image/circles-image";
 
 const Restaurants = () => {
   return (
-    <div className="relative">
+    <div className="relative pt-20">
       <CirclesImage />
       <RestaurantBox />
     </div>

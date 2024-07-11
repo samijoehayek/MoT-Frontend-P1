@@ -1,43 +1,15 @@
-"use client";
 import React from "react";
-import PartThree from "@/components/part-three/part-three";
-import Image from "next/image";
-import { useMediaQuery } from "@mui/material";
 import RadialGradientPurple from "../radial-gradient-purple/radial-gradient-purple";
+import InvestmentOpportunities from "../investment-opportunities/investment-opportunities";
+import SofasImage from "../sofas-image/sofas-image";
 
 const BusinessTourism = () => {
-  const isMobile = useMediaQuery("(max-width: 1023px)");
-
   return (
-    <div className={"flex flex-col md:flex-row md:px-12 relative"}>
+    <div className="flex flex-col pt-40 px-10 sm:justify-center md:items-center md:flex-row md:py-20 md:px-20 md:items-start">
       <RadialGradientPurple />
-      {isMobile ? (
-        <>
-          <PartThree />
-          <div className="flex flex-col items-center ml-4">
-            <Image
-              src="/images/sofas-vis.png"
-              alt="Background"
-              width={420}
-              height={500}
-              quality={100}
-            />
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="flex-[5] flex flex-col items-center pb-40">
-            <Image
-              src="/images/sofas-vis.png"
-              alt="Background"
-              width={600}
-              height={500}
-              quality={100}
-            />
-          </div>
-          <PartThree />
-        </>
-      )}
+      <InvestmentOpportunities />
+      <div className="order-2 md:min-w-[10px] lg:min-w-[50px] xl:min-w-[100px] 2xl:min-w-[200px]"></div>
+      <SofasImage />
     </div>
   );
 };

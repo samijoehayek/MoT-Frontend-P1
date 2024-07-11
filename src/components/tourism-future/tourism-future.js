@@ -1,24 +1,15 @@
-"use client";
 import React from "react";
-import Image from "next/image";
 import RadialGradientGreen from "../radial-gradient-green/radial-gradient-green";
 import KsaNetwork from "../ksa-network/ksa-network";
+import LobbyImage from "../lobby-image/lobby-image";
 
 const TourismFuture = () => {
-
   return (
-    <div className={`flex flex-col md:flex-row md:px-8 md:py-8 xl:pl-40`}>
+    <div className="flex flex-col pt-40 items-center sm:justify-center md:flex-row md:py-20 md:px-20 md:items-start">
       <RadialGradientGreen />
       <KsaNetwork />
-      <div className="flex flex-col px-4 py-4 lg:px-20 lg:py-20 items-center md:flex-[5]">
-        <Image
-          src="/images/avatar-visuals.png"
-          alt="Background"
-          width={450}
-          height={400}
-          quality={100}
-        />
-      </div>
+      <div className="md:min-w-[60px] lg:min-w-[100px] xl:min-w-[200px] 2xl:min-w-[340px]"></div>
+      <LobbyImage />
     </div>
   );
 };

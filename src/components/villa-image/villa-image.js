@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const VillaImage = () => {
   return (
-    <div className="flex flex-col justify-center md:justify-start md:flex-[5] lg:pt-8 xl:pt-0 2xl:pb-40">
+    <div className="flex flex-col justify-start sm:max-w-[400px] md:max-w-[330px] lg:justify-start lg:max-w-[450px] xl:max-w-[550px] 2xl:max-w-[700px]">
       <Image
         src="/images/villa.png"
         alt="Background"

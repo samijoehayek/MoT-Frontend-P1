@@ -1,20 +1,16 @@
 import Image from "next/image";
 import React from "react";
-import { useMediaQuery } from "@mui/material";
 
 const RadialGradientPurple = () => {
-  const isMobile = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className="absolute right-0 opacity-80" style={{ top: isMobile&&"10%" }}>
+    <div className="absolute right-0 opacity-80 w-[100%] h-[180%] lg:h-[100%] lg:w-[40%] lg:mt-80">
       <Image
         src="/images/purple-glow.png"
         alt="Background"
-        width={isMobile?1900:900}
-        height={800}
-        
+        fill
+        style={{ objectFit: "fill" }}
         quality={100}
-        style={{ objectFit: "cover" }}
       />
     </div>
   );
