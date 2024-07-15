@@ -1,16 +1,18 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import HeroBackgroundImage from "../../../public/images/hero-background.jpg";
+import HeroBackgroundImageMobile from "../../../public/images/hero-mobile.png";
 import { useMediaQuery } from "@mui/material";
 
 const HeroBackground = () => {
   const isMobile = useMediaQuery("(max-width: 640px)");
 
   return (
-    <div className={`absolute z-0 w-full min-h-screen`}>
+    <div className={`absolute z-0 w-full min-h-[110%]`}>
       <Image
         src={
-          isMobile ? "/images/hero-mobile.png" : "/images/hero-background.jpg"
+          isMobile ? HeroBackgroundImageMobile : HeroBackgroundImage
         }
         alt="Background"
         fill

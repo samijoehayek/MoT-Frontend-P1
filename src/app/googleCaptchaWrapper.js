@@ -5,7 +5,15 @@ import React from "react";
 export default function GoogleCaptchaWrapper({ children }) {
   const recaptchaKey = process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}
+      scriptProps={{
+        async: false,
+        defer: false,
+        appendTo: "head",
+        nonce: undefined,
+      }}
+    >
       {children}
     </GoogleReCaptchaProvider>
   );

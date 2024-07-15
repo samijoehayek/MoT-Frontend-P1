@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import NumberTwo from "../../../public/images/number-2.png";
 import { useMediaQuery } from "@mui/material";
 
 const InvestmentOpportunities = () => {
@@ -10,7 +11,7 @@ const InvestmentOpportunities = () => {
     <div className="relative flex flex-col order-1 md:order-3 justify-center text-start md:min-h-[450px] lg:min-h-[600px] xl:min-h-[700px] 2xl:max-h-[800px] 2xl:pt-32">
       <div className="absolute z-0 opacity-80 w-[180px] h-[300px] right-[4%] bottom-[20%] sm:right-[0%] md:w-[160px] md:h-[250px] md:right-[15%] md:top-[0%] lg:top-[7%] 2xl:w-[260px] 2xl:h-[380px] lg:left-[10%] xl:left-[15%] xl:top-[12%] 2xl:top-[17%] 2xl:left-[8%]">
         <Image
-          src="/images/number-2.png"
+          src={NumberTwo}
           alt="Background"
           fill
           style={{ objectFit: "fill" }}

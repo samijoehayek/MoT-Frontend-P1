@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useMediaQuery } from "@mui/material";
+import NumberThree from "../../../public/images/number-3.png";
 import Image from "next/image";
 
 const VirtualMarketplace = () => {
@@ -10,7 +11,7 @@ const VirtualMarketplace = () => {
     <div className="relative flex flex-col justify-center text-center md:text-start md:min-h-[450px] lg:min-h-[600px] xl:min-h-[700px] 2xl:max-h-[800px] 2xl:pt-32">
       <div className="absolute z-0 opacity-80 w-[180px] h-[300px] right-[4%] bottom-[5%] sm:right-[0%] md:w-[160px] md:h-[250px] md:right-[20%] md:top-[5%] lg:top-[7%] 2xl:w-[260px] 2xl:h-[380px] lg:left-[10%] xl:left-[15%] xl:top-[12%] 2xl:top-[17%] 2xl:left-[8%]">
         <Image
-          src="/images/number-3.png"
+          src={NumberThree}
           alt="Background"
           fill
           style={{ objectFit: "fill" }}

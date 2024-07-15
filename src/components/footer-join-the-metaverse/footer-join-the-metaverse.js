@@ -8,7 +8,7 @@ const FooterJoinTheMetaverse = () => {
 
   return (
     <Button
-      className="w-[65%] lg:w-[22%]"
+      className="w-[65%] lg:w-[22%] font-[AlbertFontNormal]"
       sx={{
         mt: 6,
         mb: 3,
@@ -32,7 +32,6 @@ const FooterJoinTheMetaverse = () => {
       }}
       type="submit"
       variant="contained"
-      style={{ fontFamily: "AlbertFontNormal" }}
       onClick={() => {
         router.push("/dashboard");
       }}

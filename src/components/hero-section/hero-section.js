@@ -10,32 +10,15 @@ const HeroSection = () => {
   const router = useRouter();
 
   return (
-    <div
-      className={
-        "w-full flex flex-col justify-between z-10 px-8 py-8 sm:pt-24 sm:pb-36 sm:px-16 xl:w-1/2"
-      }
-      style={{
-        minHeight: "90vh",
-      }}
-    >
+    <div className="w-full h-[85vh] flex flex-col justify-between px-4 md:px-20 pt-20 z-10 lg:w-1/2">
       <div>
         <div className="flex flex-row">
-          <h1
-            className="flex flex-row text-white text-4xl leading-tight pb-4 md:text-7xl"
-            style={{
-              fontFamily: "AlbertFont",
-            }}
-          >
+          <h1 className="font-[AlbertFont] flex flex-row text-white leading-tight pb-4 text-[2rem] lg:text-[3.5rem] xl:text-[4.7rem] 2xl:text-[6rem]">
             Saudi Tourism Metaverse
           </h1>
         </div>
         <div className="flex flex-row">
-          <p
-            className="flex flex-row text-white text-base md:text-lg"
-            style={{
-              fontFamily: "AlbertFontNormal",
-            }}
-          >
+          <p className="font-[AlbertFontNormal] text-white leading-[1.2] text-base lg:text-[1.1rem] xl:text-[1.5rem] 2xl:text-[1.7rem]">
             Begin a remarkable metaverse trip, {isMobile && <br />}exploring{" "}
             {!isMobile && <br />}Saudi Arabia's beauty, landscapes,{" "}
             {isMobile && <br />}cuisine, and{!isMobile && <br />} debating with
@@ -44,11 +27,11 @@ const HeroSection = () => {
         </div>
         <div className="flex flex-row">
           <Button
+            className="w-[70%] xl:w-[45%] font-[AlbertFontNormal]"
             sx={{
               mt: 6,
               mb: 3,
               borderRadius: "100px",
-              width: isMobile ? "70%" : "45%",
               height: "3rem",
               paddingTop: "0.7rem",
               fontSize: "1rem",
@@ -66,10 +49,8 @@ const HeroSection = () => {
                 color: "rgba(255, 255, 255, 0.5)",
               },
             }}
-            className="flex flex-row"
             type="submit"
             variant="contained"
-            style={{ fontFamily: "AlbertFontNormal" }}
             onClick={() => {
               router.push("/dashboard");
             }}

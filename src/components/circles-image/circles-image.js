@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { useMediaQuery } from "@mui/material";
+import VideoCircle from "../../../public/images/video-portal-full.png";
+import VideoCircleMobile from "../../../public/images/circle-mobile.png";
 import Image from "next/image";
 
 const CirclesImage = () => {
@@ -11,8 +13,8 @@ const CirclesImage = () => {
       <Image
         src={
           isMobile
-            ? "/images/circle-mobile.png"
-            : "/images/video-portal-full.png"
+            ? VideoCircleMobile
+            : VideoCircle
         }
         alt="Background"
         fill

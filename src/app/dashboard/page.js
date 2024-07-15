@@ -7,6 +7,7 @@ import {
   getUserSession,
   createUserSession,
 } from "@/axios";
+import STCLogo from "../../../public/images/stc-logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -176,7 +177,7 @@ const Dashboard = () => {
             >
               <div className="w-3/4 flex flex-col items-center mb-16">
                 <Image
-                  src="/images/stc-logo.png"
+                  src={STCLogo}
                   alt="STC Logo"
                   width={240}
                   height={80}

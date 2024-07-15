@@ -8,6 +8,7 @@ import EmailConfirmationModal from "@/components/email-confirmation-modal/email-
 import Login from "@/components/login/login";
 import Signup from "@/components/signup/signup";
 import { AppContext } from "../../app/appContext";
+import STCLogo from "../../../public/images/stc-logo.png";
 import DuplicateEmailModal from "../duplicate-email-modal/duplicate-email-modal";
 
 const JoinTheMetaverse = () => {
@@ -84,7 +85,7 @@ const JoinTheMetaverse = () => {
         >
           <div className="mb-16">
             <Image
-              src="/images/stc-logo.png"
+              src={STCLogo}
               alt="STC Logo"
               width={150}
               height={50}

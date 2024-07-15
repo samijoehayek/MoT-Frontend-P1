@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import FooterBgImage from "../../../public/images/footer-bg.png";
 
 const FooterBackgroundImage = () => {
   return (
     <Image
-      src="/images/footer-bg.png"
+      src={FooterBgImage}
       alt="Background"
       fill
       style={{ objectFit: "cover" }}

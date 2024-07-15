@@ -1,20 +1,18 @@
-"use client"; 
 import React from "react";
-import PartOne from "@/components/part-one/part-one";
 import Image from "next/image";
-import { useMediaQuery } from "@mui/material";
+import Facilities from "../facilities/facilities";
 
 const Attractions = () => {
-  const isMobile = useMediaQuery("(max-width: 600px)");
-
   return (
-    <div className="relative w-full flex flex-col pt-28 md:justify-center md:pb-20 md:pt-24 md:px-12 xl:flex-row">
-      <PartOne />
-      <div className="flex flex-row md:flex-col py-16 md:py-0">
+    <div className="flex flex-col pt-60 sm:justify-center sm:items-center md:flex-row md:py-20 md:px-20">
+      <Facilities />
+      <div className="md:min-w-[10px] lg:min-w-[50px] xl:min-w-[100px] 2xl:min-w-[100px]"></div>
+
+      <div className="flex flex-col justify-center items-center sm:max-w-[500px] md:max-w-[390px] lg:max-w-[550px] xl:max-w-[650px] 2xl:max-w-[900px]">
         <Image
           src="/images/new-map.png"
           alt="Background"
-          width={isMobile ? 500 : 1050}
+          width={900}
           height={500}
           quality={100}
         />

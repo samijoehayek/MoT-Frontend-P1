@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import STCLogo from "../../../public/images/stc-logo.png";
 
 const PrivacyPolicy = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#1A1B22] px-8 py-10">
       <div className="self-start mb-10">
         <Image
-          src="/images/stc-logo.png"
+          src={STCLogo}
           alt="STC Logo"
           width={150}
           height={60}

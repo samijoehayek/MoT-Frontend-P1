@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Button, Typography, DialogContentText } from "@mui/material";
 import React, { useEffect } from "react";
 import Image from "next/image";
+import STCLogo from "../../../public/images/stc-logo.png";
 import BackgroundImage from "@/components/background-image/background-image";
 
 const VerifyEmail = () => {
@@ -28,7 +29,7 @@ const VerifyEmail = () => {
       <div className="flex flex-col md:flex-row h-screen bg-[#1A1B22]">
         <div className="absolute top-0 left-0 mt-8 ml-8">
           <Image
-            src="/images/stc-logo.png"
+            src={STCLogo}
             alt="STC Logo"
             width={150}
             height={60}
