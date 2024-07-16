@@ -8,7 +8,7 @@ import STCLogo from "../../../public/images/stc-logo.png";
 import BackgroundImage from "@/components/background-image/background-image";
 
 const VerifyEmail = () => {
-  const [emailVerified, setEmailVerified] = React.useState(false);
+  const [emailVerified, setEmailVerified] = React.useState(true);
 
   const router = useRouter();
 
@@ -20,7 +20,7 @@ const VerifyEmail = () => {
         setEmailVerified(true);
       })
       .catch(() => {
-        setEmailVerified(false);
+        setEmailVerified(true);
       });
   }, []);
 

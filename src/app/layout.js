@@ -14,9 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppProvider>
-          <GoogleCaptchaWrapper>{children}</GoogleCaptchaWrapper>
-        </AppProvider>
+        <GoogleCaptchaWrapper>
+          <AppProvider>{children}</AppProvider>
+        </GoogleCaptchaWrapper>
       </body>
     </html>
   );

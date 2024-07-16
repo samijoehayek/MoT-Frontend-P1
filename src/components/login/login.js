@@ -251,12 +251,12 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
           mb: 3,
           borderRadius: "100px",
           background:
-            formik.values.username && formik.values.password
+            formik.values.username && formik.values.password && recaptchaSuccess
               ? "linear-gradient(101.34deg, #785FDC 6.25%, #32D2A0 96.25%) !important"
               : "#36373E !important",
           "&:hover": {
             background:
-              formik.values.username && formik.values.password
+              formik.values.username && formik.values.password && recaptchaSuccess
                 ? "linear-gradient(101.34deg, #785FDC 6.25%, #32D2A0 96.25%)"
                 : "#36373E",
           },
@@ -269,7 +269,7 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
         }}
         type="submit"
         variant="contained"
-        disabled={!formik.values.username || !formik.values.password}
+        disabled={!formik.values.username || !formik.values.password || !recaptchaSuccess}
         style={{ fontFamily: "AlbertFontNormal" }}
       >
         {formik.values.username && formik.values.password ? (

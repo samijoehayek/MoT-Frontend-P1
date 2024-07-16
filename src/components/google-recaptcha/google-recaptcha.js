@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Checkbox,
-  FormControlLabel,
-  Link,
-  Button,
-  Typography,
-  CircularProgress,
-} from "@mui/material";
+import { Checkbox, Button, Typography, CircularProgress } from "@mui/material";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { CheckCircle, Cancel } from "@mui/icons-material";
 import axios from "axios";
@@ -90,11 +82,11 @@ const GoogleRecaptcha = ({
       className="justify-start"
       startIcon={
         loading ? (
-          <CircularProgress size={20} style={{ color: "#C8C8C8" }}/>
+          <CircularProgress size={20} style={{ color: "#C8C8C8" }} />
         ) : recaptchaSuccess ? (
-          <CheckCircle style={{ color: "#32D2A0" }}/>
+          <CheckCircle style={{ color: "#32D2A0" }} />
         ) : verificationFailed ? (
-          <Cancel style={{ color: "#FF5A5A"}} />
+          <Cancel style={{ color: "#FF5A5A" }} />
         ) : (
           <Checkbox
             checked={recaptchaSuccess}
