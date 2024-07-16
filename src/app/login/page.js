@@ -19,7 +19,7 @@ const LoginPage = () => {
       {/* Content Wrapper */}
       <div className="relative z-10 flex h-full">
         {/* Login Form Section */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-center">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
           <JoinTheMetaverse />
         </div>
       </div>

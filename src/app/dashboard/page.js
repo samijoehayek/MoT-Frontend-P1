@@ -2,12 +2,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { useMediaQuery } from "react-responsive";
-import bg from "../../../public/images/webgl-loader.jpg";
-import {
-  getUserSession,
-  createUserSession,
-} from "@/axios";
-import STCLogo from "../../../public/images/stc-logo.png";
+import bg from "../../../public/images/webgl-loader2.jpg";
+import { getUserSession, createUserSession } from "@/axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -76,7 +72,7 @@ const Dashboard = () => {
           router.push("/");
           setUserSession(res);
         } else {
-          localStorage.setItem("isActive", true);
+          localStorage.setItem("isActive", false);
           setUserSession(res);
           setLoadWebGL(true);
         }
@@ -84,7 +80,7 @@ const Dashboard = () => {
         // If the user does not have an existing session, create a new one
         createUserSessions()
           .then((res) => {
-            localStorage.setItem("isActive", true);
+            localStorage.setItem("isActive", false);
             setUserSession(res);
             setLoadWebGL(true);
           })
@@ -103,7 +99,8 @@ const Dashboard = () => {
       url.match(/\.bundle/) ||
       url.match(/\.wasm/) ||
       url.match(/\.unityweb/) ||
-      url.match(/\.gz/)
+      url.match(/\.gz/) ||
+      url.match(/\.local/)
     ) {
       return "must-revalidate";
     }
@@ -171,34 +168,18 @@ const Dashboard = () => {
         <style>{animationStyles}</style>
         <Fragment>
           {!isLoaded && (
-            <div
-              className={"w-screen h-screen flex justify-center items-center"}
-              style={styling}
-            >
-              <div className="w-3/4 flex flex-col items-center mb-16">
+            <div className={"w-screen h-screen flex flex-col"} style={styling}>
+              {/* This is the Logo */}
+              <div className="w-full flex justify-center mt-8">
                 <Image
-                  src={STCLogo}
+                  src="/images/stc-logo.png"
                   alt="STC Logo"
                   width={240}
                   height={80}
                 />
-                <h1
-                  className={`font-sans text-5xl font-bold text-white mb-16 mt-24 text-center`}
-                  style={{ fontFamily: "AlbertFont" }}
-                >
-                  Saudi Tourism Metaverse Loading...
-                </h1>
-                <div className="relative w-4/5 rounded-full overflow-hidden mb-2">
-                  <div
-                    className="h-1 bg-white"
-                    style={{ width: `${loadingProgression * 100}%` }}
-                  ></div>
-                </div>
-                <div className="flex justify-end text-white mt-2 mb-12">
-                  <span className="text-sm">
-                    {Math.round(loadingProgression * 100)}%
-                  </span>
-                </div>
+              </div>
+              {/* This is the title and sentences animation */}
+              <div className="flex flex-grow flex-col justify-center items-center">
                 <div
                   className={`mt-4 text-white text-center`}
                   style={sentenceStyling}
@@ -213,6 +194,29 @@ const Dashboard = () => {
                       {sentence}
                     </div>
                   ))}
+                </div>
+                <h1
+                  className={`font-sans text-5xl font-bold text-white mb-16 mt-4 text-center`}
+                  style={{ fontFamily: "AlbertFont" }}
+                >
+                  Saudi Tourism Metaverse Loading...
+                </h1>
+              </div>
+              {/* This is the loader */}
+              <div className="flex flex-col items-center my-16 mx-16">
+                <div className="w-full flex flex-row justify-between text-white mb-2">
+                  <span className="text-sm">Loading...</span>
+                  <span className="text-sm">
+                    {Math.round(loadingProgression * 100)}%
+                  </span>
+                </div>
+                <div className="w-full rounded-full overflow-hidden">
+                  <div
+                    className="h-2 bg-white"
+                    style={{
+                      width: `${loadingProgression * 100}%`
+                    }}
+                  ></div>
                 </div>
               </div>
             </div>

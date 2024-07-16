@@ -13,7 +13,7 @@ import { styled } from "@mui/system";
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
-    backgroundColor: "rgba(163, 163, 163, 0.4)",
+    backgroundColor: "rgba(255, 255, 255, 1)",
     backdropFilter: "blur(8px)",
     borderRadius: "60px",
     padding: theme.spacing(3),
@@ -69,12 +69,12 @@ const EmailConfirmationModal = ({ email, open, onClose }) => {
         <Typography
           variant="h5"
           component="div"
-          sx={{ color: "#ffffff", marginBottom: "22px", marginTop: "16px", fontSize: '1.8rem'}}
+          sx={{ color: "#000000", marginBottom: "22px", marginTop: "16px", fontSize: '1.8rem'}}
           style={{ fontFamily: "AlbertFont" }}
         >
           Email Confirmation Sent!
         </Typography>
-        <DialogContentText sx={{ color: "#ffffff", fontSize: '1.1rem'}} style={{ fontFamily: 'AlbertFontNormal'}}>
+        <DialogContentText sx={{ color: "#000000", fontSize: '1.1rem'}} style={{ fontFamily: 'AlbertFontNormal'}}>
           An email confirmation has been sent to
         </DialogContentText>
         <Typography
