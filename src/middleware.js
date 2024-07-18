@@ -4,14 +4,14 @@ import { verifyAuth } from "./lib/auth";
 export async function middleware(req) {
   const token = req.cookies.get("token")?.value;
   const verifiedToken =
-    token && (await verifyAuth(token).catch((err) => console.log(err)));
+    token && (await verifyAuth(token));
 
   if (req.nextUrl.pathname.startsWith("/dashboard") && verifiedToken) {
-    console.log(token);
-    console.log(verifiedToken);
+    console.log("Verified Token", verifiedToken);
     return;
   }
   if (req.nextUrl.pathname.startsWith("/dashboard") && !verifiedToken) {
+    console.log("Verified Token", verifiedToken);
     return NextResponse.redirect(new URL("/login", req.url));
   }
 

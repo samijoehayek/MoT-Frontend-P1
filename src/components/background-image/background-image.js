@@ -6,7 +6,7 @@ const BackgroundImage = ({ imageName }) => {
     <>
 
       {/* Background Image Section */}
-      <div className="absolute right-0 w-[77%] h-full hidden lg:block">
+      <div className="absolute right-0 w-[100%] xl:w-[77%] h-full hidden lg:block">
         <Image
           src={`/images/${imageName}.png`}
           alt="Background"
