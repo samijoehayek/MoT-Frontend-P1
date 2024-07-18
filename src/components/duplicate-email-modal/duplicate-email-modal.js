@@ -12,7 +12,7 @@ import DangerousIcon from "@mui/icons-material/Dangerous";
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
-    backgroundColor: "rgba(163, 163, 163, 0.4)",
+    backgroundColor: "rgba(255, 255, 255, 1)",
     backdropFilter: "blur(8px)",
     borderRadius: "60px",
     padding: theme.spacing(3),
@@ -69,7 +69,7 @@ const DuplicateEmailModal = ({ open, onClose }) => {
           variant="h5"
           component="div"
           sx={{
-            color: "#ffffff",
+            color: "#000000",
             marginBottom: "22px",
             marginTop: "16px",
             fontSize: "1.8rem",
@@ -79,7 +79,7 @@ const DuplicateEmailModal = ({ open, onClose }) => {
           This is either a dupicate email, username, or a gmail connected account!
         </Typography>
         <DialogContentText
-          sx={{ color: "#ffffff", fontSize: "1.1rem" }}
+          sx={{ color: "#00000", fontSize: "1.1rem" }}
           style={{ fontFamily: "AlbertFontNormal" }}
         >
           Try another email!

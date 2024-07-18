@@ -7,6 +7,8 @@ export async function middleware(req) {
     token && (await verifyAuth(token).catch((err) => console.log(err)));
 
   if (req.nextUrl.pathname.startsWith("/dashboard") && verifiedToken) {
+    console.log(token);
+    console.log(verifiedToken);
     return;
   }
   if (req.nextUrl.pathname.startsWith("/dashboard") && !verifiedToken) {
