@@ -1,9 +1,15 @@
-import React from "react";
+"use client";
+import React, {useContext} from "react";
 import Image from "next/image";
+import { AppContext } from "../../app/appContext";
 
 const VillaImage = () => {
+  const { english } = useContext(AppContext);
+
   return (
-    <div className="flex flex-col justify-start sm:max-w-[400px] md:max-w-[330px] lg:justify-start lg:max-w-[450px] xl:max-w-[550px] 2xl:max-w-[700px]">
+    <div className={`flex flex-col ${
+        english ? "order-3" : "order-1"
+      } justify-start sm:max-w-[400px] md:max-w-[330px] lg:justify-start lg:max-w-[450px] xl:max-w-[550px] 2xl:max-w-[700px]`}>
       <Image
         src="/images/villa.png"
         alt="Background"

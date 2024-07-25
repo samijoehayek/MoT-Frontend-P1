@@ -1,11 +1,13 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import NumberOne from "../../../public/images/number-1.png";
 import { useMediaQuery } from "@mui/material";
+import { AppContext } from "../../app/appContext";
 
 const Facilities = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
+  const { english } = useContext(AppContext);
 
   return (
     <div className="relative flex flex-col justify-center text-center md:text-start md:min-h-[450px] lg:min-h-[600px] xl:min-h-[700px] 2xl:max-h-[800px] 2xl:pt-32">
@@ -18,18 +20,52 @@ const Facilities = () => {
           quality={100}
         />
       </div>
-      <p className="font-[AlbertFontNormal] text-[1.15rem] text-white pb-4">
-        Lobby
+      <p
+        className={`font-[AlbertFontNormal] text-[1.15rem] text-white pb-4 ${
+          english ? "" : "text-end justify-end"
+        }`}
+      >
+        {english ? "Lobby" : "ردهة"}
       </p>
 
-      <h1 className="font-[AlbertFont] text-white leading-[1.2] text-[1.8rem] md:text-[1.7rem] lg:text-[2.2rem] xl:text-[2.8rem] 2xl:text-[3.3rem]">
-        Unveiling Key <br /> Attractions and <br /> Visitor Facilities
+      <h1
+        className={`font-[AlbertFont] text-white leading-[1.2] text-[1.8rem] md:text-[1.7rem] lg:text-[2.2rem] xl:text-[2.8rem] 2xl:text-[3.3rem] ${
+          english ? "" : "text-end justify-end"
+        }`}
+      >
+        {english ? (
+          <>
+            Unveiling Key <br /> Attractions and <br /> Visitor Facilities
+          </>
+        ) : (
+          <>
+            الكشف عن المعالم
+            <br /> السياحية الرئيسية
+            <br /> ومرافق الزوار
+          </>
+        )}
       </h1>
-      <p className="font-[AlbertFontNormal] text-white pt-8 leading-[1.2] text-[0.9rem] md:text-[0.8rem] lg:text-[0.7rem] xl:text-[1rem] 2xl:text-[1.1rem]">
-        Embark on a journey to discover Saudi {isMobile && <br />}Arabia's{" "}
-        {!isMobile && <br />}key destinations and tourism {isMobile && <br />}
-        highlights, immersing {!isMobile && <br />}yourself in its rich{" "}
-        {isMobile && <br />}culture and visitor facilities.
+      <p
+        className={`"font-[AlbertFontNormal] text-white pt-8 leading-[1.2] text-[0.9rem] md:text-[0.8rem] lg:text-[0.7rem] xl:text-[1rem] 2xl:text-[1.1rem]" ${
+          english ? "" : "text-end justify-end"
+        }`}
+      >
+        {english ? (
+          <>
+            Embark on a journey to discover Saudi {isMobile && <br />}Arabia's
+            {!isMobile && <br />}key destinations and tourism
+            {isMobile && <br />}
+            highlights, immersing {!isMobile && <br />}yourself in its rich
+            {isMobile && <br />}culture and visitor facilities.
+          </>
+        ) : (
+          <>
+            انطلق في رحلة لاكتشاف المملكة العربية{isMobile && <br />}السعوديةا
+            {!isMobile && <br />}لوجهات{isMobile && <br />} الرئيسية والمعالم
+            .السياحية البارزة،{!isMobile && <br />} وتنغمس في ثقافتها{" "}
+            {isMobile && <br />}الغنية ومرافق الزوار
+          </>
+        )}
       </p>
     </div>
   );

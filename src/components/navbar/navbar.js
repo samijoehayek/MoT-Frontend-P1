@@ -1,15 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Button } from "@mui/material";
 import StcLogo from "../stc-logo/stc-logo";
 import { useRouter } from "next/navigation";
+import { AppContext } from "../../app/appContext";
 
 const Navbar = () => {
   const router = useRouter();
-  const [language, setLanguage] = useState("en");
+  const {english, setEnglish} = useContext(AppContext);
 
   const handleChangeLanguage = (lang) => {
-    setLanguage(lang);
+    setEnglish(lang);
   };
   
   return (
@@ -24,10 +25,10 @@ const Navbar = () => {
           <ul className="flex space-x-4">
             <li
               className={`cursor-pointer ${
-                language === "en" ? "underline" : ""
+                english === true ? "underline" : ""
               }`}
               onClick={() => {
-                handleChangeLanguage("en");
+                handleChangeLanguage(true);
               }}
             >
               <span className="sm:hidden">En</span>
@@ -36,10 +37,10 @@ const Navbar = () => {
             <li className="hidden sm:inline">|</li>
             <li
               className={`cursor-pointer ${
-                language === "ar" ? "underline" : ""
+                english === false ? "underline" : ""
               }`}
               onClick={() => {
-                handleChangeLanguage("ar");
+                handleChangeLanguage(false);
               }}
             >
               <span className="sm:hidden">ع</span>
@@ -71,8 +72,8 @@ const Navbar = () => {
             style={{ fontFamily: "AlbertFontNormal" }}
           >
             <p className="mt-1" onClick={() => {router.push('/dashboard')}}>
-              <span className="sm:hidden">Join</span>
-              <span className="hidden sm:inline">JOIN THE METAVERSE</span>
+              <span className="sm:hidden">{english?"Join":"انضم"}</span>
+              <span className="hidden sm:inline">{english?"JOIN THE METAVERSE":"انضم إلى ميتافيرس"}</span>
             </p>
           </Button>
         </div>

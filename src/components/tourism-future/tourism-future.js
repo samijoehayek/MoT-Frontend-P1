@@ -8,7 +8,7 @@ const TourismFuture = () => {
     <div className="flex flex-col pt-40 items-center sm:justify-center md:flex-row md:py-20 md:px-20 md:items-start">
       <RadialGradientGreen />
       <KsaNetwork />
-      <div className="md:min-w-[60px] lg:min-w-[100px] xl:min-w-[200px] 2xl:min-w-[340px]"></div>
+      <div className="order-2 md:min-w-[60px] lg:min-w-[100px] xl:min-w-[200px] 2xl:min-w-[340px]"></div>
       <LobbyImage />
     </div>
   );

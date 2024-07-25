@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import RadialGradientPurple from "../radial-gradient-purple/radial-gradient-purple";
 import InvestmentOpportunities from "../investment-opportunities/investment-opportunities";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Navbar from "@/components/navbar/navbar";
 import HeroSection from "@/components/hero-section/hero-section";
 import Circles from "@/components/circles/circles";

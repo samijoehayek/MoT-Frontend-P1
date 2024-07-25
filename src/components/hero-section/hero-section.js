@@ -1,33 +1,62 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@mui/material";
 import Image from "next/image";
 import { useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { AppContext } from "../../app/appContext";
 
 const HeroSection = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
+  const { english } = useContext(AppContext);
   const router = useRouter();
 
   return (
-    <div className="w-full h-[85vh] flex flex-col justify-between px-4 md:px-20 pt-20 z-10 lg:w-1/2">
+    <div
+      className={`w-full h-[85vh] flex flex-col justify-between px-4 md:px-20 pt-20 z-10 lg:w-1/2 ${
+        english ? "" : "lg:ml-auto items-end"
+      }`}
+    >
       <div>
         <div className="flex flex-row">
-          <h1 className="font-[AlbertFont] flex flex-row text-white leading-tight pb-4 text-[2rem] lg:text-[3.5rem] xl:text-[4.7rem] 2xl:text-[6rem]">
-            Saudi Tourism Metaverse
+          <h1
+            className={`font-[AlbertFont] flex flex-row text-white leading-tight pb-4 text-[2rem] lg:text-[3.5rem] xl:text-[4.7rem] 2xl:text-[6rem] ${
+              english ? "text-start" : "text-end"
+            }`}
+          >
+            {english ? "Saudi Tourism Metaverse" : "السياحة السعودية ميتافيرس"}
           </h1>
         </div>
-        <div className="flex flex-row">
-          <p className="font-[AlbertFontNormal] text-white leading-[1.2] text-base lg:text-[1.1rem] xl:text-[1.5rem] 2xl:text-[1.7rem]">
-            Begin a remarkable metaverse trip, {isMobile && <br />}exploring{" "}
-            {!isMobile && <br />}Saudi Arabia's beauty, landscapes,{" "}
-            {isMobile && <br />}cuisine, and{!isMobile && <br />} debating with
-            top investors!
+        <div
+          className={`flex flex-row  ${english ? "" : "text-end justify-end"}`}
+        >
+          <p
+            className={`font-[AlbertFontNormal] text-white leading-[1.2] text-base lg:text-[1.1rem] xl:text-[1.5rem] 2xl:text-[1.7rem]`}
+          >
+            {english ? (
+              <>
+                Begin a remarkable metaverse trip,
+                {isMobile && <br />}
+                exploring
+                {!isMobile && <br />}
+                Saudi Arabia's beauty, landscapes,
+                {isMobile && <br />}
+                cuisine, and
+                {!isMobile && <br />}
+                debating with top investors!
+              </>
+            ) : (
+              <>
+                ابدأ رحلة رائعة، واستكشف جمال المملكة العربية السعودية،{" "}
+                {!isMobile && <br />}ومناظرها الطبيعية، ومطبخها، وناقش مع كبار
+                المستثمرين!
+              </>
+            )}
           </p>
         </div>
-        <div className="flex flex-row">
+        <div className={`flex flex-row ${!english && "justify-end"}`}>
           <Button
-            className="w-[70%] xl:w-[45%] font-[AlbertFontNormal]"
+            className="w-[70%] xl:w-[45%]  font-[AlbertFontNormal]"
             sx={{
               mt: 6,
               mb: 3,
@@ -55,7 +84,7 @@ const HeroSection = () => {
               router.push("/dashboard");
             }}
           >
-            JOIN THE METAVERSE
+            {english ? "JOIN THE METAVERSE" : "انضم إلى ميتافيرس"}
           </Button>
         </div>
       </div>
