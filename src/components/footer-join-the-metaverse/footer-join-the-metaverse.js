@@ -1,10 +1,13 @@
 "use client";
-import React from "react";
+import React, {useContext} from "react";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { AppContext } from "../../app/appContext";
+
 
 const FooterJoinTheMetaverse = () => {
-    const router = useRouter();
+  const router = useRouter();
+  const { english } = useContext(AppContext);
 
   return (
     <Button
@@ -36,7 +39,7 @@ const FooterJoinTheMetaverse = () => {
         router.push("/dashboard");
       }}
     >
-      JOIN THE METAVERSE
+      {english ? (<>JOIN THE METAVERSE</>):(<>انضم إلى ميتافيرس</>)}
     </Button>
   );
 };

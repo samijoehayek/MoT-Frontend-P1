@@ -10,11 +10,7 @@ const VirtualMarketplace = () => {
   const { english } = useContext(AppContext);
 
   return (
-    <div
-      className={`${
-        english ? "order-1" : "order-3"
-      } relative flex flex-col justify-center text-center md:text-start md:min-h-[450px] lg:min-h-[600px] xl:min-h-[700px] 2xl:max-h-[800px] 2xl:pt-32`}
-    >
+    <div className="order-1 relative flex flex-col justify-center text-center md:text-start md:min-h-[450px] lg:min-h-[600px] xl:min-h-[700px] 2xl:max-h-[800px] 2xl:pt-32">
       <div className="absolute z-0 opacity-80 w-[180px] h-[300px] right-[4%] bottom-[5%] sm:right-[0%] md:w-[160px] md:h-[250px] md:right-[20%] md:top-[5%] lg:top-[7%] 2xl:w-[260px] 2xl:h-[380px] lg:left-[10%] xl:left-[15%] xl:top-[12%] 2xl:top-[17%] 2xl:left-[8%]">
         <Image
           src={NumberThree}

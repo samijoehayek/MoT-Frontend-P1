@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/navigation";
+import { AppContext } from "../../app/appContext";
 
 const LegalLinks = () => {
+  const { english } = useContext(AppContext);
   const router = useRouter();
   return (
     <div
@@ -16,7 +18,7 @@ const LegalLinks = () => {
             router.push("/dashboard");
           }}
         >
-          Join The Metaverse
+          {english ? "Join The Metaverse" : "انضم إلى ميتافيرس"}
         </li>
         <li
           className="px-2 py-2 cursor-pointer"
@@ -24,7 +26,7 @@ const LegalLinks = () => {
             router.push("/terms-and-conditions");
           }}
         >
-          Terms of Use
+          {english ? "Terms of Use" : "شروط الاستخدام"}
         </li>
         <li
           className="px-2 py-2 cursor-pointer"
@@ -32,7 +34,7 @@ const LegalLinks = () => {
             router.push("/privacy-policy");
           }}
         >
-          Privacy Policy
+          {english ? "Privacy Policy" : "سياسة الخصوصية"}
         </li>
       </ul>
     </div>
