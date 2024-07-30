@@ -54,9 +54,7 @@ const Dashboard = () => {
   };
 
   const handleUnload = async () => {
-    console.log("Entered handleUnload")
     localStorage.setItem("isActive", false);
-    document.cookie = "isActive=false";
     // await activityStatusFalse(localStorage.getItem("token"));
   };
 
@@ -70,11 +68,9 @@ const Dashboard = () => {
     getUserSessions().then((res) => {
       if (res && Object.keys(res).length > 0) {
         if (isActive == "true") {
-          console.log("Entered the If block")
           router.push("/");
         } else {
           localStorage.setItem("isActive", true);
-          document.cookie = "isActive=true";
           setLoadWebGL(true);
         }
       } else {
@@ -82,7 +78,6 @@ const Dashboard = () => {
         createUserSessions()
           .then((res) => {
             localStorage.setItem("isActive", true);
-            document.cookie = "isActive=true";
             setLoadWebGL(true);
           })
           .catch((err) => {
@@ -149,7 +144,6 @@ const Dashboard = () => {
     const token = localStorage.getItem("token");
     const isActive = localStorage.getItem("isActive");
     if (token) {
-      console.log("Entered first if statement")
       handleWebGLLoad(token, isActive);
     }
 

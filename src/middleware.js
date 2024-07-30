@@ -3,14 +3,13 @@ import { verifyAuth } from "./lib/auth";
 
 export async function middleware(req) {
   const token = req.cookies.get("token")?.value;
-  const isActive = req.cookies.get("isActive")?.value;
   const verifiedToken =
     token && (await verifyAuth(token));
 
-  if (req.nextUrl.pathname.startsWith("/dashboard") && verifiedToken && isActive) {
+  if (req.nextUrl.pathname.startsWith("/dashboard") && verifiedToken) {
     return;
   }
-  if (req.nextUrl.pathname.startsWith("/dashboard") && (!verifiedToken || !isActive)) {
+  if (req.nextUrl.pathname.startsWith("/dashboard") && !verifiedToken) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
