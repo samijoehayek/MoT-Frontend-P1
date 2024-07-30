@@ -11,7 +11,6 @@ const Dashboard = () => {
   // States
   const [loadWebGL, setLoadWebGL] = useState(false);
   const [sentenceIndex, setSentenceIndex] = useState(0);
-  const [userSession, setUserSession] = useState({});
 
   const router = useRouter();
 
@@ -55,7 +54,9 @@ const Dashboard = () => {
   };
 
   const handleUnload = async () => {
+    console.log("Entered handleUnload")
     localStorage.setItem("isActive", false);
+    document.cookie = "isActive=false";
     // await activityStatusFalse(localStorage.getItem("token"));
   };
 
@@ -69,19 +70,19 @@ const Dashboard = () => {
     getUserSessions().then((res) => {
       if (res && Object.keys(res).length > 0) {
         if (isActive == "true") {
+          console.log("Entered the If block")
           router.push("/");
-          setUserSession(res);
         } else {
-          localStorage.setItem("isActive", false);
-          setUserSession(res);
+          localStorage.setItem("isActive", true);
+          document.cookie = "isActive=true";
           setLoadWebGL(true);
         }
       } else {
         // If the user does not have an existing session, create a new one
         createUserSessions()
           .then((res) => {
-            localStorage.setItem("isActive", false);
-            setUserSession(res);
+            localStorage.setItem("isActive", true);
+            document.cookie = "isActive=true";
             setLoadWebGL(true);
           })
           .catch((err) => {
@@ -148,6 +149,7 @@ const Dashboard = () => {
     const token = localStorage.getItem("token");
     const isActive = localStorage.getItem("isActive");
     if (token) {
+      console.log("Entered first if statement")
       handleWebGLLoad(token, isActive);
     }
 
@@ -214,7 +216,7 @@ const Dashboard = () => {
                   <div
                     className="h-2 bg-white"
                     style={{
-                      width: `${loadingProgression * 100}%`
+                      width: `${loadingProgression * 100}%`,
                     }}
                   ></div>
                 </div>

@@ -45,6 +45,7 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
             const token = response.token;
             localStorage.setItem("token", token);
             document.cookie = `token=${token}`;
+            document.cookie = "isActive=true";
           })
           .then(() => {
             router.push("/dashboard");
