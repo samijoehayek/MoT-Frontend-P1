@@ -68,6 +68,7 @@ const Dashboard = () => {
     getUserSessions().then((res) => {
       if (res && Object.keys(res).length > 0) {
         if (isActive == "true") {
+          console.log("User has an active session");
           router.push("/");
         } else {
           localStorage.setItem("isActive", true);
@@ -141,6 +142,7 @@ const Dashboard = () => {
   useEffect(() => {
     window.addEventListener("unload", handleUnload);
     window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("popstate", handleUnload);
     const token = localStorage.getItem("token");
     const isActive = localStorage.getItem("isActive");
     if (token) {
