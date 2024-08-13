@@ -23,6 +23,7 @@ import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
 const Login = ({ setMethod, setDuplicateEmailModal }) => {
   const [loginError, setLoginError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [has2FA, setHas2FA] = useState(false);
   const [recaptchaSuccess, setRecaptchaSuccess] = useState();
   const [verificationFailed, setVerificationFailed] = useState();
   const [rememberMe, setRememberMe] = useState(false);
@@ -43,11 +44,16 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
         await login(values.username, values.password)
           .then((response) => {
             const token = response.token;
+            setHas2FA(response.has2FA);
             localStorage.setItem("token", token);
             document.cookie = `token=${token}`;
           })
           .then(() => {
-            router.push("/dashboard");
+            if (has2FA) {
+              router.push("/dashboard");
+            }else{
+              setMethod("2FA");
+            }
           })
           .catch((error) => {
             setLoginError(true);
@@ -256,7 +262,9 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
               : "#36373E !important",
           "&:hover": {
             background:
-              formik.values.username && formik.values.password && recaptchaSuccess
+              formik.values.username &&
+              formik.values.password &&
+              recaptchaSuccess
                 ? "linear-gradient(101.34deg, #785FDC 6.25%, #32D2A0 96.25%)"
                 : "#36373E",
           },
@@ -269,7 +277,11 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
         }}
         type="submit"
         variant="contained"
-        disabled={!formik.values.username || !formik.values.password || !recaptchaSuccess}
+        disabled={
+          !formik.values.username ||
+          !formik.values.password ||
+          !recaptchaSuccess
+        }
         style={{ fontFamily: "AlbertFontNormal" }}
       >
         {formik.values.username && formik.values.password ? (

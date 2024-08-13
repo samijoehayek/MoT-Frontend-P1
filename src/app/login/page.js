@@ -5,14 +5,12 @@ import BackgroundImage from "@/components/background-image/background-image";
 import PasswordUpdatedSnackbar from "@/components/password-updated-snackbar/password-updated-snackbar";
 import { AppContext } from "../appContext";
 import DuplicateEmailModal from "@/components/duplicate-email-modal/duplicate-email-modal";
-import GoogleTwoStepModal from "@/components/google-two-step-modal/google-two-step-modal";
 import EmailConfirmationModal from "@/components/email-confirmation-modal/email-confirmation-modal";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [emailConfirmationModal, setEmailConfirmationModal] = useState(false);
   const [duplicateEmailModal, setDuplicateEmailModal] = useState(false);
-  const [googleTwoStepModal, setGoogleTwoStepModal] = useState(true);
   const [userEmail, setUserEmail] = useState("");
 
   const router = useRouter();
@@ -49,14 +47,6 @@ const LoginPage = () => {
         open={duplicateEmailModal}
         onClose={() => {
           setDuplicateEmailModal(false);
-        }}
-      />
-
-      {/* Modal to start two factor google auth */}
-      <GoogleTwoStepModal
-        open={googleTwoStepModal}
-        onClose={() => {
-          setGoogleTwoStepModal(false);
         }}
       />
 

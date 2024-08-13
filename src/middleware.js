@@ -17,9 +17,9 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  if(req.nextUrl.pathname.startsWith("/google-authenticator")) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
+  // if(req.nextUrl.pathname.startsWith("/google-authenticator")) {
+  //   return NextResponse.redirect(new URL("/", req.url));
+  // }
 
   if (!verifiedToken) {
     return NextResponse.redirect(new URL("/", req.url));
@@ -27,5 +27,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/google-authenticator", "/Build", "/Build/index.html"],
+  matcher: ["/dashboard", "/Build", "/Build/index.html"],
 };

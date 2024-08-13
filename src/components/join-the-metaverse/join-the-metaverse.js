@@ -5,10 +5,16 @@ import Head from "next/head";
 import { Box, Stack, Typography } from "@mui/material";
 import Login from "@/components/login/login";
 import Signup from "@/components/signup/signup";
+import TwoFactorAuth from "../two-factor-auth/two-factor-auth";
 import { AppContext } from "../../app/appContext";
 import STCLogo from "../../../public/images/stc-logo.png";
+import TwoFactorSecurityCode from "../two-factor-security-code/two-factor-security-code";
 
-const JoinTheMetaverse = ({setDuplicateEmailModal, setEmailConfirmationModal, setUserEmail}) => {
+const JoinTheMetaverse = ({
+  setDuplicateEmailModal,
+  setEmailConfirmationModal,
+  setUserEmail,
+}) => {
   const [method, setMethod] = useState("login");
 
   const { english } = useContext(AppContext);
@@ -40,22 +46,26 @@ const JoinTheMetaverse = ({setDuplicateEmailModal, setEmailConfirmationModal, se
           <Image src={STCLogo} alt="STC Logo" width={200} height={100} />
         </div>
         <div>
-          <Stack spacing={1} sx={{ mb: 2 }}>
-            <Typography
-              variant="h4"
-              className="font-[AlbertFont] text-white text-4xl"
-            >
-              Welcome Back!
-            </Typography>
-          </Stack>
-          <Stack spacing={1} sx={{ mb: 5 }}>
-            <Typography
-              className={`text-white`}
-              style={{ fontFamily: "AlbertFontNormal", fontSize: "1rem" }}
-            >
-              Join the Metaverse and be part of the future.
-            </Typography>
-          </Stack>
+          {(method === "login" || method === "signup") && (
+            <>
+              <Stack spacing={1} sx={{ mb: 2 }}>
+                <Typography
+                  variant="h4"
+                  className="font-[AlbertFont] text-white text-4xl"
+                >
+                  Welcome Back!
+                </Typography>
+              </Stack>
+              <Stack spacing={1} sx={{ mb: 5 }}>
+                <Typography
+                  className={`text-white`}
+                  style={{ fontFamily: "AlbertFontNormal", fontSize: "1rem" }}
+                >
+                  Join the Metaverse and be part of the future.
+                </Typography>
+              </Stack>
+            </>
+          )}
 
           {method === "login" && (
             <Login
@@ -71,6 +81,8 @@ const JoinTheMetaverse = ({setDuplicateEmailModal, setEmailConfirmationModal, se
               setDuplicateEmailModal={setDuplicateEmailModal}
             />
           )}
+          {method === "2FA" && <TwoFactorAuth setMethod={setMethod}/>}
+          {method === "2FASecond" && <TwoFactorSecurityCode setMethod={setMethod}/>}
         </div>
       </Box>
     </>

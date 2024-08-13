@@ -12,9 +12,14 @@ const GoogleAuthenticator = () => {
   const [otp, setOtp] = useState("");
 
   const generateSecret = async () => authenticator.generateSecret();
-  const verifyOTP = (secret, otp) =>
+  const verifyOTP = (secret, otp) => {
+    console.log(secret, otp);
     authenticator.verify({ secret, token: otp });
+    console.log(authenticator.verify({ secret, token: otp }));
+    setIsValid(authenticator.verify({ secret, token: otp }));
+  }
 
+  console.log(isValid, 222);
   const getUser = () => {
     return getUserByJWT(localStorage.getItem("token"));
   };
@@ -32,8 +37,7 @@ const GoogleAuthenticator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isValid = verifyOTP(secret, otp);
-    setIsValid(isValid);
+    verifyOTP(secret, otp);
   };
 
   useEffect(() => {
