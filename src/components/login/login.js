@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -19,6 +19,7 @@ import GoogleLogin from "@/components/google-login/google-login";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
+import { AppContext } from "../../app/appContext";
 
 const Login = ({ setMethod, setDuplicateEmailModal }) => {
   const [loginError, setLoginError] = useState(false);
@@ -28,6 +29,7 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
   const [verificationFailed, setVerificationFailed] = useState();
   const [rememberMe, setRememberMe] = useState(false);
   const router = useRouter();
+  const { english } = useContext(AppContext);
 
   const formik = useFormik({
     initialValues: {
@@ -36,8 +38,8 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
       submit: null,
     },
     validationSchema: Yup.object({
-      username: Yup.string().max(255).required("Username is required"),
-      password: Yup.string().max(255).required("Password is required"),
+      username: Yup.string().max(255).required(english ? "Username is required" : "اسم المستخدم أو البريد الالكتروني مطلوب"),
+      password: Yup.string().max(255).required(english ? "Password is required" : "كلمة المرور مطلوبة"),
     }),
     onSubmit: async (values, helpers) => {
       try {
@@ -80,7 +82,7 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
           name="username"
           fullWidth
           helperText={formik.touched.username && formik.errors.username}
-          label="Username"
+          label={english ? "Username" : "اسم المستخدم أو البريد الالكتروني"}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.username}
@@ -124,7 +126,7 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
           error={!!(formik.touched.password && formik.errors.password)}
           fullWidth
           helperText={formik.touched.password && formik.errors.password}
-          label="Password"
+          label={english ? "Password" : "كلمة المرور"}
           name="password"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
@@ -187,13 +189,13 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
           {formik.errors.submit}
         </Typography>
       )}
-      {loginError ? (
+       {loginError ? (
         <div>
           <p
             className={`text-red-500 text-sm mb-0 mt-3`}
-            style={{ fontFamily: "AlbertFontNormal" }}
+            style={{ fontFamily: "AlbertFontNormal", textAlign: english ? '' : 'right' }}
           >
-            Wrong credentials
+            {english ? "Wrong credentials" : "بيانات الاعتماد غير صحيحة"}
           </p>
         </div>
       ) : null}
@@ -234,19 +236,19 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
               sx={{ color: "white", fontSize: 14, mt: "5px" }}
               style={{ fontFamily: "AlbertFontNormal" }}
             >
-              Remember me
+             {english ? "Remember me" : "تذكرنى"}
             </Typography>
           }
           labelPlacement="end"
           sx={{ alignItems: "flex-center", mt: "2px" }}
         />
-        <Typography
+         <Typography
           variant="body2"
-          sx={{ color: "#785FDC", cursor: "pointer", mt: "5px" }}
+          sx={{ color: "#785FDC", cursor: "pointer", mt: "5px", textAlign: english ? '' : 'right' }}
           style={{ fontFamily: "AlbertFontNormal" }}
           onClick={() => router.push("/forgot-password-email")}
         >
-          Forgot password?
+          {english ? "Forgot password?" : "نسيت كلمة المرور؟"}
         </Typography>
       </Box>
       <Button
@@ -282,12 +284,12 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
           !formik.values.password ||
           !recaptchaSuccess
         }
-        style={{ fontFamily: "AlbertFontNormal" }}
+        style={{ fontFamily: "AlbertFontNormal", textAlign: english ? '' : 'right' }}
       >
         {formik.values.username && formik.values.password ? (
-          <p className="mt-1">JOIN THE METAVERSE</p>
+          <p className="mt-1"> {english ? "JOIN THE METAVERSE" : "تسجيل الدخول"}</p>
         ) : (
-          <p className="mt-1">LOG IN</p>
+          <p className="mt-1"> {english ? "LOG IN" : "الدخول"}</p>
         )}
       </Button>
 
@@ -295,12 +297,12 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
 
       <div
         className={`flex items-center justify-center font-normal text-base text-white`}
-        style={{ fontFamily: "AlbertFontNormal" }}
+        style={{ fontFamily: "AlbertFontNormal", textAlign: english ? '' : 'right' }}
         onClick={() => setMethod("signup")}
       >
-        Don't have an account?
+        {english ? "Don't have an account?" : "ليس لديك حساب؟"}
         <b style={{ fontFamily: "AlbertFont" }}>
-          &nbsp;<u>SIGN UP HERE</u>
+          &nbsp;<u>{english ? "SIGN UP HERE" : "سجل هنا"}</u>
         </b>
       </div>
     </form>

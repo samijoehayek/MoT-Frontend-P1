@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -19,11 +19,18 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Link from "next/link";
 import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
+import { AppContext } from "../../app/appContext";
 
-const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplicateEmailModal }) => {
+const Signup = ({
+  setMethod,
+  setEmailConfirmationModal,
+  setUserEmail,
+  setDuplicateEmailModal,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [recaptchaSuccess, setRecaptchaSuccess] = useState();
+  const { english } = useContext(AppContext);
 
   const formikSignup = useFormik({
     initialValues: {
@@ -32,9 +39,22 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
       password: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().max(255).required("Username is required"),
-      email: Yup.string().email().max(255).required("Email is required"),
-      password: Yup.string().max(255).required("Password is required"),
+      username: Yup.string()
+        .max(255)
+        .required(
+          english
+            ? "Username is required"
+            : "اسم المستخدم أو البريد الالكتروني مطلوب"
+        ),
+
+      email: Yup.string()
+        .email()
+        .max(255)
+        .required(english ? "Email is required" : "البريد الالكتروني مطلو"),
+
+      password: Yup.string()
+        .max(255)
+        .required(english ? "Password is required" : "كلمة المرور مطلوبة"),
     }),
     onSubmit: async (values, helpers) => {
       try {
@@ -50,7 +70,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
             setEmailConfirmationModal(true);
           })
           .catch((error) => {
-            if(error.response.status === 409) {
+            if (error.response.status === 409) {
               setDuplicateEmailModal(true);
             }
             console.log("Login failed: ", error);
@@ -76,7 +96,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
           helperText={
             formikSignup.touched.username && formikSignup.errors.username
           }
-          label="Username"
+          label={english ? "Username" : "اسم المستخدم أو البريد الالكتروني"}
           name="username"
           onBlur={formikSignup.handleBlur}
           onChange={formikSignup.handleChange}
@@ -121,7 +141,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
           error={!!(formikSignup.touched.email && formikSignup.errors.email)}
           fullWidth
           helperText={formikSignup.touched.email && formikSignup.errors.email}
-          label="Email"
+          label={english ? "Email" : "البريد الالكتروني"}
           name="email"
           onBlur={formikSignup.handleBlur}
           onChange={formikSignup.handleChange}
@@ -170,7 +190,7 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
           helperText={
             formikSignup.touched.password && formikSignup.errors.password
           }
-          label="Password"
+          label={english ? "Password" : "كلمة المرور"}
           name="password"
           onBlur={formikSignup.handleBlur}
           onChange={formikSignup.handleChange}
@@ -227,21 +247,6 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
             ),
           }}
         />
-        {/* <TextField
-                    error={
-                      !!(formikSignup.touched.tag && formikSignup.errors.tag)
-                    }
-                    fullWidth
-                    helperText={
-                      formikSignup.touched.tag && formikSignup.errors.tag
-                    }
-                    label="Tag"
-                    name="tag"
-                    onBlur={formikSignup.handleBlur}
-                    onChange={formikSignup.handleChange}
-                    type="tag"
-                    value={formikSignup.values.tag}
-                  /> */}
       </Stack>
       {formikSignup.errors.submit && (
         <Typography color="error" sx={{ mt: 3 }} variant="body2">
@@ -275,17 +280,20 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
               style={{ fontFamily: "AlbertFontNormal" }}
               className="mt-1"
             >
-              I accept the{" "}
+              {english ? "I accept the" : "أوافق على"}
               <Link href="/privacy-policy" target="_blank">
                 <b style={{ fontFamily: "AlbertFont" }}>
-                  &nbsp;<u>Privacy Policy</u>
+                  &nbsp;<u>{english ? "Privacy Policy":"سياسة الخصوصية"}</u>
                 </b>
               </Link>
             </Typography>
           }
         />
       </Box>
-      <GoogleRecaptcha recaptchaSuccess={recaptchaSuccess} setRecaptchaSuccess={setRecaptchaSuccess} />
+      <GoogleRecaptcha
+        recaptchaSuccess={recaptchaSuccess}
+        setRecaptchaSuccess={setRecaptchaSuccess}
+      />
       <Button
         fullWidth
         size="large"
@@ -340,10 +348,13 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
         formikSignup.values.password &&
         formikSignup.values.email &&
         !formikSignup.errors.email &&
-        privacyPolicy && recaptchaSuccess ? (
-          <p className="mt-1">JOIN THE METAVERSE</p>
+        privacyPolicy &&
+        recaptchaSuccess ? (
+          <p className="mt-1"> {english ? "JOIN THE METAVERSE" : "تسجيل الدخول"}</p>
+
         ) : (
-          <p className="mt-1">SIGN UP</p>
+          <p className="mt-1"> {english ? "SIGN UP" : "سجل هنا"}</p>
+
         )}
       </Button>
       <div
@@ -351,9 +362,9 @@ const Signup = ({ setMethod, setEmailConfirmationModal, setUserEmail, setDuplica
         style={{ fontFamily: "AlbertFontNormal" }}
         onClick={() => setMethod("login")}
       >
-        Already have an account?
+        {english ? "Already have an account?" : "لديك حساب؟"}
         <b style={{ fontFamily: "AlbertFont" }}>
-          &nbsp;<u>LOG IN HERE</u>
+          &nbsp;<u>{english ? "LOG IN HERE" : "سجل الدخول هنا"}</u>
         </b>
       </div>
     </form>

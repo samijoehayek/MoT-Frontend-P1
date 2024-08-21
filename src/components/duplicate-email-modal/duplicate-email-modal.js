@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Dialog,
   DialogContent,
@@ -9,6 +9,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/system";
 import DangerousIcon from "@mui/icons-material/Dangerous";
+import { AppContext } from "../../app/appContext";
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
@@ -37,6 +38,8 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const DuplicateEmailModal = ({ open, onClose }) => {
+  const { english } = useContext(AppContext);
+
   return (
     <StyledDialog open={open} onClose={onClose}>
       <CloseButton
@@ -55,9 +58,7 @@ const DuplicateEmailModal = ({ open, onClose }) => {
       <DialogContent
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        <DangerousIcon
-          sx={{color: "red", width: "40px", height: "40px"}}
-        />
+        <DangerousIcon sx={{ color: "red", width: "40px", height: "40px" }} />
         <Typography
           variant="h5"
           component="div"
@@ -69,13 +70,15 @@ const DuplicateEmailModal = ({ open, onClose }) => {
           }}
           style={{ fontFamily: "AlbertFont" }}
         >
-          This is either a duplicate email, username, or a gmail connected account!
+          {english
+            ? "This is either a duplicate email, username, or a gmail connected account!"
+            : "هذا إما بريد إلكتروني مكرر، أو اسم مستخدم مكرر، أو حساب متصل بـ Gmail!"}
         </Typography>
         <DialogContentText
           sx={{ color: "#ffffff", fontSize: "1.1rem" }}
           style={{ fontFamily: "AlbertFontNormal" }}
         >
-          Try another email!
+          {english ? "Try another email!" : "جرب بريدًا إلكترونيًا آخر!"}
         </DialogContentText>
       </DialogContent>
     </StyledDialog>

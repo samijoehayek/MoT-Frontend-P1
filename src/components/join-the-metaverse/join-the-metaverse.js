@@ -40,7 +40,7 @@ const JoinTheMetaverse = ({
 
   return (
     <>
-      <Head>Welcome Back!</Head>
+      <Head>{english ? "Welcome Back!" : "مرحبًا بعودتك!"}</Head>
       <Box className="flex flex-col justify-center w-full max-w-[550px] z-10 pt-28 px-8">
         <div className="mb-16">
           <Image src={STCLogo} alt="STC Logo" width={200} height={100} />
@@ -51,17 +51,21 @@ const JoinTheMetaverse = ({
               <Stack spacing={1} sx={{ mb: 2 }}>
                 <Typography
                   variant="h4"
-                  className="font-[AlbertFont] text-white text-4xl"
+                  className={`font-[AlbertFont] text-white text-4xl ${
+                    english ? "" : "text-end justify-end"
+                  }`}
                 >
-                  Welcome Back!
+                  {english ? "Welcome Back!" : "مرحبًا بعودتك"}
                 </Typography>
               </Stack>
               <Stack spacing={1} sx={{ mb: 5 }}>
                 <Typography
-                  className={`text-white`}
+                  className={`text-white ${
+                    english ? "" : "text-end justify-end"
+                  }`}
                   style={{ fontFamily: "AlbertFontNormal", fontSize: "1rem" }}
                 >
-                  Join the Metaverse and be part of the future.
+                  {english ? "Join the Metaverse and be part of the future." : "انضم إلى العالم الافتراضي وكن جزءًا من المستقبل"}
                 </Typography>
               </Stack>
             </>
@@ -81,8 +85,10 @@ const JoinTheMetaverse = ({
               setDuplicateEmailModal={setDuplicateEmailModal}
             />
           )}
-          {method === "2FA" && <TwoFactorAuth setMethod={setMethod}/>}
-          {method === "2FASecond" && <TwoFactorSecurityCode setMethod={setMethod}/>}
+          {method === "2FA" && <TwoFactorAuth setMethod={setMethod} />}
+          {method === "2FASecond" && (
+            <TwoFactorSecurityCode setMethod={setMethod} />
+          )}
         </div>
       </Box>
     </>

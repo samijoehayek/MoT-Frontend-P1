@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Checkbox, Button, Typography, CircularProgress } from "@mui/material";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { CheckCircle, Cancel } from "@mui/icons-material";
+import { AppContext } from "../../app/appContext";
 import axios from "axios";
 
 const GoogleRecaptcha = ({
@@ -12,6 +13,7 @@ const GoogleRecaptcha = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
+  const { english } = useContext(AppContext);
 
   const executeCaptcha = async () => {
     setLoading(true);
@@ -53,10 +55,10 @@ const GoogleRecaptcha = ({
   };
 
   const getButtonText = () => {
-    if (loading) return "Verifying...";
-    if (recaptchaSuccess) return "Verification Successful!";
-    if (verificationFailed) return "Verification failed, try again!";
-    return "I'm not a robot";
+    if (loading) return english?`Verifying...`: `جار التحقق`;
+    if (recaptchaSuccess) return english?"Verification Successful!":`تم التحقق بنجاح`;
+    if (verificationFailed) return english?"Verification failed, try again!":`فشل التحقق، حاول مرة أخرى`;
+    return english?"I'm not a robot":`لست روبوت`;
   };
 
   const getTextColor = () => {

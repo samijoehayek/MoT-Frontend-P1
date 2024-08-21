@@ -1,5 +1,4 @@
-import React from "react";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import React, {useContext} from "react";
 import {
   Dialog,
   DialogContent,
@@ -10,6 +9,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
 import { styled } from "@mui/system";
+import { AppContext } from "../../app/appContext";
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
@@ -38,6 +38,8 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const EmailConfirmationModal = ({ email, open, onClose }) => {
+  const { english } = useContext(AppContext);
+
   return (
     <StyledDialog open={open} onClose={onClose}>
       <CloseButton
@@ -69,10 +71,10 @@ const EmailConfirmationModal = ({ email, open, onClose }) => {
           sx={{ color: "#ffffff", marginBottom: "22px", marginTop: "16px", fontSize: '1.8rem'}}
           style={{ fontFamily: "AlbertFont" }}
         >
-          Email Confirmation Sent!
+          {english ? "Email Confirmation Sent!": "تم إرسال تأكيد البريد الإلكتروني"}
         </Typography>
         <DialogContentText sx={{ color: "#ffffff", fontSize: '1.1rem'}} style={{ fontFamily: 'AlbertFontNormal'}}>
-          An email confirmation has been sent to
+          {english ? "An email confirmation has been sent to":"تم إرسال تأكيد بالبريد الإلكتروني إلى"}
         </DialogContentText>
         <Typography
           variant="body1"

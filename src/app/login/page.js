@@ -12,7 +12,6 @@ const LoginPage = () => {
   const [emailConfirmationModal, setEmailConfirmationModal] = useState(false);
   const [duplicateEmailModal, setDuplicateEmailModal] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-
   const router = useRouter();
   const { passwordChangedBC, setPasswordChangedBC } = useContext(AppContext);
 
