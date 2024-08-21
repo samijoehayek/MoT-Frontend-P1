@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import bg from "../../../public/images/login-bg6.jpg";
 import ForgotPasswordForm from "@/components/forgot-password-form/forgot-password-form";
 import PasswordFailedSnackbar from "@/components/password-failed-snackbar/password-failed-snackbar";
+import { AppContext } from "../../app/appContext";
 
 const ForgotPassword = () => {
   // States
@@ -16,6 +17,9 @@ const ForgotPassword = () => {
     backgroundPosition: "center",
     backgroundSize: "cover",
   };
+
+  // Functions
+  const { english } = useContext(AppContext);
 
   // UseEffects
   useEffect(() => {
@@ -33,8 +37,8 @@ const ForgotPassword = () => {
       <div className="relative md:block hidden">
         <div className={`text-white`} style={{ fontFamily: "AlbertFont" }}>
           <h2 className="text-8xl">
-            Saudi Tourism
-            <br /> Metaverse
+            {english ? "Saudi Tourism:" : "السياحة السعودية:"}
+            <br /> {english ? "Metaverse" : "العالم الافتراضي"}
           </h2>
         </div>
       </div>

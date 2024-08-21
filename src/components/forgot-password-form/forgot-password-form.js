@@ -13,15 +13,18 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { forgotPassword } from "@/axios";
-import { AppContext } from '../../app/appContext';
+import { AppContext } from "../../app/appContext";
 import { useRouter } from "next/navigation";
 
-const ForgotPasswordForm = ({ verificationString, setFailedPasswordChange }) => {
+const ForgotPasswordForm = ({
+  verificationString,
+  setFailedPasswordChange,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
 
   const router = useRouter();
-  const { setPasswordChangedBC } = useContext(AppContext);
+  const { setPasswordChangedBC, english } = useContext(AppContext);
 
   const formik = useFormik({
     initialValues: {
@@ -39,7 +42,7 @@ const ForgotPasswordForm = ({ verificationString, setFailedPasswordChange }) => 
         await forgotPassword(values.newPassword, verificationString)
           .then((response) => {
             setPasswordChangedBC(true);
-            router.push("/")
+            router.push("/");
           })
           .catch((error) => {
             setFailedPasswordChange(true);
@@ -80,21 +83,23 @@ const ForgotPasswordForm = ({ verificationString, setFailedPasswordChange }) => 
           sx={{ fontWeight: "bold", color: "white", mb: 1 }}
           style={{ fontFamily: "AlbertFont" }}
         >
-          Let's update your password
+          {english
+            ? "Let's update your password"
+            : "لنقم بتحديث كلمة المرور الخاصة بك"}
         </Typography>
         <Typography
           variant="subtitle1"
           sx={{ color: "rgba(255, 255, 255, 0.7)", mb: 3 }}
           style={{ fontFamily: "AlbertFontNormal" }}
         >
-          Create a new password.
+          {english ? "Create a new password." : "إنشاء كلمة مرور جديدة"}
         </Typography>
         <Stack spacing={3}>
           <TextField
             error={!!(formik.touched.newPassword && formik.errors.newPassword)}
             fullWidth
             helperText={formik.touched.newPassword && formik.errors.newPassword}
-            label="New Password"
+            label={english ? "New Password" : "كلمة المرور الجديدة"}
             name="newPassword"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -161,7 +166,7 @@ const ForgotPasswordForm = ({ verificationString, setFailedPasswordChange }) => 
             helperText={
               formik.touched.confirmPassword && formik.errors.confirmPassword
             }
-            label="Confirm Password"
+            label={english ? "Confirm Password" : "تأكيد كلمة المرور"}
             name="confirmPassword"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -210,7 +215,7 @@ const ForgotPasswordForm = ({ verificationString, setFailedPasswordChange }) => 
               className={`text-red-500 text-sm mb-0 mt-3`}
               style={{ fontFamily: "AlbertFontNormal" }}
             >
-              Passwords do not match
+              {english ? "Passwords do not match" : "كلمات المرور غير متطابقة"}
             </p>
           </div>
         ) : null}
@@ -259,7 +264,9 @@ const ForgotPasswordForm = ({ verificationString, setFailedPasswordChange }) => 
           }
           style={{ fontFamily: "AlbertFontNormal" }}
         >
-          <div style={{ marginTop: "3px" }}>Reset Password</div>
+          <div style={{ marginTop: "3px" }}>
+            {english ? "Reset Password" : "إعادة تعيين كلمة المرور"}
+          </div>
         </Button>
       </form>
     </Box>

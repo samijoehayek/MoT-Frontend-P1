@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import { Snackbar, SnackbarContent, Typography } from "@mui/material";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { AppContext } from "../../app/appContext";
 
 const PasswordFailedSnackbar = ({ open, onClose }) => {
+  const { english } = useContext(AppContext);
+
   return (
     <Snackbar
       open={open}
@@ -15,9 +19,11 @@ const PasswordFailedSnackbar = ({ open, onClose }) => {
           <div className="flex items-center">
             <HighlightOffIcon
               alt="check-icon"
-              style={{ marginRight: "16px", color:"red" }}
+              style={{ marginRight: "16px", color: "red" }}
             />{" "}
-            <Typography variant="body1">Password Update Failed!</Typography>
+            <Typography variant="body1">
+              {english ? "Password Update Failed!" : "فشل تحديث كلمة المرور!"}
+            </Typography>
           </div>
         }
         sx={{
