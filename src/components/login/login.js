@@ -21,7 +21,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import GoogleRecaptcha from "../google-recaptcha/google-recaptcha";
 import { AppContext } from "../../app/appContext";
 
-const Login = ({ setMethod, setDuplicateEmailModal }) => {
+const Login = ({ setMethod, setDuplicateEmailModal, setToken }) => {
   const [loginError, setLoginError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [has2FA, setHas2FA] = useState(false);
@@ -38,22 +38,30 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
       submit: null,
     },
     validationSchema: Yup.object({
-      username: Yup.string().max(255).required(english ? "Username is required" : "اسم المستخدم أو البريد الالكتروني مطلوب"),
-      password: Yup.string().max(255).required(english ? "Password is required" : "كلمة المرور مطلوبة"),
+      username: Yup.string()
+        .max(255)
+        .required(
+          english
+            ? "Username is required"
+            : "اسم المستخدم أو البريد الالكتروني مطلوب"
+        ),
+      password: Yup.string()
+        .max(255)
+        .required(english ? "Password is required" : "كلمة المرور مطلوبة"),
     }),
     onSubmit: async (values, helpers) => {
       try {
         await login(values.username, values.password)
           .then((response) => {
             const token = response.token;
-            setHas2FA(response.has2FA);
-            localStorage.setItem("token", token);
-            document.cookie = `token=${token}`;
-          })
-          .then(() => {
-            if (has2FA) {
-              router.push("/dashboard");
-            }else{
+            console.log(response.user.has2FA);
+            if (response.user.has2FA) {
+              setMethod("2FAThird");
+              setToken(token);
+              // router.push("/dashboard");
+            } else {
+              localStorage.setItem("token", token);
+              document.cookie = `token=${token}`;
               setMethod("2FA");
             }
           })
@@ -64,8 +72,6 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
             }
             console.log("Login failed: ", error);
           });
-
-        // await auth.signIn(values.username, values.password);
       } catch (err) {
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
@@ -189,11 +195,14 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
           {formik.errors.submit}
         </Typography>
       )}
-       {loginError ? (
+      {loginError ? (
         <div>
           <p
             className={`text-red-500 text-sm mb-0 mt-3`}
-            style={{ fontFamily: "AlbertFontNormal", textAlign: english ? '' : 'right' }}
+            style={{
+              fontFamily: "AlbertFontNormal",
+              textAlign: english ? "" : "right",
+            }}
           >
             {english ? "Wrong credentials" : "بيانات الاعتماد غير صحيحة"}
           </p>
@@ -236,15 +245,20 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
               sx={{ color: "white", fontSize: 14, mt: "5px" }}
               style={{ fontFamily: "AlbertFontNormal" }}
             >
-             {english ? "Remember me" : "تذكرنى"}
+              {english ? "Remember me" : "تذكرنى"}
             </Typography>
           }
           labelPlacement="end"
           sx={{ alignItems: "flex-center", mt: "2px" }}
         />
-         <Typography
+        <Typography
           variant="body2"
-          sx={{ color: "#785FDC", cursor: "pointer", mt: "5px", textAlign: english ? '' : 'right' }}
+          sx={{
+            color: "#785FDC",
+            cursor: "pointer",
+            mt: "5px",
+            textAlign: english ? "" : "right",
+          }}
           style={{ fontFamily: "AlbertFontNormal" }}
           onClick={() => router.push("/forgot-password-email")}
         >
@@ -284,10 +298,16 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
           !formik.values.password ||
           !recaptchaSuccess
         }
-        style={{ fontFamily: "AlbertFontNormal", textAlign: english ? '' : 'right' }}
+        style={{
+          fontFamily: "AlbertFontNormal",
+          textAlign: english ? "" : "right",
+        }}
       >
         {formik.values.username && formik.values.password ? (
-          <p className="mt-1"> {english ? "JOIN THE METAVERSE" : "تسجيل الدخول"}</p>
+          <p className="mt-1">
+            {" "}
+            {english ? "JOIN THE METAVERSE" : "تسجيل الدخول"}
+          </p>
         ) : (
           <p className="mt-1"> {english ? "LOG IN" : "الدخول"}</p>
         )}
@@ -297,7 +317,10 @@ const Login = ({ setMethod, setDuplicateEmailModal }) => {
 
       <div
         className={`flex items-center justify-center font-normal text-base text-white`}
-        style={{ fontFamily: "AlbertFontNormal", textAlign: english ? '' : 'right' }}
+        style={{
+          fontFamily: "AlbertFontNormal",
+          textAlign: english ? "" : "right",
+        }}
         onClick={() => setMethod("signup")}
       >
         {english ? "Don't have an account?" : "ليس لديك حساب؟"}

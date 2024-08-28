@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+import React, {useContext} from "react";
 import { Snackbar, SnackbarContent, Typography } from "@mui/material";
 import Image from "next/image";
+import { AppContext } from "../../app/appContext";
 
 const PasswordUpdatedSnackbar = ({ open, onClose }) => {
+  const { english } = useContext(AppContext);
+
   return (
     <Snackbar
       open={open}
@@ -20,7 +24,11 @@ const PasswordUpdatedSnackbar = ({ open, onClose }) => {
               src="/images/checkicon1.svg"
               style={{ marginRight: "16px" }}
             />{" "}
-            <Typography variant="body1">Your password was updated!</Typography>
+            <Typography variant="body1">
+              {english
+                ? "Your password was updated!"
+                : "تم تحديث كلمة المرور الخاصة بك!"}
+            </Typography>
           </div>
         }
         sx={{

@@ -1,59 +1,44 @@
-"use client";
 import React, { useState, useEffect } from "react";
-import { Button, Stack, Typography } from "@mui/material";
-import qrCode from "qrcode";
-import { authenticator } from "otplib";
-import Image from "next/image";
-import { createTwoFactorAuth, getUserByJWT } from "@/axios";
-import TwoFactorInput from "../two-factor-input/two-factor-input";
 import { useRouter } from "next/navigation";
+import TwoFactorInput from "../two-factor-input/two-factor-input";
+import { getUserByJWT } from "@/axios";
+import { authenticator } from "otplib";
+import { Button, Stack, Typography } from "@mui/material";
 
-const TwoFactorSecurityCode = ({ setMethod }) => {
-  const [code, setCode] = useState(["", "", "", "", "", ""]);
-  const [qrImage, setQrImage] = useState(null);
-  const [isValid, setIsValid] = useState(false);
+const TwoFactorSecurityCode = ({ token }) => {
   const [secret, setSecret] = useState("");
   const [otpFailed, setOtpFailed] = useState(false);
-
+  const [code, setCode] = useState(["", "", "", "", "", ""]);
   const router = useRouter();
 
-  const generateSecret = async () => authenticator.generateSecret();
-  const verifyOTP = (secret, otp) => {
-    const newOTP = otp.join("");
-    console.log(secret, newOTP);
-    setIsValid(authenticator.verify({ secret, token: newOTP }));
-    console.log(authenticator.verify({ secret, token: newOTP }));
-    console.log(isValid)
-    if(isValid) {
-      createTwoFactorAuth(localStorage.getItem("token")).then(() => {router.push("/dashboard")}).catch((err) => console.log(err));
-    }else{
-      setOtpFailed(true);
-    }
-  }
-
-
-  const getUser = () => {
-    return getUserByJWT(localStorage.getItem("token"));
+  const verifyUser = async (secret, otp) => {
+    verifyOTP(secret, otp).then((res) => {
+      console.log(res);
+      if (res) {
+        localStorage.setItem("token", token);
+        document.cookie = `token=${token}`;
+        router.push("/dashboard");
+      } else {
+        setOtpFailed(true);
+      }
+    });
   };
 
-  const generateQRCode = async (secret, username) => {
-    const otpauth = authenticator.keyuri(username, "MT+Metaverse", secret);
-    try {
-      const qr = await qrCode.toDataURL(otpauth);
-      setQrImage(qr);
-      return qr;
-    } catch {
-      return null;
-    }
+  const verifyOTP = async (secret, otp) => {
+    const newOTP = otp.join("");
+    console.log(authenticator.verify({ secret, token: newOTP }));
+    console.log(secret, newOTP);
+    return authenticator.verify({ secret, token: newOTP });
+  };
+
+  const getUser = () => {
+    return getUserByJWT(token);
   };
 
   useEffect(() => {
-    generateSecret().then((secret) => {
-      console.log(secret);
-      setSecret(secret);
-      getUser().then((res) => {
-        generateQRCode(secret, res.username);
-      });
+    getUser().then((res) => {
+      console.log(res);
+      setSecret(res.twoFactorSecret);
     });
   }, []);
 
@@ -73,16 +58,10 @@ const TwoFactorSecurityCode = ({ setMethod }) => {
           style={{ fontFamily: "AlbertFontNormal", fontSize: "0.9rem" }}
         >
           Please use your authenticator app (such as Google or Duo
-          Authenticator) to scan this QR code, then enter the 6 digits code from
-          the application.
+          Authenticator) to retrieve the 6 digits code and insert it below.
         </Typography>
       </Stack>
-      {qrImage && (
-        <div className="mb-12 rounded-lg overflow-hidden inline-block">
-          <Image src={qrImage} width={180} height={200} alt="QRCode"></Image>
-        </div>
-      )}
-      <TwoFactorInput setCode={setCode} code={code} />
+      <TwoFactorInput setCode={setCode} code={code} otpFailed={otpFailed} />
       <Button
         fullWidth
         size="large"
@@ -105,21 +84,13 @@ const TwoFactorSecurityCode = ({ setMethod }) => {
           },
         }}
         onClick={() => {
-          verifyOTP(secret, code);
+          verifyUser(secret, code);
         }}
         variant="contained"
         style={{ fontFamily: "AlbertFontNormal" }}
       >
         <p className="mt-1">VERIFY CODE</p>
       </Button>
-
-      <div
-        className={`flex items-center justify-center font-normal text-base text-white mt-4 mb-20`}
-        style={{ fontFamily: "AlbertFontNormal" }}
-        onClick={() => setMethod("signup")}
-      >
-        CANCEL
-      </div>
     </div>
   );
 };

@@ -13,19 +13,15 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (req.nextUrl.pathname.startsWith("/Build")) {
-    return NextResponse.redirect(new URL("/", req.url));
+  if(req.nextUrl.pathname.startsWith("/login") && verifiedToken) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
-  // if(req.nextUrl.pathname.startsWith("/google-authenticator")) {
-  //   return NextResponse.redirect(new URL("/", req.url));
-  // }
-
-  if (!verifiedToken) {
-    return NextResponse.redirect(new URL("/", req.url));
+  if(req.nextUrl.pathname.startsWith("/login") && !verifiedToken) {
+    return;
   }
 }
 
 export const config = {
-  matcher: ["/dashboard", "/Build", "/Build/index.html"],
+  matcher: ["/dashboard", "/login"],
 };

@@ -1,13 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import bg from "../../../public/images/login-bg6.jpg";
-import Image from "next/image";
 import { Button, Typography, Box, TextField } from "@mui/material";
 import EmailConfirmationModal from "@/components/email-confirmation-modal/email-confirmation-modal";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { sendEmailPasswordChange } from "@/axios";
+import { AppContext } from "../../app/appContext";
 
 const ForgotPasswordEmail = () => {
   // States
@@ -24,6 +24,7 @@ const ForgotPasswordEmail = () => {
 
   // Hooks
   const router = useRouter();
+  const { english } = useContext(AppContext);
 
   const formik = useFormik({
     initialValues: {
@@ -66,7 +67,8 @@ const ForgotPasswordEmail = () => {
       <div className="relative md:block hidden px-8">
         <div className={`text-white`} style={{ fontFamily: "AlbertFont" }}>
           <h2 className="text-8xl">
-            Saudi Tourism <br /> Metaverse
+            {english ? "Saudi Tourism:" : "السياحة السعودية:"}
+            <br /> {english ? "Metaverse" : "العالم الافتراضي"}
           </h2>
         </div>
       </div>
@@ -98,14 +100,14 @@ const ForgotPasswordEmail = () => {
               sx={{ fontWeight: "bold", color: "white", mb: 1 }}
               style={{ fontFamily: "AlbertFont" }}
             >
-              Reset Password
+              {english ? "Reset Password":"إعادة تعيين كلمة المرور"}
             </Typography>
             <Typography
               variant="subtitle1"
               sx={{ color: "rgba(255, 255, 255, 0.7)", mb: 3 }}
               style={{ fontFamily: "AlbertFontNormal" }}
             >
-              Enter your email to change your password.
+              {english ? "Enter your email to change your password." : "أدخل بريدك الإلكتروني لتغيير كلمة المرور"}
             </Typography>
             <Box sx={{ mb: 2 }}>
               <Typography
@@ -113,13 +115,13 @@ const ForgotPasswordEmail = () => {
                 htmlFor="email"
                 sx={{ display: "block", mb: 1, color: "white" }}
               >
-                Email
+                {english ? "Email" : "البريد الإلكتروني"}
               </Typography>
               <TextField
                 error={!!(formik.touched.email && formik.errors.email)}
                 fullWidth
                 helperText={formik.touched.email && formik.errors.email}
-                label="Email"
+                label={english?"Email":"البريد الإلكتروني"}
                 name="email"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
@@ -193,7 +195,7 @@ const ForgotPasswordEmail = () => {
               disabled={!formik.values.email || formik.errors.email}
               style={{ fontFamily: "AlbertFontNormal" }}
             >
-              Reset Password
+              {english ? "Reset Password" : "إعادة تعيين كلمة المرور"}
             </Button>
           </form>
         </Box>

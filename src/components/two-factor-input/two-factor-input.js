@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
-const TwoFactorInput = ({setCode, code}) => {
+const TwoFactorInput = ({ setCode, code, otpFailed }) => {
   const inputRefs = useRef([]);
-
+  console.log(otpFailed);
   useEffect(() => {
     inputRefs.current = inputRefs.current.slice(0, 6);
   }, []);
@@ -18,7 +18,7 @@ const TwoFactorInput = ({setCode, code}) => {
   };
 
   const handleKeyDown = (index, e) => {
-    if (e.key === 'Backspace' && !code[index] && index > 0) {
+    if (e.key === "Backspace" && !code[index] && index > 0) {
       inputRefs.current[index - 1].focus();
     }
   };
@@ -28,13 +28,15 @@ const TwoFactorInput = ({setCode, code}) => {
       {code.map((digit, index) => (
         <input
           key={index}
-          ref={el => inputRefs.current[index] = el}
+          ref={(el) => (inputRefs.current[index] = el)}
           type="text"
           maxLength={1}
           value={digit}
-          onChange={e => handleChange(index, e.target.value)}
-          onKeyDown={e => handleKeyDown(index, e)}
-          className="w-12 h-12 text-center text-xl border-2 border-gray-300 rounded-md focus:border-blue-500 focus:outline-none"
+          onChange={(e) => handleChange(index, e.target.value)}
+          onKeyDown={(e) => handleKeyDown(index, e)}
+          className={`w-12 h-12 text-center text-xl border-2 border-gray-300 rounded-md focus:outline-none ${
+            otpFailed ? "focus:border-red-500 border-red-500" : "focus:border-blue-500 border-gray-300"
+          }`}
         />
       ))}
     </div>

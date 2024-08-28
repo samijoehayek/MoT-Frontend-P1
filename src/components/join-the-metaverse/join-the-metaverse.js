@@ -8,6 +8,7 @@ import Signup from "@/components/signup/signup";
 import TwoFactorAuth from "../two-factor-auth/two-factor-auth";
 import { AppContext } from "../../app/appContext";
 import STCLogo from "../../../public/images/stc-logo.png";
+import TwoFactorQR from "../two-factor-qr/two-factor-qr";
 import TwoFactorSecurityCode from "../two-factor-security-code/two-factor-security-code";
 
 const JoinTheMetaverse = ({
@@ -16,6 +17,7 @@ const JoinTheMetaverse = ({
   setUserEmail,
 }) => {
   const [method, setMethod] = useState("login");
+  const [token, setToken] = useState("");
 
   const { english } = useContext(AppContext);
 
@@ -75,6 +77,7 @@ const JoinTheMetaverse = ({
             <Login
               setMethod={setMethod}
               setDuplicateEmailModal={setDuplicateEmailModal}
+              setToken={setToken}
             />
           )}
           {method === "signup" && (
@@ -87,7 +90,10 @@ const JoinTheMetaverse = ({
           )}
           {method === "2FA" && <TwoFactorAuth setMethod={setMethod} />}
           {method === "2FASecond" && (
-            <TwoFactorSecurityCode setMethod={setMethod} />
+            <TwoFactorQR setMethod={setMethod} />
+          )}
+          {method === "2FAThird" && (
+            <TwoFactorSecurityCode token={token}/>
           )}
         </div>
       </Box>
