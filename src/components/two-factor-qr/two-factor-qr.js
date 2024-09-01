@@ -19,8 +19,6 @@ const TwoFactorQR = ({ setMethod }) => {
   const generateSecret = async () => authenticator.generateSecret();
   const verifyOTP = async (secret, otp) => {
     const newOTP = otp.join("");
-    console.log(authenticator.verify({ secret, token: newOTP }));
-    console.log(secret, newOTP);
     return authenticator.verify({ secret, token: newOTP });
   };
 
