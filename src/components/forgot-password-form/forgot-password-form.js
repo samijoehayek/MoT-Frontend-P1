@@ -41,10 +41,12 @@ const ForgotPasswordForm = ({
       try {
         await forgotPassword(values.newPassword, verificationString)
           .then((response) => {
+            console.log(response);
             setPasswordChangedBC(true);
             router.push("/");
           })
           .catch((error) => {
+            console.log(error);
             setFailedPasswordChange(true);
             setDisableButton(true);
           });

@@ -24,7 +24,6 @@ import { AppContext } from "../../app/appContext";
 const Login = ({ setMethod, setDuplicateEmailModal, setToken }) => {
   const [loginError, setLoginError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [has2FA, setHas2FA] = useState(false);
   const [recaptchaSuccess, setRecaptchaSuccess] = useState();
   const [verificationFailed, setVerificationFailed] = useState();
   const [rememberMe, setRememberMe] = useState(false);

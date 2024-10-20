@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import TwoFactorInput from "../two-factor-input/two-factor-input";
-import { getUserByJWT } from "@/axios";
-import { authenticator } from "otplib";
+import { verifyTwoFactorAuth } from "@/axios";
 import { Button, Stack, Typography } from "@mui/material";
 
 const TwoFactorSecurityCode = ({ token }) => {
-  const [secret, setSecret] = useState("");
   const [otpFailed, setOtpFailed] = useState(false);
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const router = useRouter();
 
-  const verifyUser = async (secret, otp) => {
-    verifyOTP(secret, otp).then((res) => {
-      console.log(res);
-      if (res) {
+  const verifyUser = async (otp) => {
+    const newOTP = otp.join("");
+    verifyTwoFactorAuth(token, newOTP).then((res) => {
+      if (res.data) {
         localStorage.setItem("token", token);
         document.cookie = `token=${token}`;
         router.push("/dashboard");
@@ -23,24 +21,6 @@ const TwoFactorSecurityCode = ({ token }) => {
       }
     });
   };
-
-  const verifyOTP = async (secret, otp) => {
-    const newOTP = otp.join("");
-    console.log(authenticator.verify({ secret, token: newOTP }));
-    console.log(secret, newOTP);
-    return authenticator.verify({ secret, token: newOTP });
-  };
-
-  const getUser = () => {
-    return getUserByJWT(token);
-  };
-
-  useEffect(() => {
-    getUser().then((res) => {
-      console.log(res);
-      setSecret(res.twoFactorSecret);
-    });
-  }, []);
 
   return (
     <div>
@@ -84,7 +64,7 @@ const TwoFactorSecurityCode = ({ token }) => {
           },
         }}
         onClick={() => {
-          verifyUser(secret, code);
+          verifyUser(code);
         }}
         variant="contained"
         style={{ fontFamily: "AlbertFontNormal" }}

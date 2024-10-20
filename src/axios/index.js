@@ -99,11 +99,24 @@ export const forgotPassword = async (password, verificationString) => {
   return response.data;
 };
 
-export const createTwoFactorAuth = async (token, secret) => {
+export const createTwoFactorAuth = async (token) => {
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_API_HOST}/users/create2FA`,
+    null,
     {
-      secret: secret,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response;
+};
+
+export const verifyTwoFactorAuth = async (token, code) => {
+  const response = await axios.post(
+    `${process.env.NEXT_PUBLIC_API_HOST}/users/verify2FA`,
+    {
+      otp: code,
     },
     {
       headers: {
@@ -111,6 +124,6 @@ export const createTwoFactorAuth = async (token, secret) => {
       },
     }
   );
+  return response;
+}
 
-  return response.data;
-};

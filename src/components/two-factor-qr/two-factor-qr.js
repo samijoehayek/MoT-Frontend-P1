@@ -1,66 +1,32 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Button, Stack, Typography } from "@mui/material";
-import qrCode from "qrcode";
-import { authenticator } from "otplib";
 import Image from "next/image";
-import { createTwoFactorAuth, getUserByJWT } from "@/axios";
+import { createTwoFactorAuth, verifyTwoFactorAuth } from "@/axios";
 import TwoFactorInput from "../two-factor-input/two-factor-input";
 import { useRouter } from "next/navigation";
 
 const TwoFactorQR = ({ setMethod }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [qrImage, setQrImage] = useState(null);
-  const [secret, setSecret] = useState("");
   const [otpFailed, setOtpFailed] = useState(false);
 
   const router = useRouter();
 
-  const generateSecret = async () => authenticator.generateSecret();
-  const verifyOTP = async (secret, otp) => {
+  const verifyUser = async (otp) => {
     const newOTP = otp.join("");
-    return authenticator.verify({ secret, token: newOTP });
-  };
-
-  const verifyUser = async (secret, otp) => {
-    verifyOTP(secret, otp).then((res) => {
-      console.log(res);
-      if (res) {
-        createTwoFactorAuth(localStorage.getItem("token"), secret)
-          .then(() => {
-            console.log("success");
-            router.push("/dashboard");
-          })
-          .catch((err) => console.log(err));
+    verifyTwoFactorAuth(localStorage.getItem("token"), newOTP).then((res) => {
+      if (res.data) {
+        router.push("/dashboard");
       } else {
         setOtpFailed(true);
       }
     });
   };
 
-  const getUser = () => {
-    return getUserByJWT(localStorage.getItem("token"));
-  };
-
-  const generateQRCode = async (secret, username) => {
-    const otpauth = authenticator.keyuri(username, "MT+Metaverse", secret);
-    try {
-      const qr = await qrCode.toDataURL(otpauth);
-      setQrImage(qr);
-      return qr;
-    } catch {
-      return null;
-    }
-  };
-
   useEffect(() => {
-    generateSecret().then((secret) => {
-      console.log(secret);
-      setSecret(secret);
-      getUser().then((res) => {
-        console.log(res);
-        generateQRCode(secret, res.username);
-      });
+    createTwoFactorAuth(localStorage.getItem("token")).then((res) => {
+      setQrImage(res.data);
     });
   }, []);
 
@@ -89,7 +55,7 @@ const TwoFactorQR = ({ setMethod }) => {
           <Image src={qrImage} width={180} height={200} alt="QRCode"></Image>
         </div>
       )}
-      <TwoFactorInput setCode={setCode} code={code} />
+      <TwoFactorInput setCode={setCode} code={code} otpFailed={otpFailed}/>
       <Button
         fullWidth
         size="large"
@@ -112,7 +78,7 @@ const TwoFactorQR = ({ setMethod }) => {
           },
         }}
         onClick={() => {
-          verifyUser(secret, code);
+          verifyUser(code);
         }}
         variant="contained"
         style={{ fontFamily: "AlbertFontNormal" }}
