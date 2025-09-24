@@ -6,16 +6,22 @@ import bg from "../../../public/images/webgl-loader2.jpg";
 import { getUserSession, createUserSession } from "@/axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+// import ShoppingModal from "../../components/shopping-cart/shopping-cart";
 
 const Dashboard = () => {
-  // States
+  // Existing states
   const [loadWebGL, setLoadWebGL] = useState(false);
   const [sentenceIndex, setSentenceIndex] = useState(0);
   const [userSession, setUserSession] = useState({});
 
+  // New shopping-related states
+  const [showShoppingModal, setShowShoppingModal] = useState(true);
+  const [cartItems, setCartItems] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
   const router = useRouter();
 
-  // Constants
+  // Existing constants and styling...
   const sentences = [
     "Explore the space and meet others",
     "Engage in conversations through chat",
@@ -45,7 +51,7 @@ const Dashboard = () => {
     }
   }`;
 
-  // Functions
+  // Existing functions...
   const getUserSessions = () => {
     return getUserSession(localStorage.getItem("token"));
   };
@@ -56,7 +62,6 @@ const Dashboard = () => {
 
   const handleUnload = async () => {
     localStorage.setItem("isActive", false);
-    // await activityStatusFalse(localStorage.getItem("token"));
   };
 
   const handleBeforeUnload = (event) => {
@@ -65,7 +70,6 @@ const Dashboard = () => {
   };
 
   const handleWebGLLoad = (token, isActive) => {
-    // If the token exists check if the user has existing session
     getUserSessions().then((res) => {
       if (res && Object.keys(res).length > 0) {
         if (isActive == "true") {
@@ -77,7 +81,6 @@ const Dashboard = () => {
           setLoadWebGL(true);
         }
       } else {
-        // If the user does not have an existing session, create a new one
         createUserSessions()
           .then((res) => {
             localStorage.setItem("isActive", false);
@@ -92,8 +95,6 @@ const Dashboard = () => {
   };
 
   function handleCaching(url) {
-    // Caching enabled for .data and .bundle files.
-    // Revalidate if file is up to date before loading from cache
     if (
       url.match(/\.data/) ||
       url.match(/\.bundle/) ||
@@ -105,43 +106,96 @@ const Dashboard = () => {
       return "must-revalidate";
     }
 
-    // Caching enabled for .mp4 and .custom files
-    // Load file from cache without revalidation.
     if (url.match(/\.mp4/) || url.match(/\.custom/)) {
       return "immutable";
     }
 
-    // Disable explicit caching for all other files.
-    // Note: the default browser cache may cache them anyway.
     return "no-store";
   }
+
+  // // New shopping functions
+  // const handleProductSelected = (productData) => {
+  //   setSelectedProduct(productData);
+  //   setShowShoppingModal(true);
+  //   // Optionally pause or dim the Unity experience
+  //   sendMessage("GameManager", "PauseExperience");
+  // };
+
+  // const handleAddToCart = (product) => {
+  //   setCartItems((prev) => [...prev, { ...product, id: Date.now() }]);
+  //   // Send confirmation back to Unity
+  //   sendMessage("GameManager", "ProductAddedToCart", JSON.stringify(product));
+  // };
+
+  // const handleCloseModal = () => {
+  //   setShowShoppingModal(false);
+  //   setSelectedProduct(null);
+  //   // Resume Unity experience
+  //   sendMessage("GameManager", "ResumeExperience");
+  // };
+
+  // const handleCheckoutComplete = (paymentResult) => {
+  //   if (paymentResult.success) {
+  //     // Handle successful payment
+  //     setCartItems([]);
+  //     sendMessage(
+  //       "GameManager",
+  //       "PurchaseCompleted",
+  //       JSON.stringify(paymentResult)
+  //     );
+  //   }
+  //   handleCloseModal();
+  // };
 
   // Hooks
   const isMobile = useMediaQuery({ query: "(max-width: 1025px)" });
 
-  const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
+  const {
+    unityProvider,
+    loadingProgression,
+    isLoaded,
+    sendMessage,
+    addEventListener,
+    removeEventListener,
+  } = useUnityContext({
     loaderUrl: isMobile
       ? "BuildMobile/Build/Build.loader.js"
-      : "https://metaverse-mt.oss-me-central-1.aliyuncs.com/Build/Build/Build.loader.js",
+      : "https://mt-webgl.sfo3.digitaloceanspaces.com/Build/Build.loader.js",
     dataUrl: isMobile
       ? "BuildMobile/Build/Build.data.unityweb"
-      : "https://metaverse-mt.oss-me-central-1.aliyuncs.com/Build/Build/Build.data.unityweb",
+      : "https://mt-webgl.sfo3.digitaloceanspaces.com/Build/Build.data.unityweb",
     frameworkUrl: isMobile
       ? "BuildMobile/Build/Build.framework.js.unityweb"
-      : "https://metaverse-mt.oss-me-central-1.aliyuncs.com/Build/Build/Build.framework.js.unityweb",
+      : "https://mt-webgl.sfo3.digitaloceanspaces.com/Build/Build.framework.js.unityweb",
     codeUrl: isMobile
       ? "BuildMobile/Build/Build.wasm.unityweb"
-      : "https://metaverse-mt.oss-me-central-1.aliyuncs.com/Build/Build/Build.wasm.unityweb",
+      : "https://mt-webgl.sfo3.digitaloceanspaces.com/Build/Build.wasm.unityweb",
     streamingAssetsUrl: isMobile
       ? "BuildMobile/StreamingAssets"
-      : "https://metaverse-mt.oss-me-central-1.aliyuncs.com/Build/StreamingAssets",
+      : "https://mt-webgl.sfo3.digitaloceanspaces.com/StreamingAssets",
     companyName: "CDS",
     productName: "MIC",
     productVersion: "0.1",
     cacheControl: handleCaching,
   });
 
-  // UseEffects
+  // // Unity event listeners for shopping
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     // Listen for product selection from Unity
+  //     addEventListener("ProductSelected", handleProductSelected);
+
+  //     // Listen for cart icon clicks from Unity
+  //     addEventListener("OpenCart", () => setShowShoppingModal(true));
+
+  //     return () => {
+  //       removeEventListener("ProductSelected", handleProductSelected);
+  //       removeEventListener("OpenCart", () => setShowShoppingModal(true));
+  //     };
+  //   }
+  // }, [isLoaded, addEventListener, removeEventListener]);
+
+  // Existing useEffect...
   useEffect(() => {
     window.addEventListener("unload", handleUnload);
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -169,7 +223,7 @@ const Dashboard = () => {
         <Fragment>
           {!isLoaded && (
             <div className={"w-screen h-screen flex flex-col"} style={styling}>
-              {/* This is the Logo */}
+              {/* Loading screen content - same as before */}
               <div className="w-full flex justify-center mt-8">
                 <Image
                   src="/images/stc-logo.png"
@@ -178,7 +232,6 @@ const Dashboard = () => {
                   height={80}
                 />
               </div>
-              {/* This is the title and sentences animation */}
               <div className="flex flex-grow flex-col justify-center items-center">
                 <div
                   className={`mt-4 text-white text-center`}
@@ -202,7 +255,6 @@ const Dashboard = () => {
                   Saudi Tourism Metaverse Loading...
                 </h1>
               </div>
-              {/* This is the loader */}
               <div className="flex flex-col items-center my-16 mx-16">
                 <div className="w-full flex flex-row justify-between text-white mb-2">
                   <span className="text-sm">Loading...</span>
@@ -214,14 +266,15 @@ const Dashboard = () => {
                   <div
                     className="h-2 bg-white"
                     style={{
-                      width: `${loadingProgression * 100}%`
+                      width: `${loadingProgression * 100}%`,
                     }}
                   ></div>
                 </div>
               </div>
             </div>
           )}
-          {/* This is the unity webgl renderrer */}
+
+          {/* Unity WebGL Canvas */}
           <Unity
             unityProvider={unityProvider}
             style={{
@@ -235,6 +288,18 @@ const Dashboard = () => {
               bottom: 0,
             }}
           />
+
+          {/* Shopping Modal Overlay */}
+          {/* {showShoppingModal && (
+            <ShoppingModal
+              isOpen={showShoppingModal}
+              onClose={handleCloseModal}
+              selectedProduct={selectedProduct}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onCheckoutComplete={handleCheckoutComplete}
+            />
+          )} */}
         </Fragment>
       </>
     )
